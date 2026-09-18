@@ -2,180 +2,836 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>青鸟消防控制面板复刻</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>中级消控实测模拟练习 · 主页</title>
     <style>
-        /* 基础重置与字体设置 */
+        /* ========== 全局重置 ========== */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            background-color: #222;
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: #0e1a24;
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(64, 128, 200, 0.18) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(255, 140, 60, 0.10) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(40, 90, 140, 0.08) 0%, transparent 70%),
+                linear-gradient(160deg, #101f2c 0%, #162b3b 50%, #0e1a24 100%);
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'SimHei', 'Segoe UI', Roboto, system-ui, sans-serif;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            align-items: flex-start;
+            padding: 24px 16px;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
         }
 
-        /* 主面板容器 */
-        .panel {
-            width: 1024px;
-            height: 560px;
-            background: #d2d6d8;
-            border: 8px solid #a8aeaf;
-            border-radius: 12px;
-            box-shadow: 
-                0 20px 40px rgba(0,0,0,0.6),
-                inset 0 0 10px rgba(255,255,255,0.5),
-                inset 0 0 2px rgba(0,0,0,0.3);
-            position: relative;
+        /* ========== 主页容器 ========== */
+        .home-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            min-height: calc(100vh - 48px);
+            background: rgba(18, 32, 46, 0.72);
+            backdrop-filter: blur(24px) saturate(140%);
+            -webkit-backdrop-filter: blur(24px) saturate(140%);
+            border-radius: 36px;
+            border: 1px solid rgba(120, 180, 240, 0.14);
+            box-shadow:
+                0 40px 80px -30px rgba(0, 0, 0, 0.85),
+                0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+                0 1px 0 rgba(255, 255, 255, 0.08) inset;
+            padding: 32px 36px 28px;
             display: flex;
             flex-direction: column;
-            padding: 15px 25px;
+            position: relative;
             overflow: hidden;
         }
 
-        /* 顶部装饰线/水印 */
-        .watermark-top {
+        .home-wrapper::before {
+            content: '';
             position: absolute;
-            top: 10px;
-            left: 30px;
-            font-size: 14px;
-            color: #888;
-            letter-spacing: 2px;
-            z-index: 10;
+            top: -120px;
+            right: -120px;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(80, 160, 255, 0.18) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
-        /* 顶部区域 (Logo + 顶部指示灯) */
-        .header {
+        .home-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(255, 140, 60, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* ========== 顶部栏 ========== */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(120, 180, 240, 0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand {
             display: flex;
             align-items: center;
-            height: 50px;
+            gap: 16px;
+        }
+
+        .brand-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(145deg, #3f9ef0, #1a5590);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                0 10px 22px -8px #1c5f9e,
+                0 0 0 1px rgba(255, 255, 255, 0.12) inset,
+                0 2px 0 rgba(255, 255, 255, 0.18) inset;
+            position: relative;
+        }
+
+        .brand-icon::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.18), transparent 60%);
+            pointer-events: none;
+        }
+
+        .brand-icon svg {
+            width: 32px;
+            height: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-text h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, #a8d0f0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 0.5px;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .brand-text .sub {
+            font-size: 13px;
+            color: #8fb8d8;
+            letter-spacing: 1.2px;
+            font-weight: 500;
+            margin-top: 3px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand-text .sub .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #4da6ff;
+            box-shadow: 0 0 8px #4da6ff;
+            animation: pulseDot 2s infinite;
+        }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 16px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(30, 55, 80, 0.5);
+            border: 1px solid rgba(120, 180, 240, 0.15);
+            border-radius: 16px;
+            padding: 8px 20px;
+            min-width: 90px;
+            box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #8fb8d8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-value.highlight {
+            background: linear-gradient(135deg, #ffb347, #ff8c1a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 8px rgba(255, 160, 60, 0.4));
+        }
+
+        /* ========== 课题列表标题 ========== */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title h2 {
+            font-size: 21px;
+            font-weight: 700;
+            color: #ffffffd9;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title h2 .icon {
+            font-size: 22px;
+            filter: drop-shadow(0 0 6px rgba(80, 180, 255, 0.5));
+        }
+
+        .section-title .badge {
+            font-size: 13px;
+            background: linear-gradient(135deg, #2a4b6e, #1e3a54);
+            color: #aad0ff;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: 1px solid #3a6f9e;
+            box-shadow: 0 2px 8px -2px #1a4a73, inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* ========== 卡片网格 ========== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+            flex: 1;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ========== 课题卡片 ========== */
+        .topic-card {
+            background: linear-gradient(155deg, rgba(38, 62, 83, 0.95), rgba(22, 42, 58, 0.98));
+            border-radius: 26px;
+            border: 1px solid rgba(90, 150, 210, 0.22);
+            box-shadow:
+                0 20px 32px -16px #050c14,
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 1px 0 rgba(255, 255, 255, 0.08) inset;
+            padding: 26px 24px 22px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4da6ff, #7bc0ff, #4da6ff);
+            opacity: 0.85;
+            transition: opacity 0.25s;
+        }
+
+        .topic-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(80, 160, 255, 0.10) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(120, 190, 250, 0.45);
+            box-shadow:
+                0 28px 44px -18px #030a12,
+                0 0 0 1px rgba(100, 170, 230, 0.25) inset,
+                0 1px 0 rgba(255, 255, 255, 0.10) inset;
+        }
+
+        .topic-card:hover::before {
+            opacity: 1;
+        }
+
+        .topic-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(145deg, #1e3f5a, #142c3e);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            border: 1px solid rgba(90, 150, 210, 0.35);
+            box-shadow:
+                0 6px 14px -6px #0a1622,
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .card-icon::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), transparent 55%);
+            pointer-events: none;
+        }
+
+        .card-badge {
+            background: linear-gradient(135deg, #2f577b, #1e3f5a);
+            color: #bbddff;
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(90, 150, 210, 0.35);
+            box-shadow: 0 2px 8px -2px #0f2a40, inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .card-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.45;
             margin-bottom: 10px;
+            letter-spacing: 0.2px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        .logo-area {
+        .card-desc {
+            font-size: 13.5px;
+            color: #b0cee4;
+            line-height: 1.6;
+            margin-bottom: 22px;
+            flex: 1;
+            opacity: 0.92;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(90, 150, 210, 0.14);
+            padding-top: 18px;
+            margin-top: 4px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(28, 51, 70, 0.85);
+            color: #9ec3e0;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(70, 120, 170, 0.35);
+            font-weight: 500;
+            letter-spacing: 0.2px;
+        }
+
+        .start-btn {
+            background: linear-gradient(145deg, #3d8fd9, #266bb0);
+            border: none;
+            border-radius: 40px;
+            padding: 11px 24px;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
             display: flex;
             align-items: center;
-            width: 220px;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow:
+                0 10px 18px -8px #1b5180,
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+            transition: all 0.18s cubic-bezier(0.3, 0.9, 0.4, 1.1);
+            border: 1px solid rgba(120, 190, 250, 0.55);
+            letter-spacing: 0.4px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .logo-svg {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transition: left 0.5s;
         }
 
-        .logo-text {
+        .start-btn:hover::before {
+            left: 100%;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(145deg, #4b9cf0, #2f7bc0);
+            box-shadow:
+                0 14px 24px -8px #2368a6,
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .start-btn:active {
+            transform: translateY(1px);
+            box-shadow:
+                0 4px 10px -4px #1b5180,
+                inset 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 锁定卡片 */
+        .topic-card.locked {
+            opacity: 0.55;
+            filter: grayscale(0.55) brightness(0.8);
+            pointer-events: none;
+            border-color: rgba(60, 90, 120, 0.25);
+            cursor: not-allowed;
+        }
+
+        .topic-card.locked::before {
+            background: linear-gradient(90deg, #4a6a80, #3a5a70, #4a6a80);
+        }
+
+        .topic-card.locked .card-icon {
+            background: linear-gradient(145deg, #1e2f3c, #152430);
+            border-color: rgba(60, 90, 120, 0.3);
+        }
+
+        .topic-card.locked .start-btn {
+            background: linear-gradient(145deg, #3f5567, #2e4254);
+            border-color: #4e6377;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .topic-card.locked .start-btn::before {
+            display: none;
+        }
+
+        /* ========== 底部 ========== */
+        .footer-note {
+            text-align: center;
+            font-size: 13px;
+            color: #7a9cb8;
+            margin-top: 8px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(90, 150, 210, 0.10);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-note .version {
+            font-family: 'SF Mono', 'Consolas', monospace;
+            background: rgba(27, 49, 66, 0.7);
+            padding: 5px 14px;
+            border-radius: 30px;
+            color: #80b6e0;
+            font-size: 12px;
+            border: 1px solid rgba(70, 120, 170, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== 练习弹窗（全屏固定，禁止滑动） ========== */
+        .practice-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a1219;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            overflow: hidden;
+            touch-action: none;
+            -webkit-overflow-scrolling: none;
+            overscroll-behavior: none;
+        }
+
+        .practice-modal.active {
+            display: flex;
+        }
+
+        .practice-modal-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at 50% 30%, #16283a 0%, #0a1219 80%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .practice-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: 300;
+            color: #c0d9ee;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.45);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            z-index: 100;
+            border: 1px solid rgba(120, 180, 240, 0.35);
+            line-height: 1;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .practice-modal-close:hover {
+            background: #1f405b;
+            color: #fff;
+            transform: rotate(90deg);
+            border-color: #6aabf0;
+        }
+
+        /* ========== 原面板样式（固定尺寸，适配缩放） ========== */
+        .practice-modal-inner .panel {
+            width: 1300px;
+            height: 720px;
+            background: #d2d6d8;
+            border: 10px solid #a8aeaf;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(255, 255, 255, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 35px;
+            overflow: hidden;
+            margin: 0 auto;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            transform-origin: center center;
+            flex-shrink: 0;
+        }
+
+        /* 面板内部所有样式——保持原样 */
+        .practice-modal-inner .panel .lesson-header {
+            position: absolute;
+            top: 25px;
+            left: 35px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 50;
+        }
+
+        .practice-modal-inner .panel .lesson-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: #fff;
+            background: #2b6ca3;
+            padding: 6px 14px;
+            border-radius: 4px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            border: 1px solid #1a4a73;
+        }
+
+        .practice-modal-inner .panel .practice-btn {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background: #e67e22;
+            padding: 6px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s;
+            border: 1px solid #b85e10;
+        }
+
+        .practice-modal-inner .panel .practice-btn:hover {
+            background: #d35400;
+        }
+
+        .practice-modal-inner .panel .practice-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .practice-modal-inner .panel .reset-btn {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background: #c0392b;
+            padding: 6px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: background 0.2s;
+            border: 1px solid #a93226;
+            display: none;
+        }
+
+        .practice-modal-inner .panel .reset-btn:hover {
+            background: #a93226;
+        }
+
+        .practice-modal-inner .panel .reset-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .practice-modal-inner .panel .header {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            margin-bottom: 10px;
+            justify-content: flex-end;
+        }
+
+        .practice-modal-inner .panel .logo-area {
+            display: flex;
+            align-items: center;
+            width: 260px;
+        }
+
+        .practice-modal-inner .panel .logo-svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 12px;
+        }
+
+        .practice-modal-inner .panel .logo-text {
             display: flex;
             flex-direction: column;
         }
 
-        .logo-text .chinese {
-            font-size: 20px;
+        .practice-modal-inner .panel .logo-text .chinese {
+            font-size: 24px;
             font-weight: bold;
             color: #2b6ca3;
             letter-spacing: 1px;
         }
 
-        .logo-text .english {
-            font-size: 10px;
+        .practice-modal-inner .panel .logo-text .english {
+            font-size: 12px;
             color: #2b6ca3;
             letter-spacing: 0.5px;
         }
 
-        .top-indicators {
-            display: flex;
-            gap: 30px;
-            margin-left: 20px;
-        }
-
-        .indicator-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 14px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .led-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #4a4a4a;
-            margin-bottom: 4px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
-            border: 1px solid #999;
-        }
-
-        /* 红色 LED 灯 */
-        .led-dot.red {
-            background-color: #ff1a1a;
-            box-shadow: 
-                inset 0 2px 3px rgba(255,255,255,0.4),
-                0 0 8px #ff1a1a,
-                0 0 2px #ff0000;
-            border: 1px solid #cc0000;
-        }
-
-        /* 绿色 LED 灯 */
-        .led-dot.green {
-            background-color: #00ff00;
-            box-shadow: 
-                inset 0 2px 3px rgba(255,255,255,0.4),
-                0 0 8px #00ff00,
-                0 0 2px #00cc00;
-            border: 1px solid #009900;
-        }
-
-        /* 主体内容区域 (左侧面板 + 中间屏幕 + 右侧面板) */
-        .main-body {
+        .practice-modal-inner .panel .main-body {
             display: flex;
             flex: 1;
-            gap: 15px;
+            gap: 20px;
         }
 
-        /* 左侧指示灯区域 */
-        .left-panel {
-            width: 180px;
-            padding-top: 10px;
+        .practice-modal-inner .panel .left-panel {
+            width: 280px;
+            padding-top: 15px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 20px;
         }
 
-        .indicator-row {
+        .practice-modal-inner .panel .alarm-module {
+            display: flex;
+            border: 3px solid #555;
+            border-radius: 10px;
+            padding: 12px 20px;
+            gap: 40px;
+            background: #d2d6d8;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .practice-modal-inner .panel .alarm-item {
             display: flex;
             align-items: center;
-            font-size: 12px;
-            color: #333;
+            gap: 10px;
         }
 
-        .indicator-row .led-dot {
-            width: 10px;
-            height: 10px;
-            margin-right: 8px;
+        .practice-modal-inner .panel .alarm-item .led-dot {
             margin-bottom: 0;
         }
 
-        .indicator-row .text {
-            line-height: 1.2;
+        .practice-modal-inner .panel .alarm-item .text {
+            display: flex;
+            flex-direction: column;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.1;
         }
 
-        .indicator-row .en {
-            font-size: 9px;
+        .practice-modal-inner .panel .alarm-item .en {
+            font-size: 11px;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .practice-modal-inner .panel .indicator-grid {
+            display: flex;
+            gap: 30px;
+            padding-left: 5px;
+        }
+
+        .practice-modal-inner .panel .indicator-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .practice-modal-inner .panel .indicator-row {
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .practice-modal-inner .panel .indicator-row .led-dot {
+            width: 13px;
+            height: 13px;
+            margin-right: 8px;
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+
+        .practice-modal-inner .panel .indicator-row .text {
+            line-height: 1.1;
+            display: flex;
+            flex-direction: column;
+            font-weight: bold;
+        }
+
+        .practice-modal-inner .panel .indicator-row .en {
+            font-size: 10px;
             color: #555;
             display: block;
+            font-weight: normal;
         }
 
-        /* 中间屏幕区域 */
-        .center-panel {
+        .practice-modal-inner .panel .led-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+            border: 1px solid #999;
+        }
+
+        .practice-modal-inner .panel .led-dot.red {
+            background-color: #ff1a1a;
+            box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.4), 0 0 10px #ff1a1a, 0 0 2px #ff0000;
+            border: 1px solid #cc0000;
+        }
+
+        .practice-modal-inner .panel .led-dot.green {
+            background-color: #00ff00;
+            box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.4), 0 0 10px #00ff00, 0 0 2px #00cc00;
+            border: 1px solid #009900;
+        }
+
+        .practice-modal-inner .panel .led-dot.yellow {
+            background-color: #ffcc00;
+            box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.4), 0 0 10px #ffcc00, 0 0 2px #ff9900;
+            border: 1px solid #cc9900;
+        }
+
+        .practice-modal-inner .panel .led-dot.blinking {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
+
+        .practice-modal-inner .panel .center-panel {
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -183,736 +839,1709 @@
             position: relative;
         }
 
-        /* 屏幕外框 */
-        .screen-frame {
+        .practice-modal-inner .panel .screen-frame {
             width: 100%;
-            height: 230px;
+            height: 310px;
             background: #a8aeaf;
-            border-radius: 6px;
-            padding: 8px;
-            box-shadow: 
-                inset 0 0 5px rgba(0,0,0,0.5),
-                0 2px 4px rgba(255,255,255,0.6);
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5), 0 2px 5px rgba(255, 255, 255, 0.6);
             position: relative;
         }
 
-        /* 屏幕水印 */
-        .screen-watermark {
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 18px;
-            color: #999;
-            letter-spacing: 3px;
-            white-space: nowrap;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        /* 屏幕内容 */
-        .screen {
+        .practice-modal-inner .panel .screen {
             width: 100%;
             height: 100%;
-            background: #5cb8e6; /* 背景蓝 */
-            border: 2px solid #555;
+            background: #5cb8e6;
+            border: 2px solid #444;
             display: flex;
             flex-direction: column;
             font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 10px;
+            font-size: 14px;
             color: #fff;
             overflow: hidden;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+            box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.4);
+            position: relative;
         }
 
-        /* 屏幕顶部信息 */
-        .screen-header {
+        .practice-modal-inner .panel .screen-header {
             display: flex;
             justify-content: space-between;
-            padding: 2px 5px;
-            background: #3a8bbd;
+            padding: 5px 8px;
+            background: #2e7ba6;
             font-weight: bold;
-            border-bottom: 1px solid #2a6b9d;
-        }
-
-        /* 屏幕主体 - 分为左右两栏 */
-        .screen-content {
-            display: flex;
-            flex: 1;
-            padding: 2px;
-            gap: 2px;
-        }
-
-        .screen-left {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .screen-right {
-            flex: 1;
-            border-left: 1px solid #2a6b9d;
-            padding-left: 4px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* 消息条目 */
-        .msg-item {
-            display: flex;
-            line-height: 1.3;
-        }
-        .msg-time {
-            color: #fff;
-            margin-right: 5px;
-        }
-        .msg-text {
-            color: #fff;
-            flex: 1;
-        }
-        
-        /* 消息背景高亮 */
-        .msg-highlight {
-            background: rgba(255,255,255,0.2);
-        }
-
-        .screen-right-bottom {
-            text-align: right;
-            font-size: 9px;
+            border-bottom: 2px solid #1c5a7d;
             color: #e0f0ff;
         }
 
-        /* 屏幕底部按钮 */
-        .screen-footer {
+        .practice-modal-inner .panel .screen-content {
             display: flex;
-            background: #3a8bbd;
-            border-top: 1px solid #2a6b9d;
-            padding: 2px;
-            gap: 20px;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
+            flex: 1;
+            padding: 6px;
+            gap: 6px;
         }
 
-        .screen-btn {
-            cursor: pointer;
-            padding: 1px 4px;
+        .practice-modal-inner .panel .screen-left {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .practice-modal-inner .panel .screen-right {
+            flex: 1;
+            border-left: 1px solid #2e7ba6;
+            padding-left: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .practice-modal-inner .panel .msg-item {
+            display: flex;
+            line-height: 1.4;
+            padding: 2px 3px;
+        }
+
+        .practice-modal-inner .panel .msg-time {
+            color: #fff;
+            margin-right: 6px;
+        }
+
+        .practice-modal-inner .panel .msg-text {
+            color: #fff;
+            flex: 1;
+        }
+
+        .practice-modal-inner .panel .msg-highlight {
+            background: rgba(0, 0, 0, 0.25);
             border-radius: 2px;
         }
-        .screen-btn:hover {
-            background: rgba(255,255,255,0.2);
+
+        .practice-modal-inner .panel .screen-right-bottom {
+            text-align: right;
+            font-size: 12px;
+            color: #cce8ff;
         }
 
-        /* 键盘区域 */
-        .keyboard-area {
-            margin-top: 15px;
+        .practice-modal-inner .panel .screen-footer {
+            display: flex;
+            background: #2e7ba6;
+            border-top: 2px solid #1c5a7d;
+            padding: 4px;
+            gap: 35px;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+            color: #e0f0ff;
+        }
+
+        .practice-modal-inner .panel .screen-btn-text {
+            cursor: default;
+            padding: 0;
+            pointer-events: none;
+        }
+
+        .practice-modal-inner .panel .keyboard-area {
+            margin-top: 20px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 8px;
+            align-items: center;
         }
 
-        .keyboard-row {
+        .practice-modal-inner .panel .f-row {
             display: flex;
-            gap: 4px;
+            gap: 14px;
+            margin-bottom: 8px;
             justify-content: center;
         }
 
-        .btn {
-            width: 40px;
-            height: 30px;
-            border-radius: 3px;
+        .practice-modal-inner .panel .btn-f {
+            background: #6fa8d6;
+            color: #fff;
+            width: 65px;
+            height: 35px;
+            border-radius: 5px;
+            font-size: 15px;
+            font-weight: bold;
             border: none;
-            font-size: 11px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .practice-modal-inner .panel .btn-f:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .practice-modal-inner .panel .keyboard-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .practice-modal-inner .panel .btn {
+            border-radius: 5px;
+            border: none;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.1s;
             position: relative;
+            line-height: 1.1;
+            padding: 0 3px;
         }
 
-        .btn:active {
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+        .practice-modal-inner .panel .btn:active {
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
             transform: translateY(1px);
         }
 
-        /* 功能键 F1-F6 */
-        .btn-f {
-            background: #6fa8d6;
+        .practice-modal-inner .panel .btn-num {
+            background: #5b8db8;
             color: #fff;
-            width: 45px;
-        }
-        .btn-f:hover { background: #5c93c0; }
-
-        /* 数字键/字母键 */
-        .btn-num {
-            background: #a0b8c8;
-            color: #111;
-            font-size: 12px;
-        }
-        .btn-num:hover { background: #8da6b8; }
-
-        .btn-num .sub {
-            font-size: 8px;
-            position: absolute;
-            bottom: 2px;
+            font-size: 16px;
+            width: 65px;
+            height: 38px;
+            flex-direction: column;
         }
 
-        /* 方向键/功能键 */
-        .btn-func {
-            background: #ff8c00;
+        .practice-modal-inner .panel .btn-num .sub {
+            font-size: 10px;
+            margin-top: -1px;
+            font-weight: normal;
+        }
+
+        .practice-modal-inner .panel .btn-func {
+            background: #ff7e00;
             color: #fff;
-            width: 45px;
+            font-size: 14px;
+            width: 65px;
+            height: 38px;
+            flex-direction: column;
         }
-        .btn-func:hover { background: #e67e00; }
 
-        /* 底部大按钮 */
-        .btn-large {
-            width: 45px;
-            height: 30px;
+        .practice-modal-inner .panel .btn-func .sub {
+            font-size: 10px;
+            margin-top: 1px;
+            font-weight: normal;
+        }
+
+        .practice-modal-inner .panel .btn-white {
             background: #e0e4e6;
             color: #333;
-            font-size: 11px;
+            font-size: 13px;
+            width: 65px;
+            height: 38px;
             flex-direction: column;
-            line-height: 1.1;
-        }
-        .btn-large:hover { background: #ced4d8; }
-        
-        .btn-large.red-text {
-            color: #d32f2f;
-        }
-        
-        .btn-large.green-text {
-            color: #388e3c;
-        }
-        
-        .btn-large .sub {
-            font-size: 8px;
-            color: #666;
         }
 
-        /* 右侧面板 */
-        .right-panel {
-            width: 150px;
-            padding-top: 10px;
+        .practice-modal-inner .panel .btn-white .sub {
+            font-size: 10px;
+            color: #666;
+            margin-top: 1px;
+            font-weight: normal;
+        }
+
+        .practice-modal-inner .panel .btn-large {
+            width: 65px;
+            height: 38px;
+            font-size: 14px;
+            flex-direction: column;
+        }
+
+        .practice-modal-inner .panel .btn-large.red-text {
+            background: #d32f2f;
+            color: #fff;
+        }
+
+        .practice-modal-inner .panel .btn-large.green-text {
+            background: #388e3c;
+            color: #fff;
+        }
+
+        .practice-modal-inner .panel .btn-large .sub {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 1px;
+            font-weight: normal;
+        }
+
+        .practice-modal-inner .panel .btn-arrow {
+            width: 65px;
+            height: 38px;
+            background: #ff7e00;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .practice-modal-inner .panel .right-panel {
+            width: 170px;
+            padding-top: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
-        /* 数码管显示区域 */
-        .digital-display {
-            width: 80px;
-            height: 35px;
+        .practice-modal-inner .panel .digital-display {
+            width: 100px;
+            height: 45px;
             background: #1a1a1a;
             border: 2px solid #555;
-            border-radius: 3px;
+            border-radius: 4px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Digital-7', 'Courier New', monospace;
-            font-size: 24px;
+            font-size: 30px;
             color: #ff1a1a;
             text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
             letter-spacing: 2px;
             position: relative;
         }
-        
-        /* 数码管坏点模拟 */
-        .digital-display::after {
+
+        .practice-modal-inner .panel .digital-display::after {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(transparent 50%, rgba(0,0,0,0.1) 50%);
+            background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.1) 50%);
             background-size: 100% 4px;
             pointer-events: none;
         }
 
-        /* 钥匙孔区域 */
-        .key-switch-area {
+        .practice-modal-inner .panel .key-switch-area {
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             width: 100%;
+            margin-top: 15px;
         }
 
-        .key-labels {
+        .practice-modal-inner .panel .key-labels {
             display: flex;
             justify-content: space-between;
-            width: 100px;
-            font-size: 12px;
+            width: 120px;
+            font-size: 14px;
             color: #333;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
-        
-        .key-label-item {
+
+        .practice-modal-inner .panel .key-label-item {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        
-        .key-label-item .en {
-            font-size: 9px;
+
+        .practice-modal-inner .panel .key-label-item .en {
+            font-size: 10px;
             color: #555;
         }
 
-        .key-switch {
-            width: 40px;
-            height: 40px;
+        .practice-modal-inner .panel .key-switch {
+            width: 50px;
+            height: 50px;
             background: radial-gradient(circle at 30% 30%, #ccc, #666);
             border-radius: 50%;
             border: 2px solid #444;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .key-switch-inner {
-            width: 30px;
-            height: 30px;
+        .practice-modal-inner .panel .key-switch-inner {
+            width: 38px;
+            height: 38px;
             background: #555;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
         }
 
-        .key-switch-slot {
-            width: 4px;
-            height: 14px;
-            background: #111;
-            border-radius: 2px;
-            transform: rotate(45deg);
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+        .practice-modal-inner .panel .key-inserted {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+            transform-origin: bottom center;
+            width: 8px;
+            height: 20px;
+            background: linear-gradient(to bottom, #d4af37, #b8860b);
+            border-radius: 2px 2px 0 0;
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 3px rgba(0, 0, 0, 0.5);
+            z-index: 10;
         }
-        
-        /* 钥匙孔下的文字 */
-        .key-switch-text {
-            margin-top: 8px;
-            font-size: 14px;
+
+        .practice-modal-inner .panel .key-inserted::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 8px;
+            background: linear-gradient(to bottom, #c0c0c0, #888);
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .practice-modal-inner .panel .key-switch-text {
+            margin-top: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: #333;
         }
-        .key-switch-text .en {
-            font-size: 10px;
+
+        .practice-modal-inner .panel .key-switch-text .en {
+            font-size: 12px;
             color: #555;
             display: block;
             text-align: center;
         }
 
-        /* 扬声器孔 */
-        .speaker {
-            width: 60px;
-            height: 60px;
+        .practice-modal-inner .panel .speaker {
+            width: 75px;
+            height: 75px;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: repeat(6, 1fr);
-            gap: 3px;
+            gap: 4px;
             margin-top: 20px;
         }
 
-        .speaker-hole {
+        .practice-modal-inner .panel .speaker-hole {
             background: #333;
             border-radius: 50%;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
         }
 
-        /* 左下角小屏幕/面板 */
-        .bottom-left-panel {
+        .practice-modal-inner .panel .bottom-left-panel {
             position: absolute;
-            bottom: 20px;
-            left: 25px;
-            width: 200px;
-            height: 80px;
+            bottom: 25px;
+            left: 35px;
+            width: 240px;
+            height: 95px;
             background: #c0c4c6;
             border: 2px solid #999;
-            border-radius: 4px;
+            border-radius: 5px;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding: 10px;
-            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+            padding: 12px;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
         }
 
-        .knob {
-            width: 30px;
-            height: 30px;
+        .practice-modal-inner .panel .knob {
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: #e0e4e6;
             border: 2px solid #888;
             position: relative;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-right: 20px;
+            margin-right: 25px;
         }
-        
-        .knob::after {
+
+        .practice-modal-inner .panel .knob::after {
             content: '';
-            width: 8px;
-            height: 8px;
+            width: 10px;
+            height: 10px;
             background: #555;
             border-radius: 50%;
         }
 
-        .knob-led {
+        .practice-modal-inner .panel .knob-led {
             position: absolute;
-            bottom: -12px;
-            right: 5px;
-            width: 6px;
-            height: 6px;
+            bottom: -15px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
             background: #00ff00;
             border-radius: 50%;
-            box-shadow: 0 0 5px #00ff00;
+            box-shadow: 0 0 6px #00ff00;
         }
 
-        /* 右下角标签 */
-        .bottom-right-label {
+        .practice-modal-inner .panel .bottom-right-label {
             position: absolute;
             top: 15px;
-            right: 20px;
+            right: 25px;
             background: #e67e22;
             color: #fff;
-            padding: 4px 8px;
-            font-size: 12px;
-            border-radius: 3px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 4px;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
             z-index: 20;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .practice-modal-inner .panel .fault-screen {
+            display: none;
+        }
+
+        .practice-modal-inner .panel .fault-screen.active {
             display: flex;
-            align-items: center;
-            gap: 5px;
         }
-        
-        .bottom-right-label .qr {
-            width: 30px;
-            height: 30px;
-            background: #fff;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(4, 1fr);
-            padding: 2px;
-            gap: 1px;
+
+        .practice-modal-inner .panel .click-anywhere {
+            font-size: 14px;
+            color: #e67e22;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
         }
-        .qr-dot {
-            background: #000;
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
         }
-        
-        /* 播放按钮图标覆盖（模拟图片中的视频播放按钮） */
-        .play-overlay {
+
+        .practice-modal-inner .panel .fault-item-clickable {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .practice-modal-inner .panel .fault-item-clickable:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .practice-modal-inner .panel .guide-hand {
             position: absolute;
             bottom: 50px;
-            left: 50px;
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.8);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 165, 0, 0.8);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: #fff;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(255, 165, 0, 0.6);
+            pointer-events: none;
+            animation: slideUp 1.5s ease-in-out infinite alternate;
             z-index: 100;
         }
-        .play-overlay::after {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 25px solid #333;
-            margin-left: 5px;
+
+        .practice-modal-inner .panel .guide-hand::after {
+            content: '👆';
+            font-size: 30px;
         }
 
+        @keyframes slideUp {
+            0% { transform: translate(-50%, 0); opacity: 1; }
+            100% { transform: translate(-50%, -30px); opacity: 0.8; }
+        }
+
+        .practice-modal-inner .panel .fault-item-highlight {
+            background: rgba(255, 165, 0, 0.4);
+            border-radius: 4px;
+            animation: highlightPulse 1s infinite;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { background: rgba(255, 165, 0, 0.4); }
+            50% { background: rgba(255, 165, 0, 0.8); }
+        }
+
+        /* ========== 练习弹窗（内部模态） ========== */
+        .practice-modal-inner .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 11000;
+            backdrop-filter: blur(4px);
+            padding: 20px;
+        }
+
+        .practice-modal-inner .modal-overlay.active {
+            display: flex;
+        }
+
+        .practice-modal-inner .modal {
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            width: 600px;
+            max-width: 90%;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .practice-modal-inner .modal h2 {
+            font-size: 22px;
+            color: #2b6ca3;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .practice-modal-inner .modal p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .practice-modal-inner .modal .option-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin-bottom: 10px;
+            background: #f0f4f8;
+            border: 2px solid #d0d7de;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s;
+        }
+
+        .practice-modal-inner .modal .option-btn:hover {
+            background: #e1e9f0;
+            border-color: #2b6ca3;
+        }
+
+        .practice-modal-inner .modal .option-btn:active {
+            transform: scale(0.99);
+        }
+
+        .practice-modal-inner .modal .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .practice-modal-inner .modal .close-btn:hover {
+            color: #333;
+        }
+
+        .practice-modal-inner .modal .close-btn.hidden {
+            display: none;
+        }
+
+        .practice-modal-inner .modal .highlight-orange {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        .practice-modal-inner .modal .result-text {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .practice-modal-inner .modal .result-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .practice-modal-inner .modal .result-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .practice-modal-inner .modal .next-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #2b6ca3;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .practice-modal-inner .modal .next-btn:hover {
+            background: #1d4f7a;
+        }
+
+        /* ========== 移动端适配 ========== */
+        @media (max-width: 1366px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.85);
+            }
+        }
+
+        @media (max-width: 1180px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.72);
+            }
+        }
+
+        @media (max-width: 980px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.60);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.50);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.42);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.34);
+            }
+        }
+
+        @media (max-width: 460px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.28);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .practice-modal-inner .panel {
+                transform: scale(0.23);
+            }
+        }
+
+        /* 主页移动端适配 */
+        @media (max-width: 900px) {
+            .home-wrapper {
+                padding: 24px 22px 20px;
+                border-radius: 28px;
+            }
+
+            .brand-text h1 {
+                font-size: 22px;
+            }
+
+            .brand-icon {
+                width: 48px;
+                height: 48px;
+                border-radius: 15px;
+            }
+
+            .brand-icon svg {
+                width: 26px;
+                height: 26px;
+            }
+
+            .header-stats {
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 6px 14px;
+                min-width: 70px;
+                border-radius: 12px;
+            }
+
+            .stat-value {
+                font-size: 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            html, body {
+                padding: 12px 10px;
+            }
+
+            .home-wrapper {
+                padding: 20px 16px 18px;
+                border-radius: 22px;
+                min-height: calc(100vh - 24px);
+            }
+
+            .app-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+                margin-bottom: 24px;
+                padding-bottom: 18px;
+            }
+
+            .header-stats {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .brand-text h1 {
+                font-size: 19px;
+            }
+
+            .brand-text .sub {
+                font-size: 11px;
+            }
+
+            .brand-icon {
+                width: 42px;
+                height: 42px;
+                border-radius: 13px;
+            }
+
+            .brand-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+
+            .section-title h2 {
+                font-size: 17px;
+            }
+
+            .section-title .badge {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+
+            .topic-card {
+                padding: 20px 18px 16px;
+                border-radius: 20px;
+            }
+
+            .card-title {
+                font-size: 16px;
+            }
+
+            .card-desc {
+                font-size: 12.5px;
+                margin-bottom: 16px;
+            }
+
+            .card-icon {
+                width: 46px;
+                height: 46px;
+                font-size: 22px;
+                border-radius: 14px;
+            }
+
+            .card-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .start-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+
+            .footer-note {
+                font-size: 11px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .practice-modal-close {
+                top: 12px;
+                right: 14px;
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
+
+            .practice-modal-inner .modal {
+                padding: 22px 18px;
+                border-radius: 14px;
+            }
+
+            .practice-modal-inner .modal h2 {
+                font-size: 18px;
+            }
+
+            .practice-modal-inner .modal p {
+                font-size: 14px;
+            }
+
+            .practice-modal-inner .modal .option-btn {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .brand-text h1 {
+                font-size: 16px;
+            }
+
+            .brand-text .sub {
+                font-size: 10px;
+            }
+
+            .stat-item {
+                padding: 5px 10px;
+                min-width: 58px;
+            }
+
+            .stat-value {
+                font-size: 17px;
+            }
+
+            .stat-label {
+                font-size: 9px;
+            }
+
+            .card-title {
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <div class="panel">
-        <!-- 顶部水印 -->
-        <div class="watermark-top">26901ZJ0012</div>
-
-        <!-- 顶部区域 -->
-        <div class="header">
-            <div class="logo-area">
-                <!-- 简化版 Logo SVG -->
-                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
-                    <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
-                </svg>
-                <div class="logo-text">
-                    <span class="chinese">青鸟消防</span>
-                    <span class="english">JADE BIRD FIRE</span>
+    <!-- 主页 -->
+    <div class="home-wrapper">
+        <div class="app-header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#ffffffd0"/>
+                        <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#ffffff90"/>
+                    </svg>
+                </div>
+                <div class="brand-text">
+                    <h1>中级消控实测模拟练习</h1>
+                    <div class="sub">
+                        <span class="dot"></span>
+                        <span>消防设施操作员 · 实操模拟</span>
+                    </div>
                 </div>
             </div>
-
-            <div class="top-indicators">
-                <div class="indicator-item">
-                    <div class="led-dot red"></div>
-                    <span>火警</span>
-                    <span style="font-size: 10px; font-weight: normal;">Alarm</span>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <span class="stat-label">今日练习</span>
+                    <span class="stat-value highlight">1</span>
                 </div>
-                <div class="indicator-item">
-                    <div class="led-dot red"></div>
-                    <span>启动</span>
-                    <span style="font-size: 10px; font-weight: normal;">Active</span>
+                <div class="stat-item">
+                    <span class="stat-label">总课题</span>
+                    <span class="stat-value">1</span>
                 </div>
             </div>
         </div>
 
-        <!-- 主体内容 -->
-        <div class="main-body">
-            <!-- 左侧指示灯 -->
-            <div class="left-panel">
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">监管报警<span class="en">Supervisory</span></div>
+        <div class="section-title">
+            <h2><span class="icon">📋</span> 课题列表</h2>
+            <span class="badge">1 个课题开放</span>
+        </div>
+
+        <div class="cards-grid">
+            <!-- 课题1：电源工作状态检查 -->
+            <div class="topic-card" id="topicCard1">
+                <div class="card-header">
+                    <div class="card-icon">⚡</div>
+                    <div class="card-badge">课题 1</div>
                 </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">启动延时<span class="en">Active Delay</span></div>
+                <div class="card-title">火灾自动报警系统控制器的电源工作状态检查</div>
+                <div class="card-desc">
+                    通过青鸟消防控制面板实操，判断主电/备电运行状态，排查备电故障，完成电源切换问答。
                 </div>
-                <div class="indicator-row">
-                    <div class="led-dot green"></div>
-                    <div class="text">主电运行<span class="en">Main Power</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">备电运行<span class="en">Backup Power</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot red"></div>
-                    <div class="text">手报报警<span class="en">Manual Alarm</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">系统故障<span class="en">System Fault</span></div>
-                </div>
-                
-                <!-- 右侧一列指示灯 -->
-                <div style="margin-top: 10px;"></div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">故障<span class="en">Fault</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot red"></div>
-                    <div class="text">反馈<span class="en">Feedback</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">屏蔽<span class="en">Bypass</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">消音<span class="en">Silence</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot"></div>
-                    <div class="text">自检<span class="en">Self-Test</span></div>
-                </div>
-                <div class="indicator-row">
-                    <div class="led-dot green"></div>
-                    <div class="text">运行<span class="en">Power On</span></div>
+                <div class="card-meta">
+                    <div class="card-tags">
+                        <span class="tag">电源</span>
+                        <span class="tag">备电故障</span>
+                        <span class="tag">实操</span>
+                    </div>
+                    <button class="start-btn" id="startPracticeBtn">
+                        <span>开始练习</span>
+                        <span style="font-size: 17px;">→</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- 中间屏幕与键盘 -->
-            <div class="center-panel">
-                <!-- 屏幕外框 -->
-                <div class="screen-frame">
-                    <div class="screen-watermark">26901ZJ0012</div>
-                    <div class="screen">
-                        <!-- 屏幕顶部 -->
-                        <div class="screen-header">
-                            <span>首警: 25/07/03 12:48 2-1</span>
-                            <span>青鸟消防</span>
-                        </div>
-                        <!-- 屏幕主体 -->
-                        <div class="screen-content">
-                            <!-- 左栏消息 -->
-                            <div class="screen-left">
-                                <div class="msg-item msg-highlight">
-                                    <span class="msg-time">0002 25/07/03 12:48 2-12 手报</span>
-                                    <span class="msg-text">展板手报</span>
-                                </div>
-                                <div class="msg-item">
-                                    <span class="msg-time">0001 25/07/03 12:48 2-1</span>
-                                    <span class="msg-text">展板烟感</span>
-                                </div>
-                                <div style="margin-top: 5px;"></div>
-                                <div class="msg-item msg-highlight">
-                                    <span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span>
-                                </div>
-                                <div class="msg-item">
-                                    <span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span>
-                                    <span class="msg-text">展板消火栓按钮</span>
-                                </div>
-                                <div class="msg-item">
-                                    <span class="msg-time">0001 25/07/03 12:48 2-2 动作</span>
-                                    <span class="msg-text">展板温感</span>
-                                </div>
-                            </div>
-                            <!-- 右栏信息 -->
-                            <div class="screen-right">
-                                <div>
-                                    <div style="font-weight: bold; margin-bottom: 2px;">首警: 2-1</div>
-                                    <div style="margin-bottom: 5px;">25/07/03 12:48</div>
-                                    <div>声光故障: 000</div>
-                                    <div>声光屏蔽: 000</div>
-                                    <div>用户权限: 0</div>
-                                    <div>正常 运行</div>
-                                    <div>手动:允许</div>
-                                    <div>自动:禁止</div>
-                                </div>
-                                <div class="screen-right-bottom">
-                                    2025-07-03<br>17:06:01
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 屏幕底部操作栏 -->
-                        <div class="screen-footer">
-                            <span class="screen-btn">回首页</span>
-                            <span class="screen-btn">查火警</span>
-                            <span class="screen-btn">查联动</span>
-                            <span class="screen-btn">手动控制</span>
-                            <span class="screen-btn">查故障</span>
-                        </div>
-                    </div>
+            <!-- 占位课题2 -->
+            <div class="topic-card locked">
+                <div class="card-header">
+                    <div class="card-icon">🔔</div>
+                    <div class="card-badge">课题 2</div>
                 </div>
-
-                <!-- 键盘区域 -->
-                <div class="keyboard-area">
-                    <!-- F1-F6 行 -->
-                    <div class="keyboard-row">
-                        <button class="btn btn-f">F1</button>
-                        <button class="btn btn-f">F2</button>
-                        <button class="btn btn-f">F3</button>
-                        <button class="btn btn-f">F4</button>
-                        <button class="btn btn-f">F5</button>
-                        <button class="btn btn-f">F6</button>
+                <div class="card-title">火灾探测器与手动报警按钮测试</div>
+                <div class="card-desc">
+                    模拟探测器加烟报警、手报触发及复位操作。（即将开放）
+                </div>
+                <div class="card-meta">
+                    <div class="card-tags">
+                        <span class="tag">探测器</span>
+                        <span class="tag">手报</span>
                     </div>
-                    <!-- 数字键行1 -->
-                    <div class="keyboard-row">
-                        <button class="btn btn-num">1<span class="sub">..</span></button>
-                        <button class="btn btn-num">2<span class="sub">abc</span></button>
-                        <button class="btn btn-num">3<span class="sub">def</span></button>
-                        <button class="btn btn-func">功能<br><span style="font-size:8px;">Function</span></button>
-                        <button class="btn btn-func">↑</button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">取消<br><span style="font-size:8px;">Cancel</span></button>
-                        <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
-                    </div>
-                    <!-- 数字键行2 -->
-                    <div class="keyboard-row">
-                        <button class="btn btn-num">4<span class="sub">ghi</span></button>
-                        <button class="btn btn-num">5<span class="sub">jkl</span></button>
-                        <button class="btn btn-num">6<span class="sub">mno</span></button>
-                        <button class="btn btn-func">→</button>
-                        <button class="btn btn-func" style="background:#ff8c00;">确定<br><span style="font-size:8px;">Enter</span></button>
-                        <button class="btn btn-func">→</button>
-                        <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
-                    </div>
-                    <!-- 数字键行3 -->
-                    <div class="keyboard-row">
-                        <button class="btn btn-num">7<span class="sub">pqrs</span></button>
-                        <button class="btn btn-num">8<span class="sub">tuv</span></button>
-                        <button class="btn btn-num">9<span class="sub">wxyz</span></button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">←<br><span style="font-size:8px;">←</span></button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">中/英<br><span style="font-size:8px;">CN/EN</span></button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">自定义<br><span style="font-size:8px;">Custom</span></button>
-                        <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
-                    </div>
-                    <!-- 底部键行 -->
-                    <div class="keyboard-row">
-                        <button class="btn btn-num">*</button>
-                        <button class="btn btn-num">0<span class="sub">_</span></button>
-                        <button class="btn btn-num">#</button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">声光启<br><span style="font-size:8px;">Signal On</span></button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">声光停<br><span style="font-size:8px;">Signal Off</span></button>
-                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">联动<br><span style="font-size:8px;">Control</span></button>
-                        <button class="btn btn-large red-text" style="background:#e0e4e6;">启动<br><span class="sub">Start</span></button>
-                    </div>
+                    <button class="start-btn" disabled>
+                        <span>敬请期待</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- 右侧面板 -->
-            <div class="right-panel">
-                <!-- 数码管 -->
-                <div class="digital-display">170</div>
-
-                <!-- 钥匙开关 -->
-                <div class="key-switch-area">
-                    <div class="key-labels">
-                        <div class="key-label-item">
-                            <span>禁止</span>
-                            <span class="en">Forbidden</span>
-                        </div>
-                        <div class="key-label-item">
-                            <span>允许</span>
-                            <span class="en">Allowed</span>
-                        </div>
-                    </div>
-                    <div class="key-switch">
-                        <div class="key-switch-inner">
-                            <div class="key-switch-slot"></div>
-                        </div>
-                    </div>
-                    <div class="key-switch-text">
-                        自动方式
-                        <span class="en">Automatic</span>
-                    </div>
+            <!-- 占位课题3 -->
+            <div class="topic-card locked">
+                <div class="card-header">
+                    <div class="card-icon">📡</div>
+                    <div class="card-badge">课题 3</div>
                 </div>
-
-                <!-- 扬声器孔 -->
-                <div class="speaker">
-                    <!-- 使用 JS 生成或用 CSS 重复，这里为了代码简洁，使用 JS 生成 36 个孔 -->
-                    <script>
-                        for(let i=0; i<36; i++) {
-                            document.write('<div class="speaker-hole"></div>');
-                        }
-                    </script>
+                <div class="card-title">消防联动控制器编程与调试</div>
+                <div class="card-desc">
+                    联动逻辑编程、模块地址设置等高级操作。（即将开放）
+                </div>
+                <div class="card-meta">
+                    <div class="card-tags">
+                        <span class="tag">联动</span>
+                        <span class="tag">编程</span>
+                    </div>
+                    <button class="start-btn" disabled>
+                        <span>敬请期待</span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- 左下角小面板 -->
-        <div class="bottom-left-panel">
-            <div class="knob">
-                <div class="knob-led"></div>
-            </div>
+        <div class="footer-note">
+            <span>© 2026 中级消控模拟练习 · 仅用于教学模拟</span>
+            <span class="version">v1.0.0</span>
         </div>
-
-        <!-- 右下角标签 -->
-        <div class="bottom-right-label">
-            <div class="qr">
-                <div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div>
-                <div class="qr-dot"></div><div></div><div></div><div class="qr-dot"></div>
-                <div class="qr-dot"></div><div></div><div></div><div class="qr-dot"></div>
-                <div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div>
-            </div>
-            <div style="font-size: 10px; line-height: 1.1;">
-                火灾报警控制器<br>(联动型)ZJ0012<br>26901ZJ0012<br>东海航
-            </div>
-        </div>
-
-        <!-- 模拟图片中的视频播放按钮 -->
-        <div class="play-overlay"></div>
     </div>
 
+    <!-- 练习弹窗（全屏固定，禁止滑动，适配移动端） -->
+    <div class="practice-modal" id="practiceModal">
+        <div class="practice-modal-inner">
+            <div class="practice-modal-close" id="closePracticeModal">&times;</div>
+            <!-- 原面板完整结构 -->
+            <div class="panel" id="originalPanel">
+                <div class="lesson-header">
+                    <div class="lesson-title">课题1：火灾自动报警系统控制器的电源工作状态检查</div>
+                    <button class="practice-btn" id="practiceBtn">练习</button>
+                    <button class="reset-btn" id="resetBtn">重置</button>
+                </div>
+
+                <div class="header">
+                    <div class="logo-area">
+                        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
+                            <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
+                        </svg>
+                        <div class="logo-text">
+                            <span class="chinese">青鸟消防</span>
+                            <span class="english">JADE BIRD FIRE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-body">
+                    <div class="left-panel">
+                        <div class="alarm-module">
+                            <div class="alarm-item">
+                                <div class="led-dot red"></div>
+                                <div class="text">火警<span class="en">Alarm</span></div>
+                            </div>
+                            <div class="alarm-item">
+                                <div class="led-dot red"></div>
+                                <div class="text">启动<span class="en">Active</span></div>
+                            </div>
+                        </div>
+
+                        <div class="indicator-grid">
+                            <div class="indicator-column">
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">监管报警<span class="en">Supervisory</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">启动延时<span class="en">Active Delay</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot green"></div>
+                                    <div class="text">主电运行<span class="en">Main Power</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">备电运行<span class="en">Backup Power</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot red"></div>
+                                    <div class="text">手报报警<span class="en">Manual Alarm</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">系统故障<span class="en">System Fault</span></div>
+                                </div>
+                            </div>
+
+                            <div class="indicator-column">
+                                <div class="indicator-row">
+                                    <div class="led-dot yellow"></div>
+                                    <div class="text">故障<span class="en">Fault</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot red"></div>
+                                    <div class="text">反馈<span class="en">Feedback</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot yellow"></div>
+                                    <div class="text">屏蔽<span class="en">Bypass</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">消音<span class="en">Silence</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot"></div>
+                                    <div class="text">自检<span class="en">Self-Test</span></div>
+                                </div>
+                                <div class="indicator-row">
+                                    <div class="led-dot green blinking"></div>
+                                    <div class="text">运行<span class="en">Power On</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="center-panel">
+                        <div class="screen-frame">
+                            <div class="screen" id="mainScreen">
+                                <div class="screen-header">
+                                    <span>首警: 25/07/03 12:48 2-1</span>
+                                    <span>青鸟消防</span>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="screen-left">
+                                        <div class="msg-item msg-highlight">
+                                            <span class="msg-time">0002 25/07/03 12:48 2-12 手报</span>
+                                            <span class="msg-text">展板手报</span>
+                                        </div>
+                                        <div class="msg-item">
+                                            <span class="msg-time">0001 25/07/03 12:48 2-1</span>
+                                            <span class="msg-text">展板烟感</span>
+                                        </div>
+                                        <div style="margin-top: 5px;"></div>
+                                        <div class="msg-item msg-highlight">
+                                            <span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span>
+                                        </div>
+                                        <div class="msg-item">
+                                            <span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span>
+                                            <span class="msg-text">展板消火栓按钮</span>
+                                        </div>
+                                        <div class="msg-item">
+                                            <span class="msg-time">0001 25/07/03 12:48 2-2 动作</span>
+                                            <span class="msg-text">展板温感</span>
+                                        </div>
+                                    </div>
+                                    <div class="screen-right">
+                                        <div>
+                                            <div style="font-weight: bold; margin-bottom: 2px;">首警: 2-1</div>
+                                            <div style="margin-bottom: 5px;">25/07/03 12:48</div>
+                                            <div>声光故障: 000</div>
+                                            <div>声光屏蔽: 000</div>
+                                            <div>用户权限: 0</div>
+                                            <div>正常 运行</div>
+                                            <div>手动:允许</div>
+                                            <div>自动:禁止</div>
+                                        </div>
+                                        <div class="screen-right-bottom">
+                                            2025-07-03<br>17:06:01
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="screen-footer">
+                                    <span class="screen-btn-text">回首页</span>
+                                    <span class="screen-btn-text">查火警</span>
+                                    <span class="screen-btn-text">查联动</span>
+                                    <span class="screen-btn-text">手动控制</span>
+                                    <span class="screen-btn-text">查故障</span>
+                                </div>
+                            </div>
+
+                            <div class="screen fault-screen" id="faultScreen">
+                                <div class="screen-header">
+                                    <span>故障信息</span>
+                                    <span>合计: 0002</span>
+                                </div>
+                                <div class="screen-content">
+                                    <div class="screen-left" style="flex: 2.5; position: relative;">
+                                        <div class="msg-item fault-item-clickable" id="faultItem1">
+                                            <span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span>
+                                        </div>
+                                        <div class="msg-item indent">
+                                            <span class="msg-text">展板层号灯</span>
+                                        </div>
+                                        <div class="msg-item fault-item-clickable" id="faultItem2">
+                                            <span class="msg-time">0001 25/07/03 12:48 备电故障</span>
+                                        </div>
+                                        <div class="guide-hand" id="guideHand" style="display: none;"></div>
+                                    </div>
+                                    <div class="screen-right">
+                                        <div>
+                                            <div style="font-weight: bold; margin-bottom: 2px;">首警: 2-1</div>
+                                            <div style="margin-bottom: 5px;">25/07/03 12:48</div>
+                                            <div>声光故障: 000</div>
+                                            <div>声光屏蔽: 000</div>
+                                            <div>用户权限: 0</div>
+                                            <div>正常 运行</div>
+                                            <div>手动:允许</div>
+                                            <div>自动:禁止</div>
+                                        </div>
+                                        <div class="screen-right-bottom">
+                                            2025-07-03<br>17:06:54
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="screen-footer">
+                                    <span class="screen-btn-text">回首页</span>
+                                    <span class="screen-btn-text">上一条</span>
+                                    <span class="screen-btn-text">下一条</span>
+                                    <span class="screen-btn-text">上一页</span>
+                                    <span class="screen-btn-text">下一页</span>
+                                    <span class="screen-btn-text">退出</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="keyboard-area">
+                            <div class="f-row">
+                                <button class="btn-f">F1</button>
+                                <button class="btn-f">F2</button>
+                                <button class="btn-f">F3</button>
+                                <button class="btn-f">F4</button>
+                                <button class="btn-f">F5</button>
+                                <button class="btn-f" id="f6Btn">F6</button>
+                            </div>
+
+                            <div class="keyboard-row">
+                                <button class="btn btn-num">1<span class="sub">..</span></button>
+                                <button class="btn btn-num">2<span class="sub">abc</span></button>
+                                <button class="btn btn-num">3<span class="sub">def</span></button>
+                                <button class="btn btn-func">功能<br><span class="sub">Function</span></button>
+                                <button class="btn btn-arrow">▲</button>
+                                <button class="btn btn-white">取消<br><span class="sub">Cancel</span></button>
+                                <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
+                            </div>
+
+                            <div class="keyboard-row">
+                                <button class="btn btn-num">4<span class="sub">ghi</span></button>
+                                <button class="btn btn-num">5<span class="sub">jkl</span></button>
+                                <button class="btn btn-num">6<span class="sub">mno</span></button>
+                                <button class="btn btn-arrow">◀</button>
+                                <button class="btn btn-func">确定<br><span class="sub">Enter</span></button>
+                                <button class="btn btn-arrow">▶</button>
+                                <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
+                            </div>
+
+                            <div class="keyboard-row">
+                                <button class="btn btn-num">7<span class="sub">pqrs</span></button>
+                                <button class="btn btn-num">8<span class="sub">tuv</span></button>
+                                <button class="btn btn-num">9<span class="sub">wxyz</span></button>
+                                <button class="btn btn-white">中/英<br><span class="sub">CN/EN</span></button>
+                                <button class="btn btn-arrow">▼</button>
+                                <button class="btn btn-white">自定义<br><span class="sub">Custom</span></button>
+                                <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
+                            </div>
+
+                            <div class="keyboard-row">
+                                <button class="btn btn-num">*</button>
+                                <button class="btn btn-num">0<span class="sub">_</span></button>
+                                <button class="btn btn-num">#</button>
+                                <button class="btn btn-white">声光启<br><span class="sub">Signal On</span></button>
+                                <button class="btn btn-white">声光停<br><span class="sub">Signal Off</span></button>
+                                <button class="btn btn-white">联动<br><span class="sub">Control</span></button>
+                                <button class="btn btn-large red-text">启动<br><span class="sub">Start</span></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right-panel">
+                        <div class="digital-display">170</div>
+
+                        <div class="key-switch-area">
+                            <div class="key-labels">
+                                <div class="key-label-item">
+                                    <span>禁止</span>
+                                    <span class="en">Forbidden</span>
+                                </div>
+                                <div class="key-label-item">
+                                    <span>允许</span>
+                                    <span class="en">Allowed</span>
+                                </div>
+                            </div>
+                            <div class="key-switch">
+                                <div class="key-inserted"></div>
+                                <div class="key-switch-inner">
+                                    <div class="key-switch-slot" style="transform: rotate(-45deg);"></div>
+                                </div>
+                            </div>
+                            <div class="key-switch-text">
+                                自动方式
+                                <span class="en">Automatic</span>
+                            </div>
+                        </div>
+
+                        <div class="speaker">
+                            <script>
+                                for (let i = 0; i < 36; i++) {
+                                    document.write('<div class="speaker-hole"></div>');
+                                }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bottom-left-panel">
+                    <div class="knob">
+                        <div class="knob-led"></div>
+                    </div>
+                </div>
+
+                <div class="bottom-right-label">
+                    火灾报警控制器<br>(联动型)
+                </div>
+            </div>
+
+            <!-- 原练习弹窗（嵌套在面板内） -->
+            <div class="modal-overlay" id="practiceModalInner">
+                <div class="modal">
+                    <button class="close-btn" id="closeModalBtn">&times;</button>
+                    <div id="modalContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== 主页逻辑：打开/关闭练习弹窗 ==========
+        (function() {
+            const practiceModal = document.getElementById('practiceModal');
+            const startBtn = document.getElementById('startPracticeBtn');
+            const closeModalBtn = document.getElementById('closePracticeModal');
+
+            startBtn.addEventListener('click', function() {
+                practiceModal.classList.add('active');
+                // 禁止背景滚动
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closePractice() {
+                practiceModal.classList.remove('active');
+                document.body.style.overflow = '';
+                if (typeof window.resetPractice === 'function') {
+                    window.resetPractice();
+                }
+            }
+
+            closeModalBtn.addEventListener('click', closePractice);
+
+            // 点击遮罩关闭（仅点击弹窗外部区域）
+            practiceModal.addEventListener('click', function(e) {
+                if (e.target === practiceModal) {
+                    closePractice();
+                }
+            });
+
+            // 阻止弹窗内部点击事件冒泡导致的关闭
+            document.querySelector('.practice-modal-inner').addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+
+            // 暴露关闭方法
+            window.closePractice = closePractice;
+        })();
+
+        // ========== 原面板脚本：音频 + 练习逻辑 ==========
+        (function() {
+            let audioCtx = null;
+
+            function initAudio() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+            }
+
+            function playBeep() {
+                initAudio();
+                if (!audioCtx) return;
+
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.06);
+            }
+
+            document.querySelectorAll('.practice-modal-inner .panel button').forEach(btn => {
+                if (btn.id === 'practiceBtn' || btn.id === 'resetBtn') return;
+                btn.addEventListener('click', function(e) {
+                    playBeep();
+                    e.preventDefault();
+                });
+            });
+        })();
+
+        // ========== 原练习逻辑 ==========
+        (function() {
+            const modal = document.getElementById('practiceModalInner');
+            const modalContent = document.getElementById('modalContent');
+            const closeBtn = document.getElementById('closeModalBtn');
+            const practiceBtn = document.getElementById('practiceBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const mainScreen = document.getElementById('mainScreen');
+            const faultScreen = document.getElementById('faultScreen');
+            const f6Btn = document.getElementById('f6Btn');
+            const guideHand = document.getElementById('guideHand');
+            const faultItem2 = document.getElementById('faultItem2');
+
+            let currentStep = 0;
+            let isPracticing = false;
+
+            function resetPractice() {
+                currentStep = 0;
+                isPracticing = false;
+                mainScreen.style.display = 'flex';
+                faultScreen.style.display = 'none';
+                resetBtn.style.display = 'none';
+                practiceBtn.textContent = '练习';
+                closeModal();
+                closeBtn.classList.remove('hidden');
+                if (guideHand) guideHand.style.display = 'none';
+                if (faultItem2) faultItem2.classList.remove('fault-item-highlight');
+                if (faultItem2) faultItem2.onclick = null;
+                if (f6Btn) f6Btn.onclick = null;
+            }
+
+            function openModal() {
+                modal.classList.add('active');
+                isPracticing = true;
+                practiceBtn.textContent = '继续练习';
+                resetBtn.style.display = 'block';
+                renderStep();
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+            }
+
+            function renderStep() {
+                closeBtn.classList.remove('hidden');
+
+                if (currentStep === 0) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 1：判断主电当前状态</h2>
+                        <p>请根据面板指示灯，判断主电当前的状态：</p>
+                        <button class="option-btn" data-answer="correct">1. 主电灯亮</button>
+                        <button class="option-btn" data-answer="wrong1">2. 主电灯不亮</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 1) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 2：备电灯现在是什么情况</h2>
+                        <p>请根据面板指示灯，判断备电当前的状态：</p>
+                        <button class="option-btn" data-answer="wrong2">1. 备电灯不亮，备电未运行</button>
+                        <button class="option-btn" data-answer="correct2">2. 备电灯不亮，备电故障</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 2) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 3：进入查故障界面</h2>
+                        <p>请点击键盘上的 <span class="highlight-orange">F6</span> 键，进入查故障界面。</p>
+                        <p style="font-size: 14px; color: #666;">（请直接在面板上点击 F6 按钮）</p>
+                        <div class="click-anywhere">点击任意空白处继续</div>
+                    `;
+                    closeBtn.classList.add('hidden');
+
+                    modalContent.onclick = function(e) {
+                        if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) {
+                            if (isPracticing && currentStep === 2) {
+                                closeModal();
+                            }
+                        }
+                    };
+
+                    f6Btn.onclick = function() {
+                        if (isPracticing && currentStep === 2) {
+                            mainScreen.style.display = 'none';
+                            faultScreen.style.display = 'flex';
+                            currentStep = 3;
+                            if (guideHand) guideHand.style.display = 'block';
+                            if (faultItem2) faultItem2.classList.add('fault-item-highlight');
+                            faultItem2.onclick = function() {
+                                if (isPracticing && currentStep === 3) {
+                                    if (guideHand) guideHand.style.display = 'none';
+                                    if (faultItem2) faultItem2.classList.remove('fault-item-highlight');
+                                    currentStep = 4;
+                                    openModal();
+                                }
+                            };
+                        }
+                    };
+                } else if (currentStep === 3) {
+                    // 等待点击备电故障
+                } else if (currentStep === 4) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 4：确认故障</h2>
+                        <p>可以看到 <span class="highlight-orange">备电故障</span> 了。</p>
+                        <button class="next-btn" id="nextStepBtn">下一步</button>
+                    `;
+                    document.getElementById('nextStepBtn').onclick = function() {
+                        currentStep = 5;
+                        renderStep();
+                    };
+                } else if (currentStep === 5) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 5：退出故障界面</h2>
+                        <p>已确认备电故障。请再次点击 <span class="highlight-orange">F6</span> 键，退出故障信息界面。</p>
+                        <p style="font-size: 14px; color: #666;">（请直接在面板上再次点击 F6 按钮）</p>
+                        <div class="click-anywhere">点击任意空白处继续</div>
+                    `;
+                    closeBtn.classList.add('hidden');
+
+                    modalContent.onclick = function(e) {
+                        if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) {
+                            if (isPracticing && currentStep === 5) {
+                                closeModal();
+                            }
+                        }
+                    };
+
+                    f6Btn.onclick = function() {
+                        if (isPracticing && currentStep === 5) {
+                            mainScreen.style.display = 'flex';
+                            faultScreen.style.display = 'none';
+                            currentStep = 6;
+                            openModal();
+                        }
+                    };
+                } else if (currentStep === 6) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 6：判断电源运行情况</h2>
+                        <p>根据面板指示灯，选择正确的运行状态：</p>
+                        <button class="option-btn" data-answer="ans1">1. 主电运行</button>
+                        <button class="option-btn" data-answer="ans2">2. 备电运行，主电故障</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 7) {
+                    modalContent.innerHTML = `
+                        <h2>步骤 7：回答备电情况</h2>
+                        <p>现在回答，备电情况：</p>
+                        <button class="option-btn" data-answer="normal">1. 备电正常</button>
+                        <button class="option-btn" data-answer="fault2">2. 备电故障</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 8) {
+                    modalContent.innerHTML = `
+                        <h2>问答题 1</h2>
+                        <p>问题：主电正常，备电故障，如何切换到备电？</p>
+                        <button class="option-btn" data-answer="qa1">1. 修备电，关主电</button>
+                        <button class="option-btn" data-answer="qa1_wrong">2. 关主电</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 9) {
+                    modalContent.innerHTML = `
+                        <h2>问答题 2</h2>
+                        <p>问题：主电正常，备电正常，如何切换到备电？</p>
+                        <button class="option-btn" data-answer="qa2">1. 关主电</button>
+                        <button class="option-btn" data-answer="qa2_wrong">2. 修备电，关主电</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 10) {
+                    modalContent.innerHTML = `
+                        <h2>问答题 3</h2>
+                        <p>问题：主电故障，备电正常，如何切换到主电？</p>
+                        <button class="option-btn" data-answer="qa3">1. 修主电</button>
+                        <button class="option-btn" data-answer="qa3_wrong">2. 修备电，关主电</button>
+                    `;
+                    bindOptions();
+                } else if (currentStep === 11) {
+                    modalContent.innerHTML = `
+                        <h2>解析</h2>
+                        <p><strong>1. 主电正常，备电故障，如何切换到备电？</strong></p>
+                        <p>口述：修备电，关主电</p>
+                        <p style="margin-top: 10px;"><strong>2. 主电正常，备电正常，如何切换到备电？</strong></p>
+                        <p>口述：关主电</p>
+                        <p style="margin-top: 10px;"><strong>3. 主电故障，备电正常，如何切换到主电？</strong></p>
+                        <p>口述：修主电</p>
+                        <div class="result-text result-success" style="margin-top: 20px;">
+                            ✅ 练习全部完成！您已掌握电源工作状态检查的全部要点。
+                        </div>
+                        <button class="next-btn" id="finishBtn">关闭</button>
+                    `;
+                    document.getElementById('finishBtn').onclick = function() {
+                        resetPractice();
+                    };
+                }
+            }
+
+            function bindOptions() {
+                const buttons = modalContent.querySelectorAll('.option-btn');
+                buttons.forEach(btn => {
+                    btn.onclick = function() {
+                        const answer = this.dataset.answer;
+                        handleAnswer(answer);
+                    };
+                });
+            }
+
+            function handleAnswer(answer) {
+                if (answer === 'correct') {
+                    currentStep = 1;
+                    renderStep();
+                } else if (answer === 'wrong1') {
+                    showFailResult('主电灯亮');
+                } else if (answer === 'wrong2') {
+                    showFailResult('备电灯不亮，备电故障');
+                } else if (answer === 'correct2') {
+                    currentStep = 2;
+                    renderStep();
+                } else if (answer === 'ans1') {
+                    currentStep = 7;
+                    renderStep();
+                } else if (answer === 'ans2') {
+                    showFailResult('主电运行');
+                } else if (answer === 'normal') {
+                    showFailResult('备电故障');
+                } else if (answer === 'fault2') {
+                    currentStep = 8;
+                    renderStep();
+                } else if (answer === 'qa1') {
+                    currentStep = 9;
+                    renderStep();
+                } else if (answer === 'qa1_wrong') {
+                    showFailResult('修备电，关主电');
+                } else if (answer === 'qa2') {
+                    currentStep = 10;
+                    renderStep();
+                } else if (answer === 'qa2_wrong') {
+                    showFailResult('关主电');
+                } else if (answer === 'qa3') {
+                    currentStep = 11;
+                    renderStep();
+                } else if (answer === 'qa3_wrong') {
+                    showFailResult('修主电');
+                }
+            }
+
+            function showFailResult(correctAnswer) {
+                modalContent.innerHTML = `
+                    <h2>回答错误</h2>
+                    <div class="result-text result-fail">
+                        ❌ 回答错误，考试 0 分，考试结束
+                    </div>
+                    <p style="margin-top: 15px; font-size: 14px; color: #555;">
+                        正确答案是：<span class="highlight-orange">${correctAnswer}</span>
+                    </p>
+                    <button class="next-btn" id="retryBtn">重试</button>
+                `;
+                document.getElementById('retryBtn').onclick = function() {
+                    resetPractice();
+                };
+            }
+
+            practiceBtn.addEventListener('click', function() {
+                openModal();
+            });
+
+            resetBtn.addEventListener('click', function() {
+                resetPractice();
+            });
+
+            closeBtn.addEventListener('click', closeModal);
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // 初始化
+            resetPractice();
+
+            // 暴露给全局以便主页关闭时重置
+            window.resetPractice = resetPractice;
+        })();
+
+        // ========== 动态缩放面板以适配移动端 ==========
+        (function() {
+            const panel = document.querySelector('.practice-modal-inner .panel');
+            const inner = document.querySelector('.practice-modal-inner');
+
+            function adjustScale() {
+                if (!panel || !inner) return;
+                const winW = window.innerWidth;
+                const winH = window.innerHeight;
+                const panelW = 1300;
+                const panelH = 720;
+                // 留一些边距
+                const scaleX = (winW - 40) / panelW;
+                const scaleY = (winH - 40) / panelH;
+                const scale = Math.min(1, scaleX, scaleY);
+                panel.style.transform = `scale(${scale})`;
+            }
+
+            adjustScale();
+            window.addEventListener('resize', adjustScale);
+            window.addEventListener('orientationchange', function() {
+                setTimeout(adjustScale, 150);
+            });
+        })();
+    </script>
 </body>
 </html>
