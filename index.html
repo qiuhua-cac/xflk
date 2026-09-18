@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>青鸟消防控制面板复刻</title>
+    <style>
+        /* 基础重置与字体设置 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+        }
+
+        /* 主面板容器 */
+        .panel {
+            width: 1024px;
+            height: 560px;
+            background: #d2d6d8;
+            border: 8px solid #a8aeaf;
+            border-radius: 12px;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.6),
+                inset 0 0 10px rgba(255,255,255,0.5),
+                inset 0 0 2px rgba(0,0,0,0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 15px 25px;
+            overflow: hidden;
+        }
+
+        /* 顶部装饰线/水印 */
+        .watermark-top {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            font-size: 14px;
+            color: #888;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+
+        /* 顶部区域 (Logo + 顶部指示灯) */
+        .header {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            width: 220px;
+        }
+
+        .logo-svg {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text .chinese {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2b6ca3;
+            letter-spacing: 1px;
+        }
+
+        .logo-text .english {
+            font-size: 10px;
+            color: #2b6ca3;
+            letter-spacing: 0.5px;
+        }
+
+        .top-indicators {
+            display: flex;
+            gap: 30px;
+            margin-left: 20px;
+        }
+
+        .indicator-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .led-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #4a4a4a;
+            margin-bottom: 4px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+            border: 1px solid #999;
+        }
+
+        /* 红色 LED 灯 */
+        .led-dot.red {
+            background-color: #ff1a1a;
+            box-shadow: 
+                inset 0 2px 3px rgba(255,255,255,0.4),
+                0 0 8px #ff1a1a,
+                0 0 2px #ff0000;
+            border: 1px solid #cc0000;
+        }
+
+        /* 绿色 LED 灯 */
+        .led-dot.green {
+            background-color: #00ff00;
+            box-shadow: 
+                inset 0 2px 3px rgba(255,255,255,0.4),
+                0 0 8px #00ff00,
+                0 0 2px #00cc00;
+            border: 1px solid #009900;
+        }
+
+        /* 主体内容区域 (左侧面板 + 中间屏幕 + 右侧面板) */
+        .main-body {
+            display: flex;
+            flex: 1;
+            gap: 15px;
+        }
+
+        /* 左侧指示灯区域 */
+        .left-panel {
+            width: 180px;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .indicator-row {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #333;
+        }
+
+        .indicator-row .led-dot {
+            width: 10px;
+            height: 10px;
+            margin-right: 8px;
+            margin-bottom: 0;
+        }
+
+        .indicator-row .text {
+            line-height: 1.2;
+        }
+
+        .indicator-row .en {
+            font-size: 9px;
+            color: #555;
+            display: block;
+        }
+
+        /* 中间屏幕区域 */
+        .center-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 屏幕外框 */
+        .screen-frame {
+            width: 100%;
+            height: 230px;
+            background: #a8aeaf;
+            border-radius: 6px;
+            padding: 8px;
+            box-shadow: 
+                inset 0 0 5px rgba(0,0,0,0.5),
+                0 2px 4px rgba(255,255,255,0.6);
+            position: relative;
+        }
+
+        /* 屏幕水印 */
+        .screen-watermark {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #999;
+            letter-spacing: 3px;
+            white-space: nowrap;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* 屏幕内容 */
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #5cb8e6; /* 背景蓝 */
+            border: 2px solid #555;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 10px;
+            color: #fff;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* 屏幕顶部信息 */
+        .screen-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 2px 5px;
+            background: #3a8bbd;
+            font-weight: bold;
+            border-bottom: 1px solid #2a6b9d;
+        }
+
+        /* 屏幕主体 - 分为左右两栏 */
+        .screen-content {
+            display: flex;
+            flex: 1;
+            padding: 2px;
+            gap: 2px;
+        }
+
+        .screen-left {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .screen-right {
+            flex: 1;
+            border-left: 1px solid #2a6b9d;
+            padding-left: 4px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* 消息条目 */
+        .msg-item {
+            display: flex;
+            line-height: 1.3;
+        }
+        .msg-time {
+            color: #fff;
+            margin-right: 5px;
+        }
+        .msg-text {
+            color: #fff;
+            flex: 1;
+        }
+        
+        /* 消息背景高亮 */
+        .msg-highlight {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .screen-right-bottom {
+            text-align: right;
+            font-size: 9px;
+            color: #e0f0ff;
+        }
+
+        /* 屏幕底部按钮 */
+        .screen-footer {
+            display: flex;
+            background: #3a8bbd;
+            border-top: 1px solid #2a6b9d;
+            padding: 2px;
+            gap: 20px;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .screen-btn {
+            cursor: pointer;
+            padding: 1px 4px;
+            border-radius: 2px;
+        }
+        .screen-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* 键盘区域 */
+        .keyboard-area {
+            margin-top: 15px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .keyboard-row {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+
+        .btn {
+            width: 40px;
+            height: 30px;
+            border-radius: 3px;
+            border: none;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.1s;
+            position: relative;
+        }
+
+        .btn:active {
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            transform: translateY(1px);
+        }
+
+        /* 功能键 F1-F6 */
+        .btn-f {
+            background: #6fa8d6;
+            color: #fff;
+            width: 45px;
+        }
+        .btn-f:hover { background: #5c93c0; }
+
+        /* 数字键/字母键 */
+        .btn-num {
+            background: #a0b8c8;
+            color: #111;
+            font-size: 12px;
+        }
+        .btn-num:hover { background: #8da6b8; }
+
+        .btn-num .sub {
+            font-size: 8px;
+            position: absolute;
+            bottom: 2px;
+        }
+
+        /* 方向键/功能键 */
+        .btn-func {
+            background: #ff8c00;
+            color: #fff;
+            width: 45px;
+        }
+        .btn-func:hover { background: #e67e00; }
+
+        /* 底部大按钮 */
+        .btn-large {
+            width: 45px;
+            height: 30px;
+            background: #e0e4e6;
+            color: #333;
+            font-size: 11px;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .btn-large:hover { background: #ced4d8; }
+        
+        .btn-large.red-text {
+            color: #d32f2f;
+        }
+        
+        .btn-large.green-text {
+            color: #388e3c;
+        }
+        
+        .btn-large .sub {
+            font-size: 8px;
+            color: #666;
+        }
+
+        /* 右侧面板 */
+        .right-panel {
+            width: 150px;
+            padding-top: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* 数码管显示区域 */
+        .digital-display {
+            width: 80px;
+            height: 35px;
+            background: #1a1a1a;
+            border: 2px solid #555;
+            border-radius: 3px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Digital-7', 'Courier New', monospace;
+            font-size: 24px;
+            color: #ff1a1a;
+            text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        /* 数码管坏点模拟 */
+        .digital-display::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(transparent 50%, rgba(0,0,0,0.1) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+
+        /* 钥匙孔区域 */
+        .key-switch-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 100%;
+        }
+
+        .key-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .key-label-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .key-label-item .en {
+            font-size: 9px;
+            color: #555;
+        }
+
+        .key-switch {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #ccc, #666);
+            border-radius: 50%;
+            border: 2px solid #444;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .key-switch-inner {
+            width: 30px;
+            height: 30px;
+            background: #555;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .key-switch-slot {
+            width: 4px;
+            height: 14px;
+            background: #111;
+            border-radius: 2px;
+            transform: rotate(45deg);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.2);
+        }
+        
+        /* 钥匙孔下的文字 */
+        .key-switch-text {
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+        .key-switch-text .en {
+            font-size: 10px;
+            color: #555;
+            display: block;
+            text-align: center;
+        }
+
+        /* 扬声器孔 */
+        .speaker {
+            width: 60px;
+            height: 60px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            gap: 3px;
+            margin-top: 20px;
+        }
+
+        .speaker-hole {
+            background: #333;
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+        }
+
+        /* 左下角小屏幕/面板 */
+        .bottom-left-panel {
+            position: absolute;
+            bottom: 20px;
+            left: 25px;
+            width: 200px;
+            height: 80px;
+            background: #c0c4c6;
+            border: 2px solid #999;
+            border-radius: 4px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        }
+
+        .knob {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #e0e4e6;
+            border: 2px solid #888;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .knob::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #555;
+            border-radius: 50%;
+        }
+
+        .knob-led {
+            position: absolute;
+            bottom: -12px;
+            right: 5px;
+            width: 6px;
+            height: 6px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #00ff00;
+        }
+
+        /* 右下角标签 */
+        .bottom-right-label {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #e67e22;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 12px;
+            border-radius: 3px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .bottom-right-label .qr {
+            width: 30px;
+            height: 30px;
+            background: #fff;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            padding: 2px;
+            gap: 1px;
+        }
+        .qr-dot {
+            background: #000;
+        }
+        
+        /* 播放按钮图标覆盖（模拟图片中的视频播放按钮） */
+        .play-overlay {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+        .play-overlay::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid #333;
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <!-- 顶部水印 -->
+        <div class="watermark-top">26901ZJ0012</div>
+
+        <!-- 顶部区域 -->
+        <div class="header">
+            <div class="logo-area">
+                <!-- 简化版 Logo SVG -->
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
+                    <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="chinese">青鸟消防</span>
+                    <span class="english">JADE BIRD FIRE</span>
+                </div>
+            </div>
+
+            <div class="top-indicators">
+                <div class="indicator-item">
+                    <div class="led-dot red"></div>
+                    <span>火警</span>
+                    <span style="font-size: 10px; font-weight: normal;">Alarm</span>
+                </div>
+                <div class="indicator-item">
+                    <div class="led-dot red"></div>
+                    <span>启动</span>
+                    <span style="font-size: 10px; font-weight: normal;">Active</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主体内容 -->
+        <div class="main-body">
+            <!-- 左侧指示灯 -->
+            <div class="left-panel">
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">监管报警<span class="en">Supervisory</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">启动延时<span class="en">Active Delay</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot green"></div>
+                    <div class="text">主电运行<span class="en">Main Power</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">备电运行<span class="en">Backup Power</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot red"></div>
+                    <div class="text">手报报警<span class="en">Manual Alarm</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">系统故障<span class="en">System Fault</span></div>
+                </div>
+                
+                <!-- 右侧一列指示灯 -->
+                <div style="margin-top: 10px;"></div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">故障<span class="en">Fault</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot red"></div>
+                    <div class="text">反馈<span class="en">Feedback</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">屏蔽<span class="en">Bypass</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">消音<span class="en">Silence</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot"></div>
+                    <div class="text">自检<span class="en">Self-Test</span></div>
+                </div>
+                <div class="indicator-row">
+                    <div class="led-dot green"></div>
+                    <div class="text">运行<span class="en">Power On</span></div>
+                </div>
+            </div>
+
+            <!-- 中间屏幕与键盘 -->
+            <div class="center-panel">
+                <!-- 屏幕外框 -->
+                <div class="screen-frame">
+                    <div class="screen-watermark">26901ZJ0012</div>
+                    <div class="screen">
+                        <!-- 屏幕顶部 -->
+                        <div class="screen-header">
+                            <span>首警: 25/07/03 12:48 2-1</span>
+                            <span>青鸟消防</span>
+                        </div>
+                        <!-- 屏幕主体 -->
+                        <div class="screen-content">
+                            <!-- 左栏消息 -->
+                            <div class="screen-left">
+                                <div class="msg-item msg-highlight">
+                                    <span class="msg-time">0002 25/07/03 12:48 2-12 手报</span>
+                                    <span class="msg-text">展板手报</span>
+                                </div>
+                                <div class="msg-item">
+                                    <span class="msg-time">0001 25/07/03 12:48 2-1</span>
+                                    <span class="msg-text">展板烟感</span>
+                                </div>
+                                <div style="margin-top: 5px;"></div>
+                                <div class="msg-item msg-highlight">
+                                    <span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span>
+                                </div>
+                                <div class="msg-item">
+                                    <span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span>
+                                    <span class="msg-text">展板消火栓按钮</span>
+                                </div>
+                                <div class="msg-item">
+                                    <span class="msg-time">0001 25/07/03 12:48 2-2 动作</span>
+                                    <span class="msg-text">展板温感</span>
+                                </div>
+                            </div>
+                            <!-- 右栏信息 -->
+                            <div class="screen-right">
+                                <div>
+                                    <div style="font-weight: bold; margin-bottom: 2px;">首警: 2-1</div>
+                                    <div style="margin-bottom: 5px;">25/07/03 12:48</div>
+                                    <div>声光故障: 000</div>
+                                    <div>声光屏蔽: 000</div>
+                                    <div>用户权限: 0</div>
+                                    <div>正常 运行</div>
+                                    <div>手动:允许</div>
+                                    <div>自动:禁止</div>
+                                </div>
+                                <div class="screen-right-bottom">
+                                    2025-07-03<br>17:06:01
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 屏幕底部操作栏 -->
+                        <div class="screen-footer">
+                            <span class="screen-btn">回首页</span>
+                            <span class="screen-btn">查火警</span>
+                            <span class="screen-btn">查联动</span>
+                            <span class="screen-btn">手动控制</span>
+                            <span class="screen-btn">查故障</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 键盘区域 -->
+                <div class="keyboard-area">
+                    <!-- F1-F6 行 -->
+                    <div class="keyboard-row">
+                        <button class="btn btn-f">F1</button>
+                        <button class="btn btn-f">F2</button>
+                        <button class="btn btn-f">F3</button>
+                        <button class="btn btn-f">F4</button>
+                        <button class="btn btn-f">F5</button>
+                        <button class="btn btn-f">F6</button>
+                    </div>
+                    <!-- 数字键行1 -->
+                    <div class="keyboard-row">
+                        <button class="btn btn-num">1<span class="sub">..</span></button>
+                        <button class="btn btn-num">2<span class="sub">abc</span></button>
+                        <button class="btn btn-num">3<span class="sub">def</span></button>
+                        <button class="btn btn-func">功能<br><span style="font-size:8px;">Function</span></button>
+                        <button class="btn btn-func">↑</button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">取消<br><span style="font-size:8px;">Cancel</span></button>
+                        <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
+                    </div>
+                    <!-- 数字键行2 -->
+                    <div class="keyboard-row">
+                        <button class="btn btn-num">4<span class="sub">ghi</span></button>
+                        <button class="btn btn-num">5<span class="sub">jkl</span></button>
+                        <button class="btn btn-num">6<span class="sub">mno</span></button>
+                        <button class="btn btn-func">→</button>
+                        <button class="btn btn-func" style="background:#ff8c00;">确定<br><span style="font-size:8px;">Enter</span></button>
+                        <button class="btn btn-func">→</button>
+                        <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
+                    </div>
+                    <!-- 数字键行3 -->
+                    <div class="keyboard-row">
+                        <button class="btn btn-num">7<span class="sub">pqrs</span></button>
+                        <button class="btn btn-num">8<span class="sub">tuv</span></button>
+                        <button class="btn btn-num">9<span class="sub">wxyz</span></button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">←<br><span style="font-size:8px;">←</span></button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">中/英<br><span style="font-size:8px;">CN/EN</span></button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">自定义<br><span style="font-size:8px;">Custom</span></button>
+                        <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
+                    </div>
+                    <!-- 底部键行 -->
+                    <div class="keyboard-row">
+                        <button class="btn btn-num">*</button>
+                        <button class="btn btn-num">0<span class="sub">_</span></button>
+                        <button class="btn btn-num">#</button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">声光启<br><span style="font-size:8px;">Signal On</span></button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">声光停<br><span style="font-size:8px;">Signal Off</span></button>
+                        <button class="btn btn-func" style="background:#e0e4e6; color:#333;">联动<br><span style="font-size:8px;">Control</span></button>
+                        <button class="btn btn-large red-text" style="background:#e0e4e6;">启动<br><span class="sub">Start</span></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧面板 -->
+            <div class="right-panel">
+                <!-- 数码管 -->
+                <div class="digital-display">170</div>
+
+                <!-- 钥匙开关 -->
+                <div class="key-switch-area">
+                    <div class="key-labels">
+                        <div class="key-label-item">
+                            <span>禁止</span>
+                            <span class="en">Forbidden</span>
+                        </div>
+                        <div class="key-label-item">
+                            <span>允许</span>
+                            <span class="en">Allowed</span>
+                        </div>
+                    </div>
+                    <div class="key-switch">
+                        <div class="key-switch-inner">
+                            <div class="key-switch-slot"></div>
+                        </div>
+                    </div>
+                    <div class="key-switch-text">
+                        自动方式
+                        <span class="en">Automatic</span>
+                    </div>
+                </div>
+
+                <!-- 扬声器孔 -->
+                <div class="speaker">
+                    <!-- 使用 JS 生成或用 CSS 重复，这里为了代码简洁，使用 JS 生成 36 个孔 -->
+                    <script>
+                        for(let i=0; i<36; i++) {
+                            document.write('<div class="speaker-hole"></div>');
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <!-- 左下角小面板 -->
+        <div class="bottom-left-panel">
+            <div class="knob">
+                <div class="knob-led"></div>
+            </div>
+        </div>
+
+        <!-- 右下角标签 -->
+        <div class="bottom-right-label">
+            <div class="qr">
+                <div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div>
+                <div class="qr-dot"></div><div></div><div></div><div class="qr-dot"></div>
+                <div class="qr-dot"></div><div></div><div></div><div class="qr-dot"></div>
+                <div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot"></div>
+            </div>
+            <div style="font-size: 10px; line-height: 1.1;">
+                火灾报警控制器<br>(联动型)ZJ0012<br>26901ZJ0012<br>东海航
+            </div>
+        </div>
+
+        <!-- 模拟图片中的视频播放按钮 -->
+        <div class="play-overlay"></div>
+    </div>
+
+</body>
+</html>
