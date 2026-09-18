@@ -205,13 +205,11 @@ html,body{
 }
 .device-quiz-question .target{color:#ffb347;font-weight:800}
 
-/* 选项网格（通用） */
 .device-quiz-options{
   display:grid;grid-template-columns:repeat(2,1fr);
   gap:12px;flex:1;overflow:hidden;
   align-content:start;min-height:0;
 }
-/* 图片选项：固定高度，统一大小 */
 .device-quiz-options.image-grid{
   grid-template-rows:repeat(2,1fr);
 }
@@ -229,7 +227,6 @@ html,body{
   border:1px solid #1e3a54;
   display:block;
 }
-/* 文字选项：正常大小，紧凑 */
 .device-quiz-options.text-grid{
   grid-template-columns:repeat(2,1fr);
   gap:10px;
@@ -270,7 +267,6 @@ html,body{
 }
 .device-quiz-option.wrong .option-text{color:#e4a3a3}
 
-/* 题型B：题干大图框 */
 .device-quiz-image-box{
   flex-shrink:0;
   display:flex;justify-content:center;
@@ -335,7 +331,7 @@ html,body{
 }
 .practice-modal-close:hover{background:#1f405b;color:#fff;transform:rotate(90deg);border-color:#6aabf0}
 
-/* ===== 原面板样式（固定尺寸1300×720）===== */
+/* ===== 课题1 原面板样式 ===== */
 .practice-modal-inner .panel{
   width:1300px;height:720px;
   background:#d2d6d8;
@@ -365,7 +361,6 @@ html,body{
   transition:background .2s;border:1px solid #b85e10;
 }
 .practice-modal-inner .panel .practice-btn:hover{background:#d35400}
-.practice-modal-inner .panel .practice-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
 .practice-modal-inner .panel .reset-btn{
   font-size:14px;font-weight:bold;color:#fff;
   background:#c0392b;padding:6px 16px;border:none;
@@ -375,7 +370,6 @@ html,body{
   display:none;
 }
 .practice-modal-inner .panel .reset-btn:hover{background:#a93226}
-.practice-modal-inner .panel .reset-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
 .practice-modal-inner .panel .header{
   display:flex;align-items:center;height:60px;
   margin-bottom:10px;justify-content:flex-end;
@@ -497,7 +491,6 @@ html,body{
   cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
   display:flex;justify-content:center;align-items:center;
 }
-.practice-modal-inner .panel .btn-f:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
 .practice-modal-inner .panel .keyboard-row{
   display:flex;gap:10px;align-items:center;justify-content:center;
 }
@@ -507,7 +500,6 @@ html,body{
   display:flex;justify-content:center;align-items:center;
   transition:all .1s;position:relative;line-height:1.1;padding:0 3px;
 }
-.practice-modal-inner .panel .btn:active{box-shadow:inset 0 2px 4px rgba(0,0,0,.5);transform:translateY(1px)}
 .practice-modal-inner .panel .btn-num{
   background:#5b8db8;color:#fff;font-size:16px;
   width:65px;height:38px;flex-direction:column;
@@ -545,11 +537,6 @@ html,body{
   color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
   box-shadow:inset 0 0 10px rgba(0,0,0,.8);
   letter-spacing:2px;position:relative;
-}
-.practice-modal-inner .panel .digital-display::after{
-  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
-  background-size:100% 4px;pointer-events:none;
 }
 .practice-modal-inner .panel .key-switch-area{
   display:flex;flex-direction:column;align-items:center;
@@ -667,7 +654,7 @@ html,body{
   50%{background:rgba(255,165,0,.8)}
 }
 
-/* 内部模态 */
+/* 课题1 内部模态 */
 .practice-modal-inner .modal-overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:rgba(0,0,0,.65);
@@ -696,7 +683,6 @@ html,body{
   cursor:pointer;text-align:left;transition:all .2s;
 }
 .practice-modal-inner .modal .option-btn:hover{background:#e1e9f0;border-color:#2b6ca3}
-.practice-modal-inner .modal .option-btn:active{transform:scale(.99)}
 .practice-modal-inner .modal .close-btn{
   position:absolute;top:15px;right:20px;
   font-size:28px;font-weight:bold;color:#999;
@@ -719,6 +705,489 @@ html,body{
 }
 .practice-modal-inner .modal .next-btn:hover{background:#1d4f7a}
 
+/* ==================== 课题2 弹窗 ==================== */
+#practice2Modal{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:#1a1e22;
+  display:none;justify-content:center;align-items:center;
+  z-index:10000;overflow:hidden;
+}
+#practice2Modal.active{display:flex}
+
+/* 课题2 关闭按钮 */
+#practice2Modal .practice2-modal-close{
+  position:absolute;top:16px;right:20px;
+  font-size:28px;font-weight:300;color:#c0d9ee;
+  cursor:pointer;background:rgba(0,0,0,.45);
+  width:46px;height:46px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;z-index:200;
+  border:1px solid rgba(120,180,240,.35);
+  line-height:1;backdrop-filter:blur(8px);
+  box-shadow:0 4px 16px rgba(0,0,0,.5);
+}
+#practice2Modal .practice2-modal-close:hover{
+  background:#1f405b;color:#fff;
+  transform:rotate(90deg);border-color:#6aabf0;
+}
+
+#practice2Modal .panel{
+  width:1400px;height:780px;
+  background:#d2d6d8;
+  border:10px solid #a8aeaf;
+  border-radius:18px;
+  box-shadow:0 25px 50px rgba(0,0,0,.6),inset 0 0 12px rgba(255,255,255,.5),inset 0 0 2px rgba(0,0,0,.3);
+  position:relative;
+  padding:20px 35px;
+  overflow:hidden;
+  transform-origin:center center;
+  flex-shrink:0;
+}
+
+#practice2Modal .lesson-header{
+  position:absolute;top:22px;left:35px;
+  display:flex;align-items:center;gap:12px;z-index:50;
+}
+#practice2Modal .lesson-title{
+  font-size:15px;font-weight:bold;color:#fff;
+  background:#2b6ca3;padding:7px 16px;border-radius:4px;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  letter-spacing:.5px;white-space:nowrap;border:1px solid #1a4a73;
+}
+#practice2Modal .practice-btn{
+  font-size:14px;font-weight:bold;color:#fff;
+  background:#e67e22;padding:7px 16px;border:none;
+  border-radius:4px;cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  transition:background .2s;border:1px solid #b85e10;
+}
+#practice2Modal .practice-btn:hover{background:#d35400}
+#practice2Modal .reset-btn{
+  font-size:14px;font-weight:bold;color:#fff;
+  background:#c0392b;padding:7px 16px;border:none;
+  border-radius:4px;cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);
+  transition:background .2s;border:1px solid #a93226;
+  display:none;
+}
+#practice2Modal .reset-btn:hover{background:#a93226}
+
+#practice2Modal .logo-area{
+  position:absolute;top:70px;left:45px;
+  display:flex;align-items:center;z-index:5;
+}
+#practice2Modal .logo-svg{width:46px;height:46px;margin-right:12px}
+#practice2Modal .logo-text{display:flex;flex-direction:column}
+#practice2Modal .logo-text .chinese{
+  font-size:24px;font-weight:bold;color:#2b6ca3;
+  letter-spacing:2px;line-height:1.1;
+}
+#practice2Modal .logo-text .english{
+  font-size:11px;color:#2b6ca3;letter-spacing:1px;opacity:.8;
+}
+
+#practice2Modal .alarm-module{
+  position:absolute;top:145px;left:45px;
+  display:flex;border:3px solid #555;border-radius:10px;
+  padding:14px 36px;gap:60px;background:#d2d6d8;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.2);z-index:5;
+}
+#practice2Modal .alarm-item{display:flex;align-items:center;gap:14px}
+#practice2Modal .alarm-item .led-dot{
+  width:18px;height:18px;border-radius:50%;
+  background-color:#4a4a4a;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
+  border:1px solid #999;flex-shrink:0;
+}
+#practice2Modal .alarm-item .led-dot.red{
+  background-color:#ff1a1a;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
+  border:1px solid #cc0000;
+}
+#practice2Modal .alarm-item .text{
+  display:flex;flex-direction:column;font-size:20px;
+  font-weight:bold;color:#333;line-height:1.1;
+}
+#practice2Modal .alarm-item .text .en{font-size:12px;font-weight:normal;color:#555}
+
+#practice2Modal .indicator-grid{
+  position:absolute;top:240px;left:45px;
+  display:flex;gap:60px;z-index:5;
+}
+#practice2Modal .indicator-column{display:flex;flex-direction:column;gap:20px}
+#practice2Modal .indicator-row{
+  display:flex;align-items:center;font-size:17px;color:#333;height:24px;
+}
+#practice2Modal .indicator-row .led-dot{
+  width:15px;height:15px;border-radius:50%;
+  background-color:#4a4a4a;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
+  border:1px solid #999;margin-right:11px;flex-shrink:0;
+}
+#practice2Modal .indicator-row .led-dot.red{
+  background-color:#ff1a1a;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
+  border:1px solid #cc0000;
+}
+#practice2Modal .indicator-row .led-dot.green{
+  background-color:#00ff00;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #00ff00,0 0 2px #00cc00;
+  border:1px solid #009900;
+}
+#practice2Modal .indicator-row .led-dot.yellow{
+  background-color:#ffcc00;
+  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ffcc00,0 0 2px #ff9900;
+  border:1px solid #cc9900;
+}
+#practice2Modal .indicator-row .led-dot.blinking{animation:blink 1s infinite}
+#practice2Modal .indicator-row .text{
+  line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
+}
+#practice2Modal .indicator-row .text .en{font-size:11px;color:#555;font-weight:normal}
+
+#practice2Modal .screen-frame{
+  position:absolute;top:80px;left:470px;
+  width:620px;height:360px;background:#a8aeaf;
+  border-radius:10px;padding:12px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 3px 8px rgba(255,255,255,.6);
+  z-index:5;
+}
+#practice2Modal .screen{
+  width:100%;height:100%;background:#5cb8e6;
+  border:2px solid #444;display:flex;flex-direction:column;
+  font-family:'Consolas','Courier New',monospace;font-size:19px;
+  color:#fff;overflow:hidden;
+  box-shadow:inset 0 0 12px rgba(0,0,0,.4);position:relative;
+}
+#practice2Modal .screen-header{
+  display:flex;justify-content:space-between;
+  padding:8px 14px;background:#2e7ba6;font-weight:bold;
+  border-bottom:2px solid #1c5a7d;color:#e0f0ff;font-size:18px;
+  flex-shrink:0;
+}
+#practice2Modal .screen-content{
+  display:flex;flex:1;padding:12px 14px;gap:12px;overflow:hidden;
+}
+#practice2Modal .screen-left{
+  flex:2.5;display:flex;flex-direction:column;gap:8px;
+}
+#practice2Modal .screen-right{
+  flex:1;border-left:1px solid #2e7ba6;padding-left:14px;
+  display:flex;flex-direction:column;justify-content:space-between;
+  font-size:17px;
+}
+#practice2Modal .screen-right-top div{line-height:1.7}
+#practice2Modal .screen-right-bottom{
+  text-align:right;font-size:17px;color:#cce8ff;
+}
+#practice2Modal .msg-item{
+  display:flex;line-height:1.7;font-size:17px;padding:3px 0;
+}
+#practice2Modal .msg-time{color:#fff;margin-right:10px}
+#practice2Modal .msg-text{color:#fff;flex:1}
+#practice2Modal .msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
+#practice2Modal .screen-footer{
+  display:flex;background:#2e7ba6;
+  border-top:2px solid #1c5a7d;padding:6px 10px;
+  justify-content:center;font-size:17px;font-weight:bold;color:#e0f0ff;
+  flex-shrink:0;
+  min-height:44px;
+  position:relative;
+}
+#practice2Modal .screen-btn-text{cursor:default;padding:0 4px;pointer-events:none}
+
+#practice2Modal .footer-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  width:100%;
+  align-items:center;
+  text-align:center;
+}
+#practice2Modal .footer-grid span{
+  white-space:nowrap;
+  font-size:17px;
+  font-weight:bold;
+  color:#e0f0ff;
+}
+
+#practice2Modal .digital-display{
+  position:absolute;top:125px;right:70px;
+  width:130px;height:65px;background:#1a1a1a;
+  border:3px solid #555;border-radius:5px;
+  display:flex;justify-content:center;align-items:center;
+  font-family:'Digital-7','Courier New',monospace;font-size:44px;
+  color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
+  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
+  letter-spacing:4px;z-index:5;
+}
+#practice2Modal .digital-display::after{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
+  background-size:100% 4px;pointer-events:none;
+}
+
+#practice2Modal .key-switch-area{
+  position:absolute;top:245px;right:55px;
+  display:flex;flex-direction:column;align-items:center;
+  width:150px;z-index:5;
+}
+#practice2Modal .key-labels{
+  display:flex;justify-content:space-between;
+  width:130px;font-size:16px;color:#333;margin-bottom:8px;
+}
+#practice2Modal .key-label-item{display:flex;flex-direction:column;align-items:center}
+#practice2Modal .key-label-item .en{font-size:11px;color:#555}
+#practice2Modal .key-switch{
+  width:60px;height:60px;
+  background:radial-gradient(circle at 30% 30%,#ccc,#666);
+  border-radius:50%;border:2px solid #444;
+  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);
+  display:flex;justify-content:center;align-items:center;
+}
+#practice2Modal .key-switch-inner{
+  width:46px;height:46px;background:#555;border-radius:50%;
+  display:flex;justify-content:center;align-items:center;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8);
+}
+#practice2Modal .key-inserted{
+  position:absolute;top:-5px;left:50%;
+  transform:translateX(-50%) rotate(-45deg);
+  transform-origin:bottom center;
+  width:9px;height:22px;
+  background:linear-gradient(to bottom,#d4af37,#b8860b);
+  border-radius:2px 2px 0 0;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);
+  z-index:10;
+}
+#practice2Modal .key-inserted::after{
+  content:'';position:absolute;bottom:-5px;left:50%;
+  transform:translateX(-50%);
+  width:20px;height:9px;
+  background:linear-gradient(to bottom,#c0c0c0,#888);
+  border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+#practice2Modal .key-switch-text{
+  margin-top:20px;font-size:18px;font-weight:bold;color:#333;text-align:center;
+}
+#practice2Modal .key-switch-text .en{
+  font-size:13px;color:#555;display:block;text-align:center;
+}
+
+#practice2Modal .speaker{
+  position:absolute;bottom:130px;right:60px;
+  width:88px;height:88px;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  grid-template-rows:repeat(6,1fr);gap:4px;z-index:5;
+}
+#practice2Modal .speaker-hole{
+  background:#333;border-radius:50%;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
+}
+
+#practice2Modal .bottom-left-panel{
+  position:absolute;bottom:40px;left:45px;
+  width:380px;height:170px;background:#c0c4c6;
+  border:2px solid #999;border-radius:5px;
+  display:flex;justify-content:flex-end;align-items:center;
+  padding:14px 22px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.2);z-index:5;
+  overflow:hidden;
+}
+#practice2Modal .op-task-panel{
+  position:absolute;inset:0;
+  display:none;
+  flex-direction:column;
+  padding:14px 18px;
+  background:#c0c4c6;
+  border-radius:3px;
+  z-index:10;
+}
+#practice2Modal .op-task-panel.active{display:flex}
+#practice2Modal .op-task-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:8px;margin-bottom:10px;
+  border-bottom:2px solid #8a9296;
+  flex-shrink:0;
+}
+#practice2Modal .op-task-title{
+  font-size:14px;font-weight:bold;color:#2b6ca3;
+  display:flex;align-items:center;gap:6px;
+}
+#practice2Modal .op-task-title .step-badge{
+  font-size:11px;color:#fff;background:#e67e22;
+  padding:2px 8px;border-radius:10px;
+}
+#practice2Modal .op-task-timer{
+  font-size:15px;font-weight:bold;
+  font-family:'Consolas','Courier New',monospace;
+  color:#c0392b;
+  background:rgba(192,57,43,.12);
+  padding:4px 10px;border-radius:6px;
+  border:1px solid rgba(192,57,43,.3);
+  letter-spacing:1px;
+}
+#practice2Modal .op-task-timer.warning{
+  color:#fff;background:#e74c3c;
+  animation:pulse .8s infinite;
+}
+#practice2Modal .op-task-question{
+  font-size:15px;font-weight:bold;color:#333;
+  line-height:1.5;margin-bottom:10px;
+  flex-shrink:0;
+}
+#practice2Modal .op-task-question .highlight{color:#e67e22}
+#practice2Modal .op-task-submit{
+  margin-top:auto;flex-shrink:0;
+  width:100%;padding:8px;
+  background:#2b6ca3;color:#fff;
+  border:none;border-radius:6px;
+  font-size:14px;font-weight:bold;
+  cursor:pointer;transition:background .2s;
+}
+#practice2Modal .op-task-submit:hover{background:#1d4f7a}
+#practice2Modal .op-task-submit:disabled{background:#8a9296;cursor:not-allowed}
+
+#practice2Modal .bottom-right-label{
+  position:absolute;top:22px;right:35px;
+  background:#e67e22;color:#fff;padding:9px 18px;
+  font-size:17px;border-radius:4px;font-weight:bold;
+  box-shadow:0 2px 5px rgba(0,0,0,.3);
+  z-index:10;text-align:center;line-height:1.4;
+}
+
+#practice2Modal .keyboard-area{
+  position:absolute;bottom:45px;left:430px;
+  width:660px;display:flex;flex-direction:column;
+  align-items:center;gap:8px;z-index:5;
+}
+#practice2Modal .f-row{
+  display:flex;gap:12px;margin-bottom:8px;justify-content:center;
+}
+#practice2Modal .btn-f{
+  background:#3a7ca5;color:#fff;width:72px;height:40px;
+  border-radius:5px;font-size:17px;font-weight:bold;border:none;
+  cursor:pointer;
+  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
+  display:flex;justify-content:center;align-items:center;
+}
+#practice2Modal .keyboard-row{
+  display:flex;gap:10px;align-items:center;justify-content:center;
+}
+#practice2Modal .btn{
+  border-radius:5px;border:none;font-weight:bold;cursor:pointer;
+  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
+  display:flex;justify-content:center;align-items:center;
+  transition:all .1s;position:relative;line-height:1.1;
+  padding:0 3px;flex-shrink:0;
+}
+#practice2Modal .btn-num{
+  background:#5b8db8;color:#fff;font-size:18px;
+  width:72px;height:48px;flex-direction:column;
+}
+#practice2Modal .btn-num .sub{font-size:11px;margin-top:-1px;font-weight:normal}
+#practice2Modal .btn-func{
+  background:#ff7e00;color:#fff;font-size:15px;
+  width:72px;height:48px;flex-direction:column;
+}
+#practice2Modal .btn-func .sub{font-size:11px;margin-top:1px;font-weight:normal}
+#practice2Modal .btn-white{
+  background:#e0e4e6;color:#333;font-size:14px;
+  width:72px;height:48px;flex-direction:column;
+}
+#practice2Modal .btn-white .sub{font-size:11px;color:#666;margin-top:1px;font-weight:normal}
+#practice2Modal .btn-large{width:72px;height:48px;font-size:15px;flex-direction:column}
+#practice2Modal .btn-large.red-text{background:#d32f2f;color:#fff}
+#practice2Modal .btn-large.green-text{background:#388e3c;color:#fff}
+#practice2Modal .btn-large .sub{
+  font-size:11px;color:rgba(255,255,255,.8);
+  margin-top:1px;font-weight:normal;
+}
+#practice2Modal .btn-arrow{
+  width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px;
+}
+
+/* 课题2 内部模态 */
+#practice2Modal .modal-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.25);
+  display:none;justify-content:center;align-items:center;
+  z-index:11000;padding:20px;
+}
+#practice2Modal .modal-overlay.active{display:flex}
+#practice2Modal .modal{
+  background:#fff;border-radius:16px;padding:0;
+  width:560px;max-width:90%;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  position:relative;max-height:80vh;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+#practice2Modal .modal-drag-handle{
+  padding:14px 24px;
+  background:linear-gradient(180deg,#f0f4f8,#e1e9f0);
+  border-bottom:1px solid #d0d7de;
+  border-radius:16px 16px 0 0;
+  cursor:grab;user-select:none;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+#practice2Modal .modal-drag-handle:active{cursor:grabbing}
+#practice2Modal .modal-drag-handle .drag-title{
+  font-size:14px;font-weight:bold;color:#2b6ca3;
+  display:flex;align-items:center;gap:8px;
+}
+#practice2Modal .modal-drag-handle .drag-title::before{
+  content:'⠿';font-size:18px;color:#8fa8c0;
+}
+#practice2Modal .modal .close-btn{
+  position:absolute;top:10px;right:14px;
+  font-size:26px;font-weight:bold;color:#999;
+  cursor:pointer;background:none;border:none;line-height:1;z-index:10;
+}
+#practice2Modal .modal .close-btn:hover{color:#333}
+#practice2Modal .modal .close-btn.hidden{display:none}
+#practice2Modal .modal-body{
+  padding:22px 26px 26px;
+  overflow-y:auto;flex:1;
+}
+#practice2Modal .modal h2{
+  font-size:22px;color:#2b6ca3;margin-bottom:15px;
+  border-bottom:2px solid #e0e0e0;padding-bottom:10px;
+}
+#practice2Modal .modal p{
+  font-size:16px;line-height:1.6;color:#333;margin-bottom:15px;
+}
+#practice2Modal .modal .highlight-orange{color:#e67e22;font-weight:bold}
+#practice2Modal .modal .result-text{
+  font-size:18px;font-weight:bold;text-align:center;
+  padding:15px;border-radius:8px;margin-top:15px;
+}
+#practice2Modal .modal .result-success{background:#d4edda;color:#155724}
+#practice2Modal .modal .result-fail{background:#f8d7da;color:#721c24}
+#practice2Modal .modal .next-btn{
+  display:block;width:100%;padding:12px;margin-top:15px;
+  background:#2b6ca3;color:#fff;border:none;
+  border-radius:8px;font-size:16px;font-weight:bold;
+  cursor:pointer;transition:background .2s;
+}
+#practice2Modal .modal .next-btn:hover{background:#1d4f7a}
+#practice2Modal .modal .answer-input{
+  width:100%;padding:14px 16px;
+  border:2px solid #d0d7de;border-radius:8px;
+  font-size:16px;font-family:'Microsoft YaHei',sans-serif;
+  color:#333;line-height:1.6;resize:vertical;
+  min-height:80px;outline:none;
+  user-select:text;-webkit-user-select:text;
+  transition:border-color .2s;
+}
+#practice2Modal .modal .answer-input:focus{border-color:#2b6ca3;background:#f5f9fd}
+#practice2Modal .modal .submit-btn{
+  display:block;width:100%;padding:12px;margin-top:12px;
+  background:#2b6ca3;color:#fff;border:none;
+  border-radius:8px;font-size:16px;font-weight:bold;
+  cursor:pointer;transition:background .2s;
+}
+#practice2Modal .modal .submit-btn:hover{background:#1d4f7a}
+
 /* ==================== 移动端适配 ==================== */
 @media(max-width:1366px){.practice-modal-inner .panel{transform:scale(.85)}}
 @media(max-width:1180px){.practice-modal-inner .panel{transform:scale(.72)}}
@@ -728,6 +1197,16 @@ html,body{
 @media(max-width:560px){.practice-modal-inner .panel{transform:scale(.34)}}
 @media(max-width:460px){.practice-modal-inner .panel{transform:scale(.28)}}
 @media(max-width:380px){.practice-modal-inner .panel{transform:scale(.23)}}
+
+@media(max-width:1480px){#practice2Modal .panel{transform:scale(.9)}}
+@media(max-width:1366px){#practice2Modal .panel{transform:scale(.82)}}
+@media(max-width:1180px){#practice2Modal .panel{transform:scale(.70)}}
+@media(max-width:980px){#practice2Modal .panel{transform:scale(.58)}}
+@media(max-width:820px){#practice2Modal .panel{transform:scale(.48)}}
+@media(max-width:680px){#practice2Modal .panel{transform:scale(.40)}}
+@media(max-width:560px){#practice2Modal .panel{transform:scale(.32)}}
+@media(max-width:460px){#practice2Modal .panel{transform:scale(.26)}}
+@media(max-width:380px){#practice2Modal .panel{transform:scale(.22)}}
 
 @media(max-width:900px){
   .home-wrapper{padding:18px 18px 14px;border-radius:24px}
@@ -751,26 +1230,11 @@ html,body{
   .card-meta{flex-direction:column;align-items:flex-start;gap:8px}
   .start-btn{width:100%;justify-content:center}
   .footer-note{font-size:10px;flex-direction:column;gap:6px}
-  .device-quiz-container{padding:14px 12px;border-radius:18px}
-  .device-quiz-header h2{font-size:14px}
-  .device-quiz-question{font-size:13px}
-  .device-quiz-options{gap:8px}
-  .device-quiz-options.image-grid .device-quiz-option{max-height:130px}
-  .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:12px;padding:12px 8px}
-  .device-quiz-close{top:8px;right:10px;width:30px;height:30px;font-size:18px}
-  .practice-modal-close{top:10px;right:12px;width:36px;height:36px;font-size:22px}
-  .practice-modal-inner .modal{padding:22px 18px;border-radius:14px}
-  .practice-modal-inner .modal h2{font-size:18px}
-  .practice-modal-inner .modal p{font-size:14px}
-  .practice-modal-inner .modal .option-btn{padding:10px 14px;font-size:14px}
 }
 @media(max-width:420px){
   .brand-text h1{font-size:14px}
   .stat-item{padding:3px 8px;min-width:50px}
   .stat-value{font-size:14px}
-  .device-quiz-options{gap:6px}
-  .device-quiz-options.image-grid .device-quiz-option{max-height:110px}
-  .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:11px;padding:10px 6px}
 }
 </style>
 </head>
@@ -851,20 +1315,24 @@ html,body{
       </div>
     </div>
 
-    <!-- 课题2 锁定 -->
-    <div class="topic-card locked">
+    <!-- 课题2 -->
+    <div class="topic-card">
       <div class="card-header">
-        <div class="card-icon">🔔</div>
+        <div class="card-icon">🔧</div>
         <div class="card-badge">课题 2</div>
       </div>
-      <div class="card-title">火灾探测器与手动报警按钮测试</div>
-      <div class="card-desc">模拟探测器加烟报警、手报触发及复位操作。（即将开放）</div>
+      <div class="card-title">火灾报警控制器手动控制状态的切换方法</div>
+      <div class="card-desc">通过青鸟消防控制面板实操，掌握手动控制状态的检查与切换方法，含两道问答题与两轮操作题。</div>
       <div class="card-meta">
         <div class="card-tags">
-          <span class="tag">探测器</span>
-          <span class="tag">手报</span>
+          <span class="tag">手动控制</span>
+          <span class="tag">状态切换</span>
+          <span class="tag">实操</span>
         </div>
-        <button class="start-btn" disabled><span>敬请期待</span></button>
+        <button class="start-btn" id="startPractice2Btn">
+          <span>开始练习</span>
+          <span style="font-size:13px;">→</span>
+        </button>
       </div>
     </div>
   </div>
@@ -884,7 +1352,6 @@ html,body{
 <div class="practice-modal" id="practiceModal">
   <div class="practice-modal-inner">
     <div class="practice-modal-close" id="closePracticeModal">&times;</div>
-    <!-- 原面板完整结构 -->
     <div class="panel" id="originalPanel">
       <div class="lesson-header">
         <div class="lesson-title">课题1：火灾自动报警系统控制器的电源工作状态检查</div>
@@ -1172,7 +1639,6 @@ html,body{
       </div>
     </div>
 
-    <!-- 内部练习弹窗 -->
     <div class="modal-overlay" id="practiceModalInner">
       <div class="modal">
         <button class="close-btn" id="closeModalBtn">&times;</button>
@@ -1182,9 +1648,258 @@ html,body{
   </div>
 </div>
 
+<!-- ==================== 课题2 弹窗 ==================== -->
+<div id="practice2Modal">
+  <div class="practice2-modal-close" id="closePractice2Modal">&times;</div>
+  <div class="panel">
+    <div class="lesson-header">
+      <div class="lesson-title">课题2：火灾报警控制器手动控制状态的切换方法</div>
+      <button class="practice-btn" id="practice2Btn">练习</button>
+      <button class="reset-btn" id="reset2Btn">重置</button>
+    </div>
+
+    <div class="logo-area">
+      <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
+        <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
+      </svg>
+      <div class="logo-text">
+        <span class="chinese">北大青鸟</span>
+        <span class="english">JADE BIRD FIRE</span>
+      </div>
+    </div>
+
+    <div class="alarm-module">
+      <div class="alarm-item">
+        <div class="led-dot red"></div>
+        <div class="text">火警<span class="en">Alarm</span></div>
+      </div>
+      <div class="alarm-item">
+        <div class="led-dot red"></div>
+        <div class="text">启动<span class="en">Active</span></div>
+      </div>
+    </div>
+
+    <div class="indicator-grid">
+      <div class="indicator-column">
+        <div class="indicator-row">
+          <div class="led-dot red"></div>
+          <div class="text">监管报警<span class="en">Supervisory</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot"></div>
+          <div class="text">启动延时<span class="en">Active Delay</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot green"></div>
+          <div class="text">主电运行<span class="en">Main Power</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot"></div>
+          <div class="text">备电运行<span class="en">Backup Power</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot red"></div>
+          <div class="text">手报报警<span class="en">Manual Alarm</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot"></div>
+          <div class="text">系统故障<span class="en">System Fault</span></div>
+        </div>
+      </div>
+
+      <div class="indicator-column">
+        <div class="indicator-row">
+          <div class="led-dot yellow"></div>
+          <div class="text">故障<span class="en">Fault</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot red"></div>
+          <div class="text">反馈<span class="en">Feedback</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot yellow"></div>
+          <div class="text">屏蔽<span class="en">Bypass</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot red"></div>
+          <div class="text">消音<span class="en">Silence</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot"></div>
+          <div class="text">自检<span class="en">Self-Test</span></div>
+        </div>
+        <div class="indicator-row">
+          <div class="led-dot green blinking"></div>
+          <div class="text">运行<span class="en">Power On</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-frame">
+      <div class="screen" id="p2MainScreen">
+        <div class="screen-header">
+          <span id="p2ScreenTitle">故障信息</span>
+          <span id="p2ScreenRightTitle">合计: 0002</span>
+        </div>
+        <div class="screen-content">
+          <div class="screen-left" id="p2ScreenLeftContent">
+            <div class="msg-item">
+              <span class="msg-time">0002 21/11/30 15:48 2-8</span>
+              <span class="msg-text">探测器故障</span>
+            </div>
+            <div class="msg-item">
+              <span class="msg-time">0001 21/11/30 15:48</span>
+              <span class="msg-text">备电故障</span>
+            </div>
+          </div>
+          <div class="screen-right">
+            <div class="screen-right-top">
+              <div style="font-weight:bold;margin-bottom:5px;">正常 运行</div>
+              <div id="p2ManualStatusLine">手动 禁止</div>
+              <div id="p2AutoStatusLine">自动 禁止</div>
+              <div>声光故障 000</div>
+              <div>声光屏蔽 000</div>
+            </div>
+            <div class="screen-right-bottom">
+              2021-11-30<br>15:55:55
+            </div>
+          </div>
+        </div>
+        <div class="screen-footer" id="p2ScreenFooter">
+          <div class="footer-grid">
+            <span>回首页</span>
+            <span>上一条</span>
+            <span>下一条</span>
+            <span>上一页</span>
+            <span>下一页</span>
+            <span>退出</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="digital-display">15.55</div>
+
+    <div class="key-switch-area">
+      <div class="key-labels">
+        <div class="key-label-item">
+          <span>禁止</span>
+          <span class="en">Forbidden</span>
+        </div>
+        <div class="key-label-item">
+          <span>允许</span>
+          <span class="en">Allowed</span>
+        </div>
+      </div>
+      <div class="key-switch">
+        <div class="key-inserted"></div>
+        <div class="key-switch-inner"></div>
+      </div>
+      <div class="key-switch-text">
+        自动方式
+        <span class="en">Automatic</span>
+      </div>
+    </div>
+
+    <div class="speaker">
+      <script>
+        for (let i = 0; i < 36; i++) {
+          document.write('<div class="speaker-hole"></div>');
+        }
+      </script>
+    </div>
+
+    <div class="keyboard-area">
+      <div class="f-row">
+        <button class="btn-f" data-key="F1">F1</button>
+        <button class="btn-f" data-key="F2">F2</button>
+        <button class="btn-f" data-key="F3">F3</button>
+        <button class="btn-f" data-key="F4">F4</button>
+        <button class="btn-f" data-key="F5">F5</button>
+        <button class="btn-f" data-key="F6" id="p2F6Btn">F6</button>
+      </div>
+
+      <div class="keyboard-row">
+        <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
+        <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
+        <button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
+        <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button>
+        <button class="btn btn-arrow" data-key="▲">▲</button>
+        <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
+        <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
+      </div>
+
+      <div class="keyboard-row">
+        <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
+        <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
+        <button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
+        <button class="btn btn-arrow" data-key="◀">◀</button>
+        <button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button>
+        <button class="btn btn-arrow" data-key="▶">▶</button>
+        <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
+      </div>
+
+      <div class="keyboard-row">
+        <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
+        <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
+        <button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
+        <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button>
+        <button class="btn btn-arrow" data-key="▼">▼</button>
+        <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
+        <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
+      </div>
+
+      <div class="keyboard-row">
+        <button class="btn btn-num" data-key="*">*</button>
+        <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
+        <button class="btn btn-num" data-key="#">#</button>
+        <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button>
+        <button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button>
+        <button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button>
+        <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
+      </div>
+    </div>
+
+    <div class="bottom-left-panel">
+      <div class="op-task-panel" id="p2OpTaskPanel">
+        <div class="op-task-header">
+          <div class="op-task-title">
+            <span>操作题</span>
+            <span class="step-badge" id="p2OpStepBadge">第 1 轮</span>
+          </div>
+          <div class="op-task-timer" id="p2OpTimer">03:00</div>
+        </div>
+        <div class="op-task-question" id="p2OpQuestion">
+          请操作：<span class="highlight">手动调成允许</span>
+        </div>
+        <button class="op-task-submit" id="p2OpSubmitBtn">提交操作结果</button>
+      </div>
+
+      <div class="knob" id="p2DefaultKnob">
+        <div class="knob-led"></div>
+      </div>
+    </div>
+
+    <div class="bottom-right-label">
+      火灾报警控制器<br>(联动型)
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="p2ModalOverlay">
+    <div class="modal" id="p2DraggableModal">
+      <div class="modal-drag-handle" id="p2ModalDragHandle">
+        <span class="drag-title">练习答题（按住拖动）</span>
+      </div>
+      <button class="close-btn" id="p2CloseModalBtn">&times;</button>
+      <div class="modal-body" id="p2ModalContent"></div>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ============================================================
- * 序章题库 —— 使用您提供的真实图片
+ * 序章题库
  * ============================================================ */
 const deviceQuestions = [
   {
@@ -1270,7 +1985,6 @@ function renderDeviceQuestion() {
   `;
 
   if (questionType === 0) {
-    /* 题型A：给名选图 */
     html += `<div class="device-quiz-question">以下哪个是 <span class="target">${q.name}</span>？</div>`;
     html += `<div class="device-quiz-options image-grid" id="quizOptions">`;
     allOptions.forEach(opt => {
@@ -1278,7 +1992,6 @@ function renderDeviceQuestion() {
     });
     html += `</div>`;
   } else {
-    /* 题型B：给图选名 */
     html += `<div class="device-quiz-question">这张图片是什么设备？请选择正确的名称。</div>`;
     html += `<div class="device-quiz-image-box"><img src="${q.image}" alt="设备图片" /></div>`;
     html += `<div class="device-quiz-options text-grid" id="quizOptions">`;
@@ -1367,7 +2080,7 @@ function renderDeviceResult() {
 }
 
 /* ============================================================
- * 课题1 电源练习逻辑（沿用您提供的原始逻辑）
+ * 课题1 电源练习逻辑
  * ============================================================ */
 (function() {
   const practiceModal = document.getElementById('practiceModal');
@@ -1432,7 +2145,7 @@ function renderDeviceResult() {
   });
 })();
 
-/* 面板练习逻辑 */
+/* 课题1 面板练习逻辑 */
 (function() {
   const modal = document.getElementById('practiceModalInner');
   const modalContent = document.getElementById('modalContent');
@@ -1684,7 +2397,7 @@ function renderDeviceResult() {
   window.resetPractice = resetPractice;
 })();
 
-/* 面板动态缩放 */
+/* 课题1 面板动态缩放 */
 (function() {
   const panel = document.querySelector('.practice-modal-inner .panel');
   const inner = document.querySelector('.practice-modal-inner');
@@ -1705,6 +2418,785 @@ function renderDeviceResult() {
     setTimeout(adjustScale, 150);
   });
 })();
+
+/* ============================================================
+ * 课题2 逻辑
+ * ============================================================ */
+(function() {
+  const practice2Modal = document.getElementById('practice2Modal');
+  const startPractice2Btn = document.getElementById('startPractice2Btn');
+  const closePractice2Btn = document.getElementById('closePractice2Modal');
+
+  startPractice2Btn.addEventListener('click', function() {
+    practice2Modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  closePractice2Btn.addEventListener('click', function() {
+    practice2Modal.classList.remove('active');
+    document.body.style.overflow = '';
+    if (typeof window.resetPractice2 === 'function') {
+      window.resetPractice2();
+    }
+  });
+
+  const modal = document.getElementById('p2ModalOverlay');
+  const modalContent = document.getElementById('p2ModalContent');
+  const closeBtn = document.getElementById('p2CloseModalBtn');
+  const practiceBtn = document.getElementById('practice2Btn');
+  const resetBtn = document.getElementById('reset2Btn');
+
+  const opTaskPanel = document.getElementById('p2OpTaskPanel');
+  const opTimerEl = document.getElementById('p2OpTimer');
+  const opStepBadge = document.getElementById('p2OpStepBadge');
+  const opQuestion = document.getElementById('p2OpQuestion');
+  const opSubmitBtn = document.getElementById('p2OpSubmitBtn');
+  const defaultKnob = document.getElementById('p2DefaultKnob');
+
+  const screenTitle = document.getElementById('p2ScreenTitle');
+  const screenRightTitle = document.getElementById('p2ScreenRightTitle');
+  const screenLeftContent = document.getElementById('p2ScreenLeftContent');
+  const screenFooter = document.getElementById('p2ScreenFooter');
+  const manualStatusLine = document.getElementById('p2ManualStatusLine');
+  const autoStatusLine = document.getElementById('p2AutoStatusLine');
+
+  let currentIndex = 0;
+  let isPracticing = false;
+
+  let opRound = 1;
+  let opTimerId = null;
+  let opTimeLeft = 180;
+  let opState = null;
+
+  let activeKeys = null;
+  function setActiveKeys(keys) { activeKeys = keys; }
+  function isKeyActive(k) {
+    if (activeKeys === null) return true;
+    return activeKeys.includes(k);
+  }
+
+  function showDefaultScreen() {
+    screenTitle.textContent = '故障信息';
+    screenRightTitle.textContent = '合计: 0002';
+    screenLeftContent.innerHTML = `
+      <div class="msg-item">
+        <span class="msg-time">0002 21/11/30 15:48 2-8</span>
+        <span class="msg-text">探测器故障</span>
+      </div>
+      <div class="msg-item">
+        <span class="msg-time">0001 21/11/30 15:48</span>
+        <span class="msg-text">备电故障</span>
+      </div>
+    `;
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>回首页</span>
+        <span>上一条</span>
+        <span>下一条</span>
+        <span>上一页</span>
+        <span>下一页</span>
+        <span>退出</span>
+      </div>
+    `;
+    manualStatusLine.textContent = '手动 禁止';
+    autoStatusLine.textContent = '自动 禁止';
+  }
+
+  function showMainScreen() {
+    screenTitle.textContent = '首警: 21/11/30 15:18 2-1';
+    screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `
+      <div class="msg-item">
+        <span class="msg-time">0002 21/11/30 15:18 2-12 手报</span>
+        <span class="msg-text">展板手报</span>
+      </div>
+      <div class="msg-item">
+        <span class="msg-time">0001 21/11/30 15:18 2-1</span>
+        <span class="msg-text">展板烟感</span>
+      </div>
+      <div style="margin-top:6px;"></div>
+      <div class="msg-item msg-highlight">
+        <span class="msg-time">火警: 0002 联动: 0001 反馈: 0000</span>
+      </div>
+      <div class="msg-item">
+        <span class="msg-time">0001 21/11/30 15:18 2-11 手动启动</span>
+        <span class="msg-text">展板消火栓按钮</span>
+      </div>
+    `;
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>跨机自动</span>
+        <span>回首页</span>
+        <span>查火警</span>
+        <span>查联动</span>
+        <span>手动控制</span>
+        <span>查故障</span>
+      </div>
+    `;
+    if (opState && opState.currentManualState) {
+      manualStatusLine.textContent = opState.currentManualState;
+    } else {
+      manualStatusLine.textContent = '手动 禁止';
+    }
+    autoStatusLine.textContent = '自动 禁止';
+  }
+
+  function showTestMenu() {
+    screenTitle.textContent = '测试菜单';
+    screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `
+      <div style="line-height:2;font-size:15px;padding:4px 8px;">
+        1 &nbsp;探测器模拟曲线<br>
+        2 &nbsp;回路状态信号浏览<br>
+        3 &nbsp;现场部件数据查询<br>
+        4 &nbsp;回路部件状态信号值<br>
+        5 &nbsp;现场部件类型状态<br>
+        6 &nbsp;用户密码权限管理<br>
+        7 &nbsp;总线盘<br>
+        8 &nbsp;消防信息<br>
+        9 &nbsp;分区信息<br>
+        0 &nbsp;模式二联动编程查询
+      </div>
+    `;
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>查询</span>
+        <span>测试</span>
+        <span>设置</span>
+        <span>安装</span>
+        <span>系统</span>
+        <span>退出</span>
+      </div>
+    `;
+  }
+
+  function showLoginScreen(password) {
+    screenTitle.textContent = '用户登录';
+    screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `
+      <div style="padding:20px 30px;line-height:2;font-size:16px;">
+        请输入密码(3或10位数字)<br>
+        <span id="pwdDisplay" style="font-size:22px;letter-spacing:4px;color:#ffeb3b;font-weight:bold;">
+          ${password || '█'}
+        </span>
+      </div>
+    `;
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>修改</span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span>确认</span>
+        <span>退出</span>
+      </div>
+    `;
+  }
+
+  function showSettingsMenu() {
+    screenTitle.textContent = '设置菜单';
+    screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `
+      <div style="line-height:2;font-size:15px;padding:4px 8px;">
+        1 &nbsp;设置时间<br>
+        2 &nbsp;设置部件屏蔽<br>
+        3 &nbsp;开关打印机<br>
+        4 &nbsp;打印历史记录<br>
+        5 &nbsp;<span style="background:#ffeb3b;color:#000;padding:0 4px;">设置手动控制状态</span><br>
+        6 &nbsp;控制器自检<br>
+        7 &nbsp;设置手动控制设备<br>
+        8 &nbsp;设置灭火启动方式<br>
+        9 &nbsp;设置故障输出时间<br>
+        0 &nbsp;设置控制器消音
+      </div>
+    `;
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>查询</span>
+        <span>测试</span>
+        <span>设置</span>
+        <span>安装</span>
+        <span>系统</span>
+        <span>退出</span>
+      </div>
+    `;
+  }
+
+  function showManualControlSettings(manualValue, currentState) {
+    screenTitle.textContent = '设置手动控制状态';
+    screenRightTitle.textContent = '';
+    const display = manualValue || '手动';
+    screenLeftContent.innerHTML = `
+      <div style="padding:40px 0;text-align:center;">
+        <span id="manualCtlDisplay" style="font-size:28px;font-weight:bold;color:#fff;letter-spacing:4px;">
+          ${display}
+        </span>
+      </div>
+      <div style="padding:0 20px;font-size:13px;color:#e0f0ff;">
+        请输入正确的数据
+      </div>
+    `;
+    if (currentState) {
+      manualStatusLine.textContent = currentState;
+    }
+    screenFooter.innerHTML = `
+      <div class="footer-grid">
+        <span>修改</span>
+        <span>禁止</span>
+        <span>允许</span>
+        <span>取消</span>
+        <span>确认</span>
+        <span>退出</span>
+      </div>
+    `;
+  }
+
+  function resetPractice() {
+    currentIndex = 0;
+    isPracticing = false;
+    resetBtn.style.display = 'none';
+    practiceBtn.textContent = '练习';
+    closeModal();
+    closeBtn.classList.remove('hidden');
+    resetModalPosition();
+    stopOpTimer();
+    opTaskPanel.classList.remove('active');
+    defaultKnob.style.display = 'flex';
+    setActiveKeys(null);
+    opState = null;
+    showDefaultScreen();
+  }
+
+  function openModal() {
+    modal.classList.add('active');
+    isPracticing = true;
+    practiceBtn.textContent = '继续练习';
+    resetBtn.style.display = 'block';
+    renderStep();
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+  }
+
+  function renderStep() {
+    closeBtn.classList.remove('hidden');
+
+    if (currentIndex < quizQuestions.length) {
+      opTaskPanel.classList.remove('active');
+      defaultKnob.style.display = 'flex';
+      setActiveKeys(null);
+      const q = quizQuestions[currentIndex];
+      modalContent.innerHTML = `
+        <h2>第 ${currentIndex + 1} / ${quizQuestions.length} 题</h2>
+        <p>${q.question}</p>
+        <textarea class="answer-input" id="answerInput"></textarea>
+        <button class="submit-btn" id="submitBtn">提交</button>
+      `;
+      const input = document.getElementById('answerInput');
+      const submitBtn = document.getElementById('submitBtn');
+
+      submitBtn.onclick = function() {
+        const val = input.value.trim();
+        const res = checkAnswer(val, q);
+        if (res.pass) {
+          currentIndex++;
+          renderStep();
+        } else {
+          modalContent.innerHTML = `
+            <h2>回答错误</h2>
+            <div class="result-text result-fail">
+              ❌ 回答错误，考试 0 分，考试结束
+            </div>
+            <p style="margin-top:15px;font-size:14px;color:#555;">
+              正确答案是：<span class="highlight-orange">${q.reference}</span>
+            </p>
+            <button class="next-btn" id="retryBtn">重试</button>
+          `;
+          document.getElementById('retryBtn').onclick = resetPractice;
+        }
+      };
+      return;
+    }
+
+    startOpRound(currentIndex - quizQuestions.length + 1);
+  }
+
+  function startOpRound(round) {
+    opRound = round;
+    opTimeLeft = 180;
+    opState = {
+      stage: round === 1 ? 'idle' : 'manualControl',
+      password: '',
+      manualValue: '',
+      currentManualState: round === 1 ? '手动 禁止' : '手动 允许',
+      round: round
+    };
+
+    closeModal();
+    opTaskPanel.classList.add('active');
+    defaultKnob.style.display = 'none';
+    opStepBadge.textContent = `第 ${round} 轮`;
+    opQuestion.innerHTML = round === 1
+      ? '请操作：<span class="highlight">手动调成允许</span>'
+      : '请操作：<span class="highlight">除此之外还有什么办法可以转换允许和禁止？（用手动禁止的方法，将手动调回禁止）</span>';
+
+    opSubmitBtn.disabled = false;
+    opSubmitBtn.textContent = '提交操作结果';
+
+    if (round === 1) {
+      showDefaultScreen();
+      setActiveKeys(null);
+    } else {
+      showManualControlSettings('', '手动 允许');
+      setActiveKeys(['取消']);
+    }
+
+    startOpTimer();
+  }
+
+  function startOpTimer() {
+    stopOpTimer();
+    updateTimerDisplay();
+    opTimerId = setInterval(() => {
+      opTimeLeft--;
+      updateTimerDisplay();
+      if (opTimeLeft <= 0) {
+        stopOpTimer();
+        opTimeoutFail();
+      }
+    }, 1000);
+  }
+
+  function stopOpTimer() {
+    if (opTimerId) {
+      clearInterval(opTimerId);
+      opTimerId = null;
+    }
+  }
+
+  function updateTimerDisplay() {
+    const m = Math.floor(opTimeLeft / 60);
+    const s = opTimeLeft % 60;
+    opTimerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    if (opTimeLeft <= 30) {
+      opTimerEl.classList.add('warning');
+    } else {
+      opTimerEl.classList.remove('warning');
+    }
+  }
+
+  function opTimeoutFail() {
+    opSubmitBtn.disabled = true;
+    opTaskPanel.classList.remove('active');
+    defaultKnob.style.display = 'flex';
+    setActiveKeys(null);
+
+    modal.classList.add('active');
+    modalContent.innerHTML = `
+      <h2>操作超时</h2>
+      <div class="result-text result-fail">
+        ❌ 时间到，考试 0 分，考试结束
+      </div>
+      <button class="next-btn" id="retryBtn">重试</button>
+    `;
+    document.getElementById('retryBtn').onclick = resetPractice;
+  }
+
+  opSubmitBtn.onclick = function() {
+    const currentManual = opState.currentManualState;
+    const expected = opRound === 1 ? '手动 允许' : '手动 禁止';
+
+    stopOpTimer();
+    opTaskPanel.classList.remove('active');
+    defaultKnob.style.display = 'flex';
+    setActiveKeys(null);
+
+    modal.classList.add('active');
+
+    if (currentManual === expected) {
+      if (opRound === 1) {
+        modalContent.innerHTML = `
+          <h2>✅ 第一轮操作正确</h2>
+          <p>手动已调成允许。准备进入第二轮：除此之外还有什么办法可以转换允许和禁止。</p>
+          <button class="next-btn" id="nextRoundBtn">开始第二轮</button>
+        `;
+        document.getElementById('nextRoundBtn').onclick = function() {
+          closeModal();
+          currentIndex++;
+          startOpRound(2);
+        };
+      } else {
+        modalContent.innerHTML = `
+          <h2>🎉 练习完成</h2>
+          <div class="result-text result-success">
+            ✅ 全部操作正确，练习结束！
+          </div>
+          <button class="next-btn" id="finishBtn">关闭</button>
+        `;
+        document.getElementById('finishBtn').onclick = function() {
+          resetPractice();
+          practice2Modal.classList.remove('active');
+          document.body.style.overflow = '';
+        };
+      }
+    } else {
+      modalContent.innerHTML = `
+        <h2>操作错误</h2>
+        <div class="result-text result-fail">
+          ❌ 操作错误，考试 0 分，考试结束
+        </div>
+        <p style="margin-top:15px;font-size:14px;color:#555;">
+          当前手动状态：<span class="highlight-orange">${currentManual || '未设置'}</span><br>
+          期望手动状态：<span class="highlight-orange">${expected}</span>
+        </p>
+        <button class="next-btn" id="retryBtn">重试</button>
+      `;
+      document.getElementById('retryBtn').onclick = resetPractice;
+    }
+  };
+
+  document.querySelectorAll('#practice2Modal .keyboard-area button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      if (!opTaskPanel.classList.contains('active')) return;
+      const key = this.dataset.key;
+      if (!isKeyActive(key)) return;
+      handleKeyPress(key);
+    });
+  });
+
+  function handleKeyPress(key) {
+    const st = opState;
+    if (!st) return;
+
+    if (st.round === 1) {
+      if (st.stage === 'idle') {
+        if (key === '功能') {
+          st.stage = 'testMenu';
+          showTestMenu();
+        }
+        return;
+      }
+
+      if (st.stage === 'testMenu') {
+        if (key === 'F3') {
+          st.stage = 'login';
+          st.password = '';
+          showLoginScreen('');
+        }
+        return;
+      }
+
+      if (st.stage === 'login') {
+        if (key === 'F1') {
+          st.password = '';
+          showLoginScreen('');
+          return;
+        }
+        if (/^[0-9#*]$/.test(key)) {
+          st.password += key;
+          showLoginScreen(st.password);
+          return;
+        }
+        if (key === 'F5') {
+          if (st.password === '119') {
+            st.stage = 'settingsMenu';
+            st.password = '';
+            showSettingsMenu();
+          } else {
+            st.password = '';
+            showLoginScreen('');
+          }
+          return;
+        }
+        if (key === 'F6') {
+          st.stage = 'testMenu';
+          st.password = '';
+          showTestMenu();
+          return;
+        }
+        return;
+      }
+
+      if (st.stage === 'settingsMenu') {
+        if (key === '5') {
+          st.stage = 'manualControl';
+          st.manualValue = '';
+          showManualControlSettings('', st.currentManualState);
+        }
+        return;
+      }
+
+      if (st.stage === 'manualControl') {
+        if (key === 'F3') {
+          st.manualValue = '手动 允许';
+          showManualControlSettings('手动 允许', st.currentManualState);
+          return;
+        }
+        if (key === 'F2') {
+          st.manualValue = '手动 禁止';
+          showManualControlSettings('手动 禁止', st.currentManualState);
+          return;
+        }
+        if (key === 'F5') {
+          if (st.manualValue) {
+            st.currentManualState = st.manualValue;
+          }
+          showManualControlSettings(st.manualValue || '', st.currentManualState);
+          return;
+        }
+        return;
+      }
+      return;
+    }
+
+    if (st.round === 2) {
+      if (st.stage === 'manualControl') {
+        if (key === '取消') {
+          st.stage = 'mainScreenAfterCancel';
+          showMainScreen();
+          setActiveKeys(['F5']);
+          return;
+        }
+        return;
+      }
+
+      if (st.stage === 'mainScreenAfterCancel') {
+        if (key === 'F5') {
+          st.stage = 'manualControl2';
+          st.manualValue = '';
+          showManualControlSettings('', '手动 允许');
+          setActiveKeys(['F2']);
+          return;
+        }
+        return;
+      }
+
+      if (st.stage === 'manualControl2') {
+        if (key === 'F2') {
+          st.manualValue = '手动 禁止';
+          showManualControlSettings('手动 禁止', '手动 允许');
+          setActiveKeys(['F5']);
+          return;
+        }
+        if (key === 'F5') {
+          if (st.manualValue) {
+            st.currentManualState = st.manualValue;
+          }
+          showManualControlSettings(st.manualValue || '', st.currentManualState);
+          st.stage = 'manualControl';
+          setActiveKeys(['取消']);
+          return;
+        }
+        return;
+      }
+      return;
+    }
+  }
+
+  practiceBtn.addEventListener('click', openModal);
+  resetBtn.addEventListener('click', function() {
+    stopOpTimer();
+    resetPractice();
+  });
+  closeBtn.addEventListener('click', function() {
+    stopOpTimer();
+    closeModal();
+  });
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) closeModal();
+  });
+
+  const draggable = document.getElementById('p2DraggableModal');
+  const dragHandle = document.getElementById('p2ModalDragHandle');
+
+  let isDragging = false;
+  let startX = 0, startY = 0;
+  let startLeft = 0, startTop = 0;
+
+  function onDragStart(e) {
+    if (e.target.closest('.close-btn')) return;
+    e.preventDefault();
+    const rect = draggable.getBoundingClientRect();
+    draggable.style.position = 'fixed';
+    draggable.style.left = rect.left + 'px';
+    draggable.style.top = rect.top + 'px';
+    draggable.style.margin = '0';
+    draggable.style.transform = 'none';
+    isDragging = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    startY = (e.touches ? e.touches[0].clientY : e.clientY);
+    startLeft = rect.left;
+    startTop = rect.top;
+    document.body.style.cursor = 'grabbing';
+  }
+
+  function onDragMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
+    const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+    const rect = draggable.getBoundingClientRect();
+    let newLeft = startLeft + dx;
+    let newTop = startTop + dy;
+    const maxLeft = window.innerWidth - rect.width;
+    const maxTop = window.innerHeight - rect.height;
+    newLeft = Math.max(0, Math.min(maxLeft, newLeft));
+    newTop = Math.max(0, Math.min(maxTop, newTop));
+    draggable.style.left = newLeft + 'px';
+    draggable.style.top = newTop + 'px';
+  }
+
+  function onDragEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    document.body.style.cursor = '';
+  }
+
+  dragHandle.addEventListener('mousedown', onDragStart);
+  document.addEventListener('mousemove', onDragMove);
+  document.addEventListener('mouseup', onDragEnd);
+  dragHandle.addEventListener('touchstart', onDragStart, { passive: false });
+  document.addEventListener('touchmove', onDragMove, { passive: false });
+  document.addEventListener('touchend', onDragEnd);
+
+  function resetModalPosition() {
+    draggable.style.position = '';
+    draggable.style.left = '';
+    draggable.style.top = '';
+    draggable.style.margin = '';
+    draggable.style.transform = '';
+  }
+
+  resetPractice();
+  window.resetPractice2 = resetPractice;
+})();
+
+/* 课题2 键盘按键音 */
+(function() {
+  let audioCtx = null;
+  function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  function playBeep() {
+    initAudio();
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.06);
+  }
+  document.querySelectorAll('#practice2Modal .keyboard-area button').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      playBeep();
+      e.preventDefault();
+    });
+    btn.addEventListener('touchstart', function(e) {
+      playBeep();
+    }, { passive: true });
+  });
+})();
+
+/* 课题2 缩放适配 */
+(function() {
+  const panel = document.querySelector('#practice2Modal .panel');
+  function adjustScale() {
+    if (!panel) return;
+    const winW = window.innerWidth;
+    const winH = window.innerHeight;
+    const panelW = 1400;
+    const panelH = 780;
+    const scaleX = (winW - 40) / panelW;
+    const scaleY = (winH - 40) / panelH;
+    const scale = Math.min(1, scaleX, scaleY);
+    panel.style.transform = `scale(${scale})`;
+  }
+  adjustScale();
+  window.addEventListener('resize', adjustScale);
+  window.addEventListener('orientationchange', function() {
+    setTimeout(adjustScale, 150);
+  });
+})();
+
+/* ============================================================
+ * 课题2 问答题库 & 判分
+ * ============================================================ */
+const quizQuestions = [
+  {
+    id: 'q1',
+    question: '请说出当前控制器的控制状态（注意：显示屏右下角）',
+    reference: '手动：禁止 自动：禁止',
+    mustInclude: ['手动', '禁止', '自动'],
+    forbidden: ['正常', '运行', '正确']
+  },
+  {
+    id: 'q2',
+    question: '自动状态如何切换？',
+    reference: '用钥匙扭到允许即可',
+    mustInclude: ['钥匙', '允许'],
+    forbidden: []
+  }
+];
+
+const PASS_CONFIG = {
+  keywordHitRate: 0.6,
+  similarityThreshold: 0.7
+};
+
+function normalizeText(str) {
+  return (str || '')
+    .replace(/\s+/g, '')
+    .replace(/[，。、；：""''（）]/g, '')
+    .toLowerCase();
+}
+
+function similarity(a, b) {
+  const s1 = normalizeText(a);
+  const s2 = normalizeText(b);
+  if (!s1 && !s2) return 1;
+  if (!s1 || !s2) return 0;
+
+  const m = s1.length, n = s2.length;
+  let prev = new Array(n + 1).fill(0);
+  let curr = new Array(n + 1).fill(0);
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (s1[i - 1] === s2[j - 1]) {
+        curr[j] = prev[j - 1] + 1;
+      } else {
+        curr[j] = Math.max(prev[j], curr[j - 1]);
+      }
+    }
+    [prev, curr] = [curr, prev];
+    curr.fill(0);
+  }
+  const lcs = prev[n];
+  return (2 * lcs) / (m + n);
+}
+
+function checkAnswer(userAnswer, q) {
+  const text = normalizeText(userAnswer);
+  for (const bad of (q.forbidden || [])) {
+    if (text.includes(normalizeText(bad))) return { pass: false };
+  }
+  const must = q.mustInclude || [];
+  if (must.length > 0) {
+    const hitCount = must.filter(k => text.includes(normalizeText(k))).length;
+    if (hitCount / must.length < PASS_CONFIG.keywordHitRate) return { pass: false };
+  }
+  const sim = similarity(userAnswer, q.reference);
+  if (sim < PASS_CONFIG.similarityThreshold) return { pass: false };
+  return { pass: true, similarity: sim };
+}
 
 /* 序章事件绑定 */
 document.addEventListener('DOMContentLoaded', function() {
