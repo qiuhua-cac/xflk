@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
 
-/* ========== 竖屏：浏览网页模式 ========== */
+/* ========== 基础（电脑端保持原样） ========== */
 html,body{
   width:100%;height:100%;overflow:hidden;background:#0e1a24;
   background-image:
@@ -253,7 +253,7 @@ html,body{
 .device-quiz-next-btn.secondary{background:linear-gradient(145deg,#3f5567,#2e4254);border-color:#4e6377}
 .device-quiz-score{text-align:center;font-size:11px;color:#8fb8d8;margin-top:6px;flex-shrink:0}
 
-/* ========== 练习弹窗（面板） ========== */
+/* ========== 练习弹窗 ========== */
 .practice-modal{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:#0a1219;
@@ -1118,7 +1118,7 @@ html,body{
 }
 .panel2 .modal .submit-btn:hover{background:#1d4f7a}
 
-/* ========== 竖屏移动端适配 ========== */
+/* ========== 电脑端响应式（保持原有） ========== */
 @media(max-width:1366px){.practice-modal-inner .panel{transform:scale(.85)}.panel2{transform:scale(.85)}}
 @media(max-width:1180px){.practice-modal-inner .panel{transform:scale(.72)}.panel2{transform:scale(.72)}}
 @media(max-width:980px){.practice-modal-inner .panel{transform:scale(.60)}.panel2{transform:scale(.60)}}
@@ -1134,8 +1134,7 @@ html,body{
   .cards-grid{grid-template-columns:repeat(2,1fr);gap:12px}
 }
 @media(max-width:700px){
-  html,body{padding:0;align-items:flex-start}
-  .home-wrapper{height:100%;max-height:none;border-radius:0;padding:14px 12px}
+  .home-wrapper{padding:14px 12px;border-radius:20px}
   .brand-text h1{font-size:16px}
   .brand-icon{width:36px;height:36px;border-radius:10px}
   .brand-icon svg{width:20px;height:20px}
@@ -1174,138 +1173,124 @@ html,body{
 }
 
 /* ================================================================
-   ★★★★★ 横屏 = 游戏全屏模式 ★★★★★
-   横屏时：强制全屏铺满，横着拿手机，两只手操作。
-   主页卡片横排，练习面板自动缩放至完整显示。
+   ★★★★★ 手机自动横屏显示（竖着拿手机也看到横屏游戏） ★★★★★
+   只在手机/平板（触摸设备 + 窄屏）上生效，电脑端完全不受影响。
+   原理：把整个页面旋转 90 度，宽高互换。
    ================================================================ */
-@media (orientation: landscape) {
-  /* 全局：去掉所有边距，强制铺满 */
-  html,body{
-    padding:0 !important;
-    width:100vw !important;
-    height:100vh !important;
-    overflow:hidden !important;
-    display:block !important;
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  html, body {
+    width: 100vh !important;
+    height: 100vw !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+  }
+  body {
+    transform: rotate(90deg) !important;
+    transform-origin: left top !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vh !important;
+    height: 100vw !important;
+    display: block !important;
+  }
+  /* 主页旋转后铺满 */
+  .home-wrapper {
+    max-width: 100% !important;
+    width: 100vh !important;
+    height: 100vw !important;
+    max-height: 100vw !important;
+    border-radius: 0 !important;
+    padding: 8px 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .app-header { margin-bottom: 6px !important; padding-bottom: 6px !important; }
+  .brand-icon { width: 30px !important; height: 30px !important; border-radius: 8px !important; }
+  .brand-icon svg { width: 16px !important; height: 16px !important; }
+  .brand-text h1 { font-size: 13px !important; }
+  .brand-text .sub { font-size: 8px !important; margin-top: 1px !important; }
+  .stat-item { padding: 3px 8px !important; min-width: 48px !important; border-radius: 8px !important; }
+  .stat-value { font-size: 13px !important; }
+  .stat-label { font-size: 7px !important; }
+  .section-title { margin-bottom: 4px !important; }
+  .section-title h2 { font-size: 11px !important; }
+  .section-title .badge { font-size: 8px !important; padding: 2px 6px !important; }
+  .cards-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 6px !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    align-content: start !important;
+    overflow-y: auto !important;
+  }
+  .topic-card {
+    padding: 6px 8px 4px !important;
+    border-radius: 10px !important;
+    min-height: 0 !important;
+  }
+  .card-header { margin-bottom: 4px !important; }
+  .card-icon { width: 22px !important; height: 22px !important; font-size: 11px !important; border-radius: 6px !important; }
+  .card-badge { font-size: 7px !important; padding: 2px 5px !important; }
+  .card-title { font-size: 10px !important; margin-bottom: 2px !important; line-height: 1.25 !important; }
+  .card-desc { font-size: 8px !important; margin-bottom: 4px !important; line-height: 1.3 !important; }
+  .card-meta { flex-direction: row !important; align-items: center !important; padding-top: 4px !important; gap: 3px !important; }
+  .card-tags { gap: 2px !important; }
+  .tag { font-size: 6px !important; padding: 1px 4px !important; }
+  .start-btn { padding: 3px 8px !important; font-size: 9px !important; white-space: nowrap !important; }
+  .footer-note { font-size: 7px !important; margin-top: 3px !important; padding-top: 3px !important; flex-direction: row !important; gap: 3px !important; }
+  .footer-note .version { font-size: 7px !important; padding: 2px 6px !important; }
+
+  /* 练习弹窗旋转后全屏 */
+  .practice-modal {
+    width: 100vh !important;
+    height: 100vw !important;
+  }
+  .practice-modal-inner {
+    width: 100vh !important;
+    height: 100vw !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .practice-modal-close {
+    top: 6px !important; right: 10px !important;
+    width: 32px !important; height: 32px !important; font-size: 20px !important;
+  }
+  .practice-modal-inner .panel {
+    transform: scale(0.38) !important;
+  }
+  .panel2 {
+    transform: scale(0.38) !important;
   }
 
-  /* 主页：横屏时全屏铺满 */
-  .home-wrapper{
-    max-width:100% !important;
-    width:100vw !important;
-    height:100vh !important;
-    max-height:100vh !important;
-    border-radius:0 !important;
-    padding:8px 14px !important;
-    display:flex !important;
-    flex-direction:column !important;
+  /* 设备识别弹窗旋转后适配 */
+  .device-quiz-modal {
+    width: 100vh !important;
+    height: 100vw !important;
+    padding: 6px !important;
   }
-  .app-header{
-    margin-bottom:6px !important;
-    padding-bottom:6px !important;
+  .device-quiz-container {
+    max-width: 100% !important;
+    max-height: 100vw !important;
+    border-radius: 12px !important;
+    padding: 8px 12px !important;
   }
-  .brand-icon{width:32px !important;height:32px !important;border-radius:10px !important}
-  .brand-icon svg{width:18px !important;height:18px !important}
-  .brand-text h1{font-size:14px !important}
-  .brand-text .sub{font-size:9px !important;margin-top:1px !important}
-  .stat-item{padding:3px 10px !important;min-width:52px !important;border-radius:8px !important}
-  .stat-value{font-size:14px !important}
-  .stat-label{font-size:7px !important}
-  .section-title{margin-bottom:6px !important}
-  .section-title h2{font-size:12px !important}
-  .section-title .badge{font-size:9px !important;padding:2px 8px !important}
-
-  /* 卡片：横排三列，铺满宽度 */
-  .cards-grid{
-    display:grid !important;
-    grid-template-columns:repeat(3,1fr) !important;
-    gap:8px !important;
-    flex:1 !important;
-    min-height:0 !important;
-    align-content:start !important;
-    overflow-y:auto !important;
-  }
-  .topic-card{
-    padding:8px 10px 6px !important;
-    border-radius:12px !important;
-    min-height:0 !important;
-  }
-  .card-header{margin-bottom:6px !important}
-  .card-icon{width:26px !important;height:26px !important;font-size:13px !important;border-radius:8px !important}
-  .card-badge{font-size:8px !important;padding:2px 6px !important}
-  .card-title{font-size:11px !important;margin-bottom:3px !important;line-height:1.3 !important}
-  .card-desc{font-size:9px !important;margin-bottom:6px !important;line-height:1.35 !important}
-  .card-meta{flex-direction:row !important;align-items:center !important;padding-top:6px !important;gap:4px !important}
-  .card-tags{gap:3px !important}
-  .tag{font-size:7px !important;padding:1px 5px !important}
-  .start-btn{padding:4px 10px !important;font-size:10px !important;white-space:nowrap !important}
-  .footer-note{font-size:8px !important;margin-top:4px !important;padding-top:4px !important;flex-direction:row !important;gap:4px !important}
-  .footer-note .version{font-size:8px !important;padding:2px 8px !important}
-
-  /* 练习弹窗：强制全屏 */
-  .practice-modal{
-    width:100vw !important;
-    height:100vh !important;
-  }
-  .practice-modal-inner{
-    width:100vw !important;
-    height:100vh !important;
-    display:flex !important;
-    justify-content:center !important;
-    align-items:center !important;
-  }
-  .practice-modal-close{
-    top:8px !important;
-    right:12px !important;
-    width:36px !important;
-    height:36px !important;
-    font-size:22px !important;
-  }
-
-  /* 面板自动缩放：用 JS 控制 scale，这里给一个兜底 */
-  .practice-modal-inner .panel{
-    transform-origin:center center !important;
-  }
-  .panel2{
-    transform-origin:center center !important;
-  }
-
-  /* 设备识别弹窗横屏适配 */
-  .device-quiz-modal{
-    padding:6px !important;
-  }
-  .device-quiz-container{
-    max-width:100% !important;
-    max-height:100vh !important;
-    border-radius:14px !important;
-    padding:10px 14px !important;
-  }
-  .device-quiz-header h2{font-size:13px !important}
-  .device-quiz-question{font-size:12px !important;padding:8px 10px !important;margin-bottom:8px !important}
-  .device-quiz-options{gap:8px !important}
-  .device-quiz-options.image-grid .device-quiz-option{max-height:120px !important}
-  .device-quiz-image-box img{height:110px !important}
-  .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:12px !important;padding:10px 8px !important}
-  .device-quiz-feedback{font-size:12px !important;padding:6px !important;margin-top:6px !important}
-  .device-quiz-next-btn{padding:8px !important;font-size:12px !important;margin-top:6px !important}
-  .device-quiz-score{font-size:10px !important;margin-top:4px !important}
-}
-
-/* 横屏手机（矮屏）：面板缩小到刚好铺满屏幕 */
-@media (orientation: landscape) and (max-height: 500px) {
-  .practice-modal-inner .panel{
-    transform:scale(0.40) !important;
-  }
-  .panel2{
-    transform:scale(0.40) !important;
-  }
-}
-@media (orientation: landscape) and (min-height: 501px) and (max-height: 700px) {
-  .practice-modal-inner .panel{
-    transform:scale(0.55) !important;
-  }
-  .panel2{
-    transform:scale(0.55) !important;
-  }
+  .device-quiz-header h2 { font-size: 12px !important; }
+  .device-quiz-question { font-size: 11px !important; padding: 6px 8px !important; margin-bottom: 6px !important; }
+  .device-quiz-options { gap: 6px !important; }
+  .device-quiz-options.image-grid .device-quiz-option { max-height: 90px !important; }
+  .device-quiz-image-box img { height: 80px !important; }
+  .device-quiz-options.text-grid .device-quiz-option .option-text { font-size: 11px !important; padding: 8px 6px !important; }
+  .device-quiz-feedback { font-size: 11px !important; padding: 5px !important; margin-top: 5px !important; }
+  .device-quiz-next-btn { padding: 7px !important; font-size: 11px !important; margin-top: 5px !important; }
+  .device-quiz-score { font-size: 9px !important; margin-top: 3px !important; }
+  .device-quiz-close { top: 6px !important; right: 8px !important; width: 26px !important; height: 26px !important; font-size: 16px !important; }
 }
 </style>
 </head>
@@ -2225,8 +2210,6 @@ function checkAnswer(userAnswer, q) {
 
 /* ================================================================
  * ★★★★★ 横屏游戏模式：智能缩放 ★★★★★
- * 横屏时：计算面板缩放比例，让它铺满屏幕并保持完整可见。
- * 这是核心逻辑，确保横屏时"开始练习"和所有按键都能看到。
  * ================================================================ */
 function applyGameScale() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
@@ -2256,7 +2239,6 @@ function applyGameScale() {
 
 // 监听屏幕旋转
 window.addEventListener('resize', function() {
-  // 延迟一点，等浏览器完成旋转
   setTimeout(applyGameScale, 100);
   setTimeout(applyGameScale, 300);
 });
@@ -2264,7 +2246,6 @@ window.addEventListener('orientationchange', function() {
   setTimeout(applyGameScale, 200);
   setTimeout(applyGameScale, 500);
 });
-// 页面加载时也执行
 setTimeout(applyGameScale, 500);
 setTimeout(applyGameScale, 1000);
 
