@@ -5,10 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
 <title>中级消控实测模拟练习</title>
 <style>
-/* ==================== 全局重置 ==================== */
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
+
+/* ========== 竖屏：浏览网页模式 ========== */
 html,body{
-  width:100%;height:100vh;overflow:hidden;background:#0e1a24;
+  width:100%;height:100%;overflow:hidden;background:#0e1a24;
   background-image:
     radial-gradient(circle at 15% 20%,rgba(64,128,200,.15),transparent 45%),
     radial-gradient(circle at 85% 75%,rgba(255,140,60,.08),transparent 50%),
@@ -17,9 +18,9 @@ html,body{
   display:flex;justify-content:center;align-items:center;padding:12px;
 }
 
-/* ==================== 主页 ==================== */
+/* ========== 主页 ========== */
 .home-wrapper{
-  max-width:1100px;width:100%;height:calc(100vh - 24px);max-height:760px;
+  max-width:1100px;width:100%;height:calc(100% - 24px);max-height:760px;
   background:rgba(18,32,46,.72);
   backdrop-filter:blur(24px) saturate(140%);
   -webkit-backdrop-filter:blur(24px) saturate(140%);
@@ -155,7 +156,7 @@ html,body{
   font-size:10px;border:1px solid rgba(70,120,170,.3);
 }
 
-/* ==================== 设备识别弹窗（序章） ==================== */
+/* ========== 设备识别弹窗 ========== */
 .device-quiz-modal{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:rgba(5,12,20,.95);
@@ -168,7 +169,7 @@ html,body{
   background:#152533;border-radius:22px;
   padding:20px 22px 16px;
   max-width:720px;width:100%;
-  max-height:calc(100vh - 28px);
+  max-height:calc(100% - 28px);
   display:flex;flex-direction:column;
   box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px #2f5573 inset;
   overflow:hidden;position:relative;
@@ -204,110 +205,55 @@ html,body{
   flex-shrink:0;
 }
 .device-quiz-question .target{color:#ffb347;font-weight:800}
-
-/* 选项网格（通用） */
 .device-quiz-options{
   display:grid;grid-template-columns:repeat(2,1fr);
   gap:12px;flex:1;overflow:hidden;
   align-content:start;min-height:0;
 }
-/* 图片选项：固定高度，统一大小 */
-.device-quiz-options.image-grid{
-  grid-template-rows:repeat(2,1fr);
-}
-.device-quiz-options.image-grid .device-quiz-option{
-  height:100%;
-  min-height:0;
-  max-height:170px;
-}
+.device-quiz-options.image-grid{grid-template-rows:repeat(2,1fr)}
+.device-quiz-options.image-grid .device-quiz-option{height:100%;min-height:0;max-height:170px}
 .device-quiz-options.image-grid .device-quiz-option img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  border-radius:8px;
-  background:#0a1622;
-  border:1px solid #1e3a54;
-  display:block;
+  width:100%;height:100%;object-fit:contain;border-radius:8px;
+  background:#0a1622;border:1px solid #1e3a54;display:block;
 }
-/* 文字选项：正常大小，紧凑 */
-.device-quiz-options.text-grid{
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  flex:0 0 auto;
-  align-content:start;
-}
-.device-quiz-options.text-grid .device-quiz-option{
-  height:auto;
-  min-height:48px;
-  padding:0;
-}
+.device-quiz-options.text-grid{grid-template-columns:repeat(2,1fr);gap:10px;flex:0 0 auto;align-content:start}
+.device-quiz-options.text-grid .device-quiz-option{height:auto;min-height:48px;padding:0}
 .device-quiz-options.text-grid .device-quiz-option .option-text{
-  padding:14px 12px;
-  font-size:14px;font-weight:600;
-  color:#b0cee4;text-align:center;
-  display:flex;align-items:center;justify-content:center;
+  padding:14px 12px;font-size:14px;font-weight:600;
+  color:#b0cee4;text-align:center;display:flex;align-items:center;justify-content:center;
 }
 .device-quiz-option{
-  background:#0f1f2e;
-  border:2px solid #2d4b63;
-  border-radius:12px;cursor:pointer;
-  transition:all .2s;
-  display:flex;flex-direction:column;
-  overflow:hidden;padding:6px;
+  background:#0f1f2e;border:2px solid #2d4b63;border-radius:12px;cursor:pointer;
+  transition:all .2s;display:flex;flex-direction:column;overflow:hidden;padding:6px;
 }
-.device-quiz-option:hover{
-  border-color:#4da6ff;background:#142c3e;
-  transform:translateY(-2px);
-}
-.device-quiz-option.correct{
-  border-color:#2ecc71;
-  box-shadow:0 0 0 3px #2ecc71,0 0 20px rgba(46,204,113,.3);
-}
+.device-quiz-option:hover{border-color:#4da6ff;background:#142c3e;transform:translateY(-2px)}
+.device-quiz-option.correct{border-color:#2ecc71;box-shadow:0 0 0 3px #2ecc71,0 0 20px rgba(46,204,113,.3)}
 .device-quiz-option.correct .option-text{color:#a3e4b8}
-.device-quiz-option.wrong{
-  border-color:#e74c3c;
-  box-shadow:0 0 0 3px #e74c3c,0 0 20px rgba(231,76,60,.3);
-}
+.device-quiz-option.wrong{border-color:#e74c3c;box-shadow:0 0 0 3px #e74c3c,0 0 20px rgba(231,76,60,.3)}
 .device-quiz-option.wrong .option-text{color:#e4a3a3}
-
-/* 题型B：题干大图框 */
-.device-quiz-image-box{
-  flex-shrink:0;
-  display:flex;justify-content:center;
-  margin-bottom:12px;
-}
+.device-quiz-image-box{flex-shrink:0;display:flex;justify-content:center;margin-bottom:12px}
 .device-quiz-image-box img{
-  height:160px;
-  max-width:100%;
-  border-radius:10px;
-  border:2px solid #2d4b63;
-  background:#0a1622;
-  object-fit:contain;
-  padding:4px;
+  height:160px;max-width:100%;border-radius:10px;
+  border:2px solid #2d4b63;background:#0a1622;object-fit:contain;padding:4px;
 }
 .device-quiz-feedback{
   text-align:center;font-size:13px;font-weight:700;
-  padding:9px;border-radius:10px;margin-top:10px;
-  display:none;flex-shrink:0;
+  padding:9px;border-radius:10px;margin-top:10px;display:none;flex-shrink:0;
 }
 .device-quiz-feedback.success{display:block;background:#1e4a2e;color:#a3e4b8;border:1px solid #2ecc71}
 .device-quiz-feedback.fail{display:block;background:#4a1e1e;color:#e4a3a3;border:1px solid #e74c3c}
 .device-quiz-next-btn{
   display:block;width:100%;padding:10px;margin-top:10px;
   background:linear-gradient(145deg,#3d8fd9,#266bb0);
-  border:none;border-radius:10px;
-  color:#fff;font-size:14px;font-weight:700;
+  border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;
   cursor:pointer;transition:all .2s;flex-shrink:0;
   border:1px solid rgba(120,190,250,.5);
 }
 .device-quiz-next-btn:hover{background:linear-gradient(145deg,#4b9cf0,#2f7bc0)}
 .device-quiz-next-btn.secondary{background:linear-gradient(145deg,#3f5567,#2e4254);border-color:#4e6377}
-.device-quiz-score{
-  text-align:center;font-size:11px;color:#8fb8d8;
-  margin-top:6px;flex-shrink:0;
-}
+.device-quiz-score{text-align:center;font-size:11px;color:#8fb8d8;margin-top:6px;flex-shrink:0}
 
-/* ==================== 课题1 电源练习弹窗 ==================== */
+/* ========== 练习弹窗（面板） ========== */
 .practice-modal{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:#0a1219;
@@ -335,7 +281,7 @@ html,body{
 }
 .practice-modal-close:hover{background:#1f405b;color:#fff;transform:rotate(90deg);border-color:#6aabf0}
 
-/* ===== 原面板样式（固定尺寸1300×720）===== */
+/* ===== 课题1 面板 ===== */
 .practice-modal-inner .panel{
   width:1300px;height:720px;
   background:#d2d6d8;
@@ -666,8 +612,6 @@ html,body{
   0%,100%{background:rgba(255,165,0,.4)}
   50%{background:rgba(255,165,0,.8)}
 }
-
-/* 内部模态 */
 .practice-modal-inner .modal-overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:rgba(0,0,0,.65);
@@ -679,7 +623,7 @@ html,body{
   background:#fff;border-radius:16px;padding:30px;
   width:600px;max-width:90%;
   box-shadow:0 24px 60px rgba(0,0,0,.6);
-  position:relative;max-height:80vh;overflow-y:auto;
+  position:relative;max-height:80%;overflow-y:auto;
 }
 .practice-modal-inner .modal h2{
   font-size:22px;color:#2b6ca3;margin-bottom:15px;
@@ -719,7 +663,7 @@ html,body{
 }
 .practice-modal-inner .modal .next-btn:hover{background:#1d4f7a}
 
-/* ==================== 课题2 面板样式 ==================== */
+/* ===== 课题2 面板 ===== */
 .panel2{
   width:1400px;height:780px;
   background:#d2d6d8;
@@ -761,7 +705,6 @@ html,body{
 }
 .panel2 .reset-btn:hover{background:#a93226}
 .panel2 .reset-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
-
 .panel2 .logo-area{
   position:absolute;top:70px;left:45px;
   display:flex;align-items:center;z-index:5;
@@ -775,7 +718,6 @@ html,body{
 .panel2 .logo-text .english{
   font-size:11px;color:#2b6ca3;letter-spacing:1px;opacity:.8;
 }
-
 .panel2 .alarm-module{
   position:absolute;top:145px;left:45px;
   display:flex;border:3px solid #555;border-radius:10px;
@@ -799,7 +741,6 @@ html,body{
   font-weight:bold;color:#333;line-height:1.1;
 }
 .panel2 .alarm-item .text .en{font-size:12px;font-weight:normal;color:#555}
-
 .panel2 .indicator-grid{
   position:absolute;top:240px;left:45px;
   display:flex;gap:60px;z-index:5;
@@ -835,7 +776,6 @@ html,body{
   line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
 }
 .panel2 .indicator-row .text .en{font-size:11px;color:#555;font-weight:normal}
-
 .panel2 .screen-frame{
   position:absolute;top:80px;left:470px;
   width:620px;height:360px;background:#a8aeaf;
@@ -886,7 +826,6 @@ html,body{
   position:relative;
 }
 .panel2 .screen-btn-text{cursor:default;padding:0 4px;pointer-events:none}
-
 .panel2 .footer-grid{
   display:grid;
   grid-template-columns:repeat(6,1fr);
@@ -900,7 +839,6 @@ html,body{
   font-weight:bold;
   color:#e0f0ff;
 }
-
 .panel2 .digital-display{
   position:absolute;top:125px;right:70px;
   width:130px;height:65px;background:#1a1a1a;
@@ -916,7 +854,6 @@ html,body{
   background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
   background-size:100% 4px;pointer-events:none;
 }
-
 .panel2 .key-switch-area{
   position:absolute;top:245px;right:55px;
   display:flex;flex-direction:column;align-items:center;
@@ -963,7 +900,6 @@ html,body{
 .panel2 .key-switch-text .en{
   font-size:13px;color:#555;display:block;text-align:center;
 }
-
 .panel2 .speaker{
   position:absolute;bottom:130px;right:60px;
   width:88px;height:88px;
@@ -974,7 +910,6 @@ html,body{
   background:#333;border-radius:50%;
   box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
 }
-
 .panel2 .bottom-left-panel{
   position:absolute;bottom:40px;left:45px;
   width:380px;height:170px;background:#c0c4c6;
@@ -1038,7 +973,6 @@ html,body{
 }
 .panel2 .op-task-submit:hover{background:#1d4f7a}
 .panel2 .op-task-submit:disabled{background:#8a9296;cursor:not-allowed}
-
 .panel2 .bottom-right-label{
   position:absolute;top:22px;right:35px;
   background:#e67e22;color:#fff;padding:9px 18px;
@@ -1046,7 +980,6 @@ html,body{
   box-shadow:0 2px 5px rgba(0,0,0,.3);
   z-index:10;text-align:center;line-height:1.4;
 }
-
 .panel2 .keyboard-area{
   position:absolute;bottom:45px;left:430px;
   width:660px;display:flex;flex-direction:column;
@@ -1104,17 +1037,96 @@ html,body{
 .panel2 .btn-arrow{
   width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px;
 }
+.panel2 .modal-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,.25);
+  display:none;justify-content:center;align-items:center;
+  z-index:11000;padding:20px;
+}
+.panel2 .modal-overlay.active{display:flex}
+.panel2 .modal{
+  background:#fff;border-radius:16px;padding:0;
+  width:560px;max-width:90%;
+  box-shadow:0 24px 60px rgba(0,0,0,.55);
+  position:relative;max-height:80%;overflow:hidden;
+  display:flex;flex-direction:column;
+}
+.panel2 .modal-drag-handle{
+  padding:14px 24px;
+  background:linear-gradient(180deg,#f0f4f8,#e1e9f0);
+  border-bottom:1px solid #d0d7de;
+  border-radius:16px 16px 0 0;
+  cursor:grab;user-select:none;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.panel2 .modal-drag-handle:active{cursor:grabbing}
+.panel2 .modal-drag-handle .drag-title{
+  font-size:14px;font-weight:bold;color:#2b6ca3;
+  display:flex;align-items:center;gap:8px;
+}
+.panel2 .modal-drag-handle .drag-title::before{
+  content:'⠿';font-size:18px;color:#8fa8c0;
+}
+.panel2 .modal .close-btn{
+  position:absolute;top:10px;right:14px;
+  font-size:26px;font-weight:bold;color:#999;
+  cursor:pointer;background:none;border:none;line-height:1;z-index:10;
+}
+.panel2 .modal .close-btn:hover{color:#333}
+.panel2 .modal .close-btn.hidden{display:none}
+.panel2 .modal-body{
+  padding:22px 26px 26px;
+  overflow-y:auto;flex:1;
+}
+.panel2 .modal h2{
+  font-size:22px;color:#2b6ca3;margin-bottom:15px;
+  border-bottom:2px solid #e0e0e0;padding-bottom:10px;
+}
+.panel2 .modal p{
+  font-size:16px;line-height:1.6;color:#333;margin-bottom:15px;
+}
+.panel2 .modal .highlight-orange{color:#e67e22;font-weight:bold}
+.panel2 .modal .result-text{
+  font-size:18px;font-weight:bold;text-align:center;
+  padding:15px;border-radius:8px;margin-top:15px;
+}
+.panel2 .modal .result-success{background:#d4edda;color:#155724}
+.panel2 .modal .result-fail{background:#f8d7da;color:#721c24}
+.panel2 .modal .next-btn{
+  display:block;width:100%;padding:12px;margin-top:15px;
+  background:#2b6ca3;color:#fff;border:none;
+  border-radius:8px;font-size:16px;font-weight:bold;
+  cursor:pointer;transition:background .2s;
+}
+.panel2 .modal .next-btn:hover{background:#1d4f7a}
+.panel2 .modal .answer-input{
+  width:100%;padding:14px 16px;
+  border:2px solid #d0d7de;border-radius:8px;
+  font-size:16px;font-family:'Microsoft YaHei',sans-serif;
+  color:#333;line-height:1.6;resize:vertical;
+  min-height:80px;outline:none;
+  user-select:text;-webkit-user-select:text;
+  transition:border-color .2s;
+}
+.panel2 .modal .answer-input:focus{border-color:#2b6ca3;background:#f5f9fd}
+.panel2 .modal .submit-btn{
+  display:block;width:100%;padding:12px;margin-top:12px;
+  background:#2b6ca3;color:#fff;border:none;
+  border-radius:8px;font-size:16px;font-weight:bold;
+  cursor:pointer;transition:background .2s;
+}
+.panel2 .modal .submit-btn:hover{background:#1d4f7a}
 
-/* ==================== 移动端适配 ==================== */
-@media(max-width:1480px){.practice-modal-inner .panel{transform:scale(.9)}}
-@media(max-width:1366px){.practice-modal-inner .panel{transform:scale(.82)}}
-@media(max-width:1180px){.practice-modal-inner .panel{transform:scale(.70)}}
-@media(max-width:980px){.practice-modal-inner .panel{transform:scale(.58)}}
-@media(max-width:820px){.practice-modal-inner .panel{transform:scale(.48)}}
-@media(max-width:680px){.practice-modal-inner .panel{transform:scale(.40)}}
-@media(max-width:560px){.practice-modal-inner .panel{transform:scale(.32)}}
-@media(max-width:460px){.practice-modal-inner .panel{transform:scale(.26)}}
-@media(max-width:380px){.practice-modal-inner .panel{transform:scale(.22)}}
+/* ========== 竖屏移动端适配 ========== */
+@media(max-width:1366px){.practice-modal-inner .panel{transform:scale(.85)}.panel2{transform:scale(.85)}}
+@media(max-width:1180px){.practice-modal-inner .panel{transform:scale(.72)}.panel2{transform:scale(.72)}}
+@media(max-width:980px){.practice-modal-inner .panel{transform:scale(.60)}.panel2{transform:scale(.60)}}
+@media(max-width:820px){.practice-modal-inner .panel{transform:scale(.50)}.panel2{transform:scale(.50)}}
+@media(max-width:680px){.practice-modal-inner .panel{transform:scale(.42)}.panel2{transform:scale(.42)}}
+@media(max-width:560px){.practice-modal-inner .panel{transform:scale(.34)}.panel2{transform:scale(.34)}}
+@media(max-width:460px){.practice-modal-inner .panel{transform:scale(.28)}.panel2{transform:scale(.28)}}
+@media(max-width:380px){.practice-modal-inner .panel{transform:scale(.23)}.panel2{transform:scale(.23)}}
 
 @media(max-width:900px){
   .home-wrapper{padding:18px 18px 14px;border-radius:24px}
@@ -1122,7 +1134,8 @@ html,body{
   .cards-grid{grid-template-columns:repeat(2,1fr);gap:12px}
 }
 @media(max-width:700px){
-  .home-wrapper{padding:14px 12px;border-radius:20px}
+  html,body{padding:0;align-items:flex-start}
+  .home-wrapper{height:100%;max-height:none;border-radius:0;padding:14px 12px}
   .brand-text h1{font-size:16px}
   .brand-icon{width:36px;height:36px;border-radius:10px}
   .brand-icon svg{width:20px;height:20px}
@@ -1160,62 +1173,138 @@ html,body{
   .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:11px;padding:10px 6px}
 }
 
-/* ==================== 横屏全屏适配（移动端横屏） ==================== */
-@media (orientation: landscape) and (max-height: 500px) {
-  .home-wrapper {
-    max-width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
-    padding: 10px 16px;
+/* ================================================================
+   ★★★★★ 横屏 = 游戏全屏模式 ★★★★★
+   横屏时：强制全屏铺满，横着拿手机，两只手操作。
+   主页卡片横排，练习面板自动缩放至完整显示。
+   ================================================================ */
+@media (orientation: landscape) {
+  /* 全局：去掉所有边距，强制铺满 */
+  html,body{
+    padding:0 !important;
+    width:100vw !important;
+    height:100vh !important;
+    overflow:hidden !important;
+    display:block !important;
   }
-  .app-header {
-    margin-bottom: 6px;
-    padding-bottom: 6px;
+
+  /* 主页：横屏时全屏铺满 */
+  .home-wrapper{
+    max-width:100% !important;
+    width:100vw !important;
+    height:100vh !important;
+    max-height:100vh !important;
+    border-radius:0 !important;
+    padding:8px 14px !important;
+    display:flex !important;
+    flex-direction:column !important;
   }
-  .brand-icon { width: 32px; height: 32px; }
-  .brand-text h1 { font-size: 15px; }
-  .brand-text .sub { font-size: 9px; }
-  .stat-item { padding: 2px 8px; min-width: 48px; }
-  .stat-value { font-size: 14px; }
-  .section-title { margin-bottom: 6px; }
-  .section-title h2 { font-size: 13px; }
-  .cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    overflow-y: auto;
-    padding-right: 2px;
+  .app-header{
+    margin-bottom:6px !important;
+    padding-bottom:6px !important;
   }
-  .topic-card {
-    padding: 8px 10px 6px;
-    border-radius: 12px;
+  .brand-icon{width:32px !important;height:32px !important;border-radius:10px !important}
+  .brand-icon svg{width:18px !important;height:18px !important}
+  .brand-text h1{font-size:14px !important}
+  .brand-text .sub{font-size:9px !important;margin-top:1px !important}
+  .stat-item{padding:3px 10px !important;min-width:52px !important;border-radius:8px !important}
+  .stat-value{font-size:14px !important}
+  .stat-label{font-size:7px !important}
+  .section-title{margin-bottom:6px !important}
+  .section-title h2{font-size:12px !important}
+  .section-title .badge{font-size:9px !important;padding:2px 8px !important}
+
+  /* 卡片：横排三列，铺满宽度 */
+  .cards-grid{
+    display:grid !important;
+    grid-template-columns:repeat(3,1fr) !important;
+    gap:8px !important;
+    flex:1 !important;
+    min-height:0 !important;
+    align-content:start !important;
+    overflow-y:auto !important;
   }
-  .card-icon { width: 28px; height: 28px; font-size: 14px; }
-  .card-title { font-size: 11px; margin-bottom: 2px; }
-  .card-desc { font-size: 9px; margin-bottom: 6px; }
-  .card-meta { padding-top: 6px; flex-direction: row; }
-  .start-btn { padding: 4px 10px; font-size: 10px; }
-  .tag { font-size: 7px; padding: 1px 5px; }
-  .footer-note { font-size: 9px; margin-top: 4px; padding-top: 6px; }
-  
-  /* 练习面板在横屏小高度下自适应缩放 */
-  .practice-modal-inner .panel {
-    transform: scale(0.45);
-    transform-origin: center center;
+  .topic-card{
+    padding:8px 10px 6px !important;
+    border-radius:12px !important;
+    min-height:0 !important;
   }
-  .panel2 {
-    transform: scale(0.45);
-    transform-origin: center center;
+  .card-header{margin-bottom:6px !important}
+  .card-icon{width:26px !important;height:26px !important;font-size:13px !important;border-radius:8px !important}
+  .card-badge{font-size:8px !important;padding:2px 6px !important}
+  .card-title{font-size:11px !important;margin-bottom:3px !important;line-height:1.3 !important}
+  .card-desc{font-size:9px !important;margin-bottom:6px !important;line-height:1.35 !important}
+  .card-meta{flex-direction:row !important;align-items:center !important;padding-top:6px !important;gap:4px !important}
+  .card-tags{gap:3px !important}
+  .tag{font-size:7px !important;padding:1px 5px !important}
+  .start-btn{padding:4px 10px !important;font-size:10px !important;white-space:nowrap !important}
+  .footer-note{font-size:8px !important;margin-top:4px !important;padding-top:4px !important;flex-direction:row !important;gap:4px !important}
+  .footer-note .version{font-size:8px !important;padding:2px 8px !important}
+
+  /* 练习弹窗：强制全屏 */
+  .practice-modal{
+    width:100vw !important;
+    height:100vh !important;
   }
+  .practice-modal-inner{
+    width:100vw !important;
+    height:100vh !important;
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+  }
+  .practice-modal-close{
+    top:8px !important;
+    right:12px !important;
+    width:36px !important;
+    height:36px !important;
+    font-size:22px !important;
+  }
+
+  /* 面板自动缩放：用 JS 控制 scale，这里给一个兜底 */
+  .practice-modal-inner .panel{
+    transform-origin:center center !important;
+  }
+  .panel2{
+    transform-origin:center center !important;
+  }
+
+  /* 设备识别弹窗横屏适配 */
+  .device-quiz-modal{
+    padding:6px !important;
+  }
+  .device-quiz-container{
+    max-width:100% !important;
+    max-height:100vh !important;
+    border-radius:14px !important;
+    padding:10px 14px !important;
+  }
+  .device-quiz-header h2{font-size:13px !important}
+  .device-quiz-question{font-size:12px !important;padding:8px 10px !important;margin-bottom:8px !important}
+  .device-quiz-options{gap:8px !important}
+  .device-quiz-options.image-grid .device-quiz-option{max-height:120px !important}
+  .device-quiz-image-box img{height:110px !important}
+  .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:12px !important;padding:10px 8px !important}
+  .device-quiz-feedback{font-size:12px !important;padding:6px !important;margin-top:6px !important}
+  .device-quiz-next-btn{padding:8px !important;font-size:12px !important;margin-top:6px !important}
+  .device-quiz-score{font-size:10px !important;margin-top:4px !important}
 }
 
-/* 横屏更大高度（如平板横屏） */
-@media (orientation: landscape) and (min-height: 501px) and (max-height: 700px) {
-  .practice-modal-inner .panel {
-    transform: scale(0.65);
+/* 横屏手机（矮屏）：面板缩小到刚好铺满屏幕 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .practice-modal-inner .panel{
+    transform:scale(0.40) !important;
   }
-  .panel2 {
-    transform: scale(0.65);
+  .panel2{
+    transform:scale(0.40) !important;
+  }
+}
+@media (orientation: landscape) and (min-height: 501px) and (max-height: 700px) {
+  .practice-modal-inner .panel{
+    transform:scale(0.55) !important;
+  }
+  .panel2{
+    transform:scale(0.55) !important;
   }
 }
 </style>
@@ -1334,14 +1423,12 @@ html,body{
 <div class="practice-modal" id="practiceModal">
   <div class="practice-modal-inner">
     <div class="practice-modal-close" id="closePracticeModal">&times;</div>
-    <!-- 原面板完整结构 -->
     <div class="panel" id="originalPanel">
       <div class="lesson-header">
         <div class="lesson-title">课题1：火灾自动报警系统控制器的电源工作状态检查</div>
         <button class="practice-btn" id="practiceBtn">练习</button>
         <button class="reset-btn" id="resetBtn">重置</button>
       </div>
-
       <div class="header">
         <div class="logo-area">
           <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -1354,106 +1441,43 @@ html,body{
           </div>
         </div>
       </div>
-
       <div class="main-body">
         <div class="left-panel">
           <div class="alarm-module">
-            <div class="alarm-item">
-              <div class="led-dot red"></div>
-              <div class="text">火警<span class="en">Alarm</span></div>
-            </div>
-            <div class="alarm-item">
-              <div class="led-dot red"></div>
-              <div class="text">启动<span class="en">Active</span></div>
-            </div>
+            <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
+            <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
           </div>
-
           <div class="indicator-grid">
             <div class="indicator-column">
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">监管报警<span class="en">Supervisory</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">启动延时<span class="en">Active Delay</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot green"></div>
-                <div class="text">主电运行<span class="en">Main Power</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">备电运行<span class="en">Backup Power</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot red"></div>
-                <div class="text">手报报警<span class="en">Manual Alarm</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">系统故障<span class="en">System Fault</span></div>
-              </div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
+              <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
+              <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
             </div>
-
             <div class="indicator-column">
-              <div class="indicator-row">
-                <div class="led-dot yellow"></div>
-                <div class="text">故障<span class="en">Fault</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot red"></div>
-                <div class="text">反馈<span class="en">Feedback</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot yellow"></div>
-                <div class="text">屏蔽<span class="en">Bypass</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">消音<span class="en">Silence</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot"></div>
-                <div class="text">自检<span class="en">Self-Test</span></div>
-              </div>
-              <div class="indicator-row">
-                <div class="led-dot green blinking"></div>
-                <div class="text">运行<span class="en">Power On</span></div>
-              </div>
+              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
+              <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
+              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">消音<span class="en">Silence</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
+              <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
             </div>
           </div>
         </div>
-
         <div class="center-panel">
           <div class="screen-frame">
             <div class="screen" id="mainScreen">
-              <div class="screen-header">
-                <span>首警: 25/07/03 12:48 2-1</span>
-                <span>青鸟消防</span>
-              </div>
+              <div class="screen-header"><span>首警: 25/07/03 12:48 2-1</span><span>青鸟消防</span></div>
               <div class="screen-content">
                 <div class="screen-left">
-                  <div class="msg-item msg-highlight">
-                    <span class="msg-time">0002 25/07/03 12:48 2-12 手报</span>
-                    <span class="msg-text">展板手报</span>
-                  </div>
-                  <div class="msg-item">
-                    <span class="msg-time">0001 25/07/03 12:48 2-1</span>
-                    <span class="msg-text">展板烟感</span>
-                  </div>
+                  <div class="msg-item msg-highlight"><span class="msg-time">0002 25/07/03 12:48 2-12 手报</span><span class="msg-text">展板手报</span></div>
+                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-1</span><span class="msg-text">展板烟感</span></div>
                   <div style="margin-top:5px;"></div>
-                  <div class="msg-item msg-highlight">
-                    <span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span>
-                  </div>
-                  <div class="msg-item">
-                    <span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span>
-                    <span class="msg-text">展板消火栓按钮</span>
-                  </div>
-                  <div class="msg-item">
-                    <span class="msg-time">0001 25/07/03 12:48 2-2 动作</span>
-                    <span class="msg-text">展板温感</span>
-                  </div>
+                  <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span></div>
+                  <div class="msg-item"><span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
+                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-2 动作</span><span class="msg-text">展板温感</span></div>
                 </div>
                 <div class="screen-right">
                   <div>
@@ -1466,9 +1490,7 @@ html,body{
                     <div>手动:允许</div>
                     <div>自动:禁止</div>
                   </div>
-                  <div class="screen-right-bottom">
-                    2025-07-03<br>17:06:01
-                  </div>
+                  <div class="screen-right-bottom">2025-07-03<br>17:06:01</div>
                 </div>
               </div>
               <div class="screen-footer">
@@ -1479,23 +1501,13 @@ html,body{
                 <span class="screen-btn-text">查故障</span>
               </div>
             </div>
-
             <div class="screen fault-screen" id="faultScreen">
-              <div class="screen-header">
-                <span>故障信息</span>
-                <span>合计: 0002</span>
-              </div>
+              <div class="screen-header"><span>故障信息</span><span>合计: 0002</span></div>
               <div class="screen-content">
                 <div class="screen-left" style="flex:2.5;position:relative;">
-                  <div class="msg-item fault-item-clickable" id="faultItem1">
-                    <span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span>
-                  </div>
-                  <div class="msg-item indent">
-                    <span class="msg-text">展板层号灯</span>
-                  </div>
-                  <div class="msg-item fault-item-clickable" id="faultItem2">
-                    <span class="msg-time">0001 25/07/03 12:48 备电故障</span>
-                  </div>
+                  <div class="msg-item fault-item-clickable" id="faultItem1"><span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span></div>
+                  <div class="msg-item indent"><span class="msg-text">展板层号灯</span></div>
+                  <div class="msg-item fault-item-clickable" id="faultItem2"><span class="msg-time">0001 25/07/03 12:48 备电故障</span></div>
                   <div class="guide-hand" id="guideHand" style="display:none;"></div>
                 </div>
                 <div class="screen-right">
@@ -1509,9 +1521,7 @@ html,body{
                     <div>手动:允许</div>
                     <div>自动:禁止</div>
                   </div>
-                  <div class="screen-right-bottom">
-                    2025-07-03<br>17:06:54
-                  </div>
+                  <div class="screen-right-bottom">2025-07-03<br>17:06:54</div>
                 </div>
               </div>
               <div class="screen-footer">
@@ -1524,7 +1534,6 @@ html,body{
               </div>
             </div>
           </div>
-
           <div class="keyboard-area">
             <div class="f-row">
               <button class="btn-f">F1</button>
@@ -1534,7 +1543,6 @@ html,body{
               <button class="btn-f">F5</button>
               <button class="btn-f" id="f6Btn">F6</button>
             </div>
-
             <div class="keyboard-row">
               <button class="btn btn-num">1<span class="sub">..</span></button>
               <button class="btn btn-num">2<span class="sub">abc</span></button>
@@ -1544,7 +1552,6 @@ html,body{
               <button class="btn btn-white">取消<br><span class="sub">Cancel</span></button>
               <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
             </div>
-
             <div class="keyboard-row">
               <button class="btn btn-num">4<span class="sub">ghi</span></button>
               <button class="btn btn-num">5<span class="sub">jkl</span></button>
@@ -1554,7 +1561,6 @@ html,body{
               <button class="btn btn-arrow">▶</button>
               <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
             </div>
-
             <div class="keyboard-row">
               <button class="btn btn-num">7<span class="sub">pqrs</span></button>
               <button class="btn btn-num">8<span class="sub">tuv</span></button>
@@ -1564,7 +1570,6 @@ html,body{
               <button class="btn btn-white">自定义<br><span class="sub">Custom</span></button>
               <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
             </div>
-
             <div class="keyboard-row">
               <button class="btn btn-num">*</button>
               <button class="btn btn-num">0<span class="sub">_</span></button>
@@ -1576,53 +1581,27 @@ html,body{
             </div>
           </div>
         </div>
-
         <div class="right-panel">
           <div class="digital-display">170</div>
-
           <div class="key-switch-area">
             <div class="key-labels">
-              <div class="key-label-item">
-                <span>禁止</span>
-                <span class="en">Forbidden</span>
-              </div>
-              <div class="key-label-item">
-                <span>允许</span>
-                <span class="en">Allowed</span>
-              </div>
+              <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
+              <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
             </div>
             <div class="key-switch">
               <div class="key-inserted"></div>
-              <div class="key-switch-inner">
-                <div class="key-switch-slot" style="transform:rotate(-45deg);"></div>
-              </div>
+              <div class="key-switch-inner"><div class="key-switch-slot" style="transform:rotate(-45deg);"></div></div>
             </div>
-            <div class="key-switch-text">
-              自动方式
-              <span class="en">Automatic</span>
-            </div>
+            <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
           </div>
-
           <div class="speaker">
-            <script>
-              for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}
-            </script>
+            <script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script>
           </div>
         </div>
       </div>
-
-      <div class="bottom-left-panel">
-        <div class="knob">
-          <div class="knob-led"></div>
-        </div>
-      </div>
-
-      <div class="bottom-right-label">
-        火灾报警控制器<br>(联动型)
-      </div>
+      <div class="bottom-left-panel"><div class="knob"><div class="knob-led"></div></div></div>
+      <div class="bottom-right-label">火灾报警控制器<br>(联动型)</div>
     </div>
-
-    <!-- 内部练习弹窗 -->
     <div class="modal-overlay" id="practiceModalInner">
       <div class="modal">
         <button class="close-btn" id="closeModalBtn">&times;</button>
@@ -1642,101 +1621,42 @@ html,body{
         <button class="practice-btn" id="practiceBtn2">练习</button>
         <button class="reset-btn" id="resetBtn2">重置</button>
       </div>
-
       <div class="logo-area">
         <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
           <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
         </svg>
-        <div class="logo-text">
-          <span class="chinese">北大青鸟</span>
-          <span class="english">JADE BIRD FIRE</span>
-        </div>
+        <div class="logo-text"><span class="chinese">北大青鸟</span><span class="english">JADE BIRD FIRE</span></div>
       </div>
-
       <div class="alarm-module">
-        <div class="alarm-item">
-          <div class="led-dot red"></div>
-          <div class="text">火警<span class="en">Alarm</span></div>
-        </div>
-        <div class="alarm-item">
-          <div class="led-dot red"></div>
-          <div class="text">启动<span class="en">Active</span></div>
-        </div>
+        <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
+        <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
       </div>
-
       <div class="indicator-grid">
         <div class="indicator-column">
-          <div class="indicator-row">
-            <div class="led-dot red"></div>
-            <div class="text">监管报警<span class="en">Supervisory</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot"></div>
-            <div class="text">启动延时<span class="en">Active Delay</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot green"></div>
-            <div class="text">主电运行<span class="en">Main Power</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot"></div>
-            <div class="text">备电运行<span class="en">Backup Power</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot red"></div>
-            <div class="text">手报报警<span class="en">Manual Alarm</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot"></div>
-            <div class="text">系统故障<span class="en">System Fault</span></div>
-          </div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
+          <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
         </div>
-
         <div class="indicator-column">
-          <div class="indicator-row">
-            <div class="led-dot yellow"></div>
-            <div class="text">故障<span class="en">Fault</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot red"></div>
-            <div class="text">反馈<span class="en">Feedback</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot yellow"></div>
-            <div class="text">屏蔽<span class="en">Bypass</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot red"></div>
-            <div class="text">消音<span class="en">Silence</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot"></div>
-            <div class="text">自检<span class="en">Self-Test</span></div>
-          </div>
-          <div class="indicator-row">
-            <div class="led-dot green blinking"></div>
-            <div class="text">运行<span class="en">Power On</span></div>
-          </div>
+          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
+          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">消音<span class="en">Silence</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
+          <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
         </div>
       </div>
-
       <div class="screen-frame">
         <div class="screen" id="mainScreen2">
-          <div class="screen-header">
-            <span id="screenTitle">故障信息</span>
-            <span id="screenRightTitle">合计: 0002</span>
-          </div>
+          <div class="screen-header"><span id="screenTitle">故障信息</span><span id="screenRightTitle">合计: 0002</span></div>
           <div class="screen-content">
             <div class="screen-left" id="screenLeftContent">
-              <div class="msg-item">
-                <span class="msg-time">0002 21/11/30 15:48 2-8</span>
-                <span class="msg-text">探测器故障</span>
-              </div>
-              <div class="msg-item">
-                <span class="msg-time">0001 21/11/30 15:48</span>
-                <span class="msg-text">备电故障</span>
-              </div>
+              <div class="msg-item"><span class="msg-time">0002 21/11/30 15:48 2-8</span><span class="msg-text">探测器故障</span></div>
+              <div class="msg-item"><span class="msg-time">0001 21/11/30 15:48</span><span class="msg-text">备电故障</span></div>
             </div>
             <div class="screen-right">
               <div class="screen-right-top">
@@ -1746,55 +1666,31 @@ html,body{
                 <div>声光故障 000</div>
                 <div>声光屏蔽 000</div>
               </div>
-              <div class="screen-right-bottom">
-                2021-11-30<br>15:55:55
-              </div>
+              <div class="screen-right-bottom">2021-11-30<br>15:55:55</div>
             </div>
           </div>
           <div class="screen-footer" id="screenFooter">
             <div class="footer-grid">
-              <span>回首页</span>
-              <span>上一条</span>
-              <span>下一条</span>
-              <span>上一页</span>
-              <span>下一页</span>
-              <span>退出</span>
+              <span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span>
             </div>
           </div>
         </div>
       </div>
-
       <div class="digital-display">15.55</div>
-
       <div class="key-switch-area">
         <div class="key-labels">
-          <div class="key-label-item">
-            <span>禁止</span>
-            <span class="en">Forbidden</span>
-          </div>
-          <div class="key-label-item">
-            <span>允许</span>
-            <span class="en">Allowed</span>
-          </div>
+          <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
+          <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
         </div>
         <div class="key-switch">
           <div class="key-inserted"></div>
           <div class="key-switch-inner"></div>
         </div>
-        <div class="key-switch-text">
-          自动方式
-          <span class="en">Automatic</span>
-        </div>
+        <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
       </div>
-
       <div class="speaker">
-        <script>
-          for (let i = 0; i < 36; i++) {
-            document.write('<div class="speaker-hole"></div>');
-          }
-        </script>
+        <script>for (let i = 0; i < 36; i++) { document.write('<div class="speaker-hole"></div>'); }</script>
       </div>
-
       <div class="keyboard-area">
         <div class="f-row">
           <button class="btn-f" data-key="F1">F1</button>
@@ -1804,7 +1700,6 @@ html,body{
           <button class="btn-f" data-key="F5">F5</button>
           <button class="btn-f" data-key="F6" id="f6Btn2">F6</button>
         </div>
-
         <div class="keyboard-row">
           <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
           <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
@@ -1814,7 +1709,6 @@ html,body{
           <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
           <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
         </div>
-
         <div class="keyboard-row">
           <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
           <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
@@ -1824,7 +1718,6 @@ html,body{
           <button class="btn btn-arrow" data-key="▶">▶</button>
           <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
         </div>
-
         <div class="keyboard-row">
           <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
           <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
@@ -1834,7 +1727,6 @@ html,body{
           <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
           <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
         </div>
-
         <div class="keyboard-row">
           <button class="btn btn-num" data-key="*">*</button>
           <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
@@ -1845,38 +1737,22 @@ html,body{
           <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
         </div>
       </div>
-
       <div class="bottom-left-panel">
         <div class="op-task-panel" id="opTaskPanel">
           <div class="op-task-header">
-            <div class="op-task-title">
-              <span>操作题</span>
-              <span class="step-badge" id="opStepBadge">第 1 轮</span>
-            </div>
+            <div class="op-task-title"><span>操作题</span><span class="step-badge" id="opStepBadge">第 1 轮</span></div>
             <div class="op-task-timer" id="opTimer">03:00</div>
           </div>
-          <div class="op-task-question" id="opQuestion">
-            请操作：<span class="highlight">手动调成允许</span>
-          </div>
+          <div class="op-task-question" id="opQuestion">请操作：<span class="highlight">手动调成允许</span></div>
           <button class="op-task-submit" id="opSubmitBtn">提交操作结果</button>
         </div>
-
-        <div class="knob" id="defaultKnob">
-          <div class="knob-led"></div>
-        </div>
+        <div class="knob" id="defaultKnob"><div class="knob-led"></div></div>
       </div>
-
-      <div class="bottom-right-label">
-        火灾报警控制器<br>(联动型)
-      </div>
+      <div class="bottom-right-label">火灾报警控制器<br>(联动型)</div>
     </div>
-
-    <!-- 内部练习弹窗 -->
     <div class="modal-overlay" id="practiceModalInner2">
       <div class="modal" id="draggableModal">
-        <div class="modal-drag-handle" id="modalDragHandle">
-          <span class="drag-title">练习答题（按住拖动）</span>
-        </div>
+        <div class="modal-drag-handle" id="modalDragHandle"><span class="drag-title">练习答题（按住拖动）</span></div>
         <button class="close-btn" id="closeModalBtn2">&times;</button>
         <div class="modal-body" id="modalContent2"></div>
       </div>
@@ -1895,32 +1771,14 @@ const deviceQuestions = [
   { id: 'fire_linkage_controller_bus', name: '消防联动控制器（总线盘）', image: 'https://i.postimg.cc/zyQxbc9j/xiao-fang-lian-dong-kong-zhi-qi-zong-xian-pan.png' },
   { id: 'fire_graphic_display', name: '消防图形显示装置（CRT）', image: 'https://i.postimg.cc/NKnd9z3G/xiao-fang-tu-xing-xian-shi-zhuang-zhi.png' }
 ];
-
 const deviceQuizModal = document.getElementById('deviceQuizModal');
 const deviceQuizContainer = document.getElementById('deviceQuizContainer');
 const startDeviceQuizBtn = document.getElementById('startDeviceQuizBtn');
-let currentQuestions = [];
-let currentIndex = 0;
-let score = 0;
-let answered = false;
-let quizActive = false;
-
-function pickRandomQuestions() {
-  const total = deviceQuestions.length;
-  const count = Math.floor(Math.random() * total) + 1;
-  return [...deviceQuestions].sort(() => Math.random() - 0.5).slice(0, count);
-}
+let currentQuestions = [], currentIndex = 0, score = 0, answered = false, quizActive = false;
+function pickRandomQuestions() { const total = deviceQuestions.length; const count = Math.floor(Math.random() * total) + 1; return [...deviceQuestions].sort(() => Math.random() - 0.5).slice(0, count); }
 function shuffleArray(arr) { return [...arr].sort(() => Math.random() - 0.5); }
-function startDeviceQuiz() {
-  currentQuestions = pickRandomQuestions();
-  currentIndex = 0; score = 0; answered = false; quizActive = true;
-  deviceQuizModal.classList.add('active');
-  renderDeviceQuestion();
-}
-function closeDeviceQuiz() {
-  deviceQuizModal.classList.remove('active');
-  quizActive = false;
-}
+function startDeviceQuiz() { currentQuestions = pickRandomQuestions(); currentIndex = 0; score = 0; answered = false; quizActive = true; deviceQuizModal.classList.add('active'); renderDeviceQuestion(); }
+function closeDeviceQuiz() { deviceQuizModal.classList.remove('active'); quizActive = false; }
 function renderDeviceQuestion() {
   if (!quizActive) return;
   if (currentIndex >= currentQuestions.length) { renderDeviceResult(); return; }
@@ -1929,44 +1787,29 @@ function renderDeviceQuestion() {
   const wrongPool = deviceQuestions.filter(i => i.id !== q.id);
   const allOptions = shuffleArray([q, ...shuffleArray(wrongPool).slice(0, Math.min(3, wrongPool.length))]);
   answered = false;
-  let html = `
-    <div class="device-quiz-close" id="quizCloseBtn">&times;</div>
-    <div class="device-quiz-header">
-      <h2><span>🔍</span> 消防控制设备识别</h2>
-      <div class="quiz-subtitle">第 ${currentIndex + 1} / ${currentQuestions.length} 题</div>
-    </div>
-  `;
+  let html = `<div class="device-quiz-close" id="quizCloseBtn">&times;</div><div class="device-quiz-header"><h2><span>🔍</span> 消防控制设备识别</h2><div class="quiz-subtitle">第 ${currentIndex + 1} / ${currentQuestions.length} 题</div></div>`;
   if (questionType === 0) {
-    html += `<div class="device-quiz-question">以下哪个是 <span class="target">${q.name}</span>？</div>`;
-    html += `<div class="device-quiz-options image-grid" id="quizOptions">`;
+    html += `<div class="device-quiz-question">以下哪个是 <span class="target">${q.name}</span>？</div><div class="device-quiz-options image-grid" id="quizOptions">`;
     allOptions.forEach(opt => { html += `<div class="device-quiz-option" data-id="${opt.id}"><img src="${opt.image}" alt="设备图片" /></div>`; });
     html += `</div>`;
   } else {
-    html += `<div class="device-quiz-question">这张图片是什么设备？请选择正确的名称。</div>`;
-    html += `<div class="device-quiz-image-box"><img src="${q.image}" alt="设备图片" /></div>`;
-    html += `<div class="device-quiz-options text-grid" id="quizOptions">`;
+    html += `<div class="device-quiz-question">这张图片是什么设备？请选择正确的名称。</div><div class="device-quiz-image-box"><img src="${q.image}" alt="设备图片" /></div><div class="device-quiz-options text-grid" id="quizOptions">`;
     allOptions.forEach(opt => { html += `<div class="device-quiz-option" data-id="${opt.id}"><div class="option-text">${opt.name}</div></div>`; });
     html += `</div>`;
   }
-  html += `
-    <div class="device-quiz-feedback" id="quizFeedback"></div>
-    <button class="device-quiz-next-btn" id="quizNextBtn" style="display:none;">下一题</button>
-    <div class="device-quiz-score">当前得分：${score} / ${currentIndex}</div>
-  `;
+  html += `<div class="device-quiz-feedback" id="quizFeedback"></div><button class="device-quiz-next-btn" id="quizNextBtn" style="display:none;">下一题</button><div class="device-quiz-score">当前得分：${score} / ${currentIndex}</div>`;
   deviceQuizContainer.innerHTML = html;
   document.getElementById('quizCloseBtn').onclick = closeDeviceQuiz;
-  const options = deviceQuizContainer.querySelectorAll('.device-quiz-option');
-  options.forEach(opt => {
+  deviceQuizContainer.querySelectorAll('.device-quiz-option').forEach(opt => {
     opt.onclick = function() {
       if (answered) return;
       const selectedId = this.dataset.id;
       const isCorrect = selectedId === q.id;
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      deviceQuizContainer.querySelectorAll('.device-quiz-option').forEach(o => o.classList.remove('correct', 'wrong'));
       if (isCorrect) {
         this.classList.add('correct'); score++; answered = true;
         const feedback = document.getElementById('quizFeedback');
-        feedback.className = 'device-quiz-feedback success';
-        feedback.textContent = '✅ 回答正确！';
+        feedback.className = 'device-quiz-feedback success'; feedback.textContent = '✅ 回答正确！';
         deviceQuizContainer.querySelector('.device-quiz-score').textContent = `当前得分：${score} / ${currentIndex + 1}`;
         const nextBtn = document.getElementById('quizNextBtn');
         nextBtn.style.display = 'block';
@@ -1974,13 +1817,12 @@ function renderDeviceQuestion() {
         nextBtn.onclick = function() { currentIndex++; renderDeviceQuestion(); };
       } else {
         this.classList.add('wrong'); answered = true;
-        options.forEach(o => { if (o.dataset.id === q.id) o.classList.add('correct'); });
+        deviceQuizContainer.querySelectorAll('.device-quiz-option').forEach(o => { if (o.dataset.id === q.id) o.classList.add('correct'); });
         const feedback = document.getElementById('quizFeedback');
         feedback.className = 'device-quiz-feedback fail';
         feedback.textContent = `❌ 回答错误，考试 0 分，考试结束。正确答案是：${q.name}`;
         const nextBtn = document.getElementById('quizNextBtn');
-        nextBtn.style.display = 'block';
-        nextBtn.textContent = '重新开始';
+        nextBtn.style.display = 'block'; nextBtn.textContent = '重新开始';
         nextBtn.onclick = function() { startDeviceQuiz(); };
       }
     };
@@ -1990,19 +1832,10 @@ function renderDeviceResult() {
   if (!quizActive) return;
   const total = currentQuestions.length;
   const passed = score === total;
-  let html = `
-    <div class="device-quiz-close" id="quizCloseBtn">&times;</div>
-    <div class="device-quiz-header">
-      <h2><span>🔍</span> 练习完成</h2>
-      <div class="quiz-subtitle">共 ${total} 题，答对 ${score} 题</div>
-    </div>
-  `;
+  let html = `<div class="device-quiz-close" id="quizCloseBtn">&times;</div><div class="device-quiz-header"><h2><span>🔍</span> 练习完成</h2><div class="quiz-subtitle">共 ${total} 题，答对 ${score} 题</div></div>`;
   if (passed) html += `<div class="device-quiz-feedback success" style="display:block;font-size:16px;padding:18px;">🎉 恭喜！全部答对，获得满分！</div>`;
   else html += `<div class="device-quiz-feedback fail" style="display:block;font-size:16px;padding:18px;">📚 答对 ${score} / ${total} 题，继续加油！</div>`;
-  html += `
-    <button class="device-quiz-next-btn" id="quizRestartBtn">重新练习</button>
-    <button class="device-quiz-next-btn secondary" id="quizCloseBtn2" style="margin-top:8px;">关闭</button>
-  `;
+  html += `<button class="device-quiz-next-btn" id="quizRestartBtn">重新练习</button><button class="device-quiz-next-btn secondary" id="quizCloseBtn2" style="margin-top:8px;">关闭</button>`;
   deviceQuizContainer.innerHTML = html;
   document.getElementById('quizCloseBtn').onclick = closeDeviceQuiz;
   document.getElementById('quizRestartBtn').onclick = startDeviceQuiz;
@@ -2016,15 +1849,8 @@ function renderDeviceResult() {
   const practiceModal = document.getElementById('practiceModal');
   const startBtn = document.getElementById('startPracticeBtn');
   const closeModalBtn = document.getElementById('closePracticeModal');
-  startBtn.addEventListener('click', function() {
-    practiceModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-  function closePractice() {
-    practiceModal.classList.remove('active');
-    document.body.style.overflow = '';
-    if (typeof window.resetPractice === 'function') window.resetPractice();
-  }
+  startBtn.addEventListener('click', function() { practiceModal.classList.add('active'); document.body.style.overflow = 'hidden'; });
+  function closePractice() { practiceModal.classList.remove('active'); document.body.style.overflow = ''; if (typeof window.resetPractice === 'function') window.resetPractice(); }
   closeModalBtn.addEventListener('click', closePractice);
   practiceModal.addEventListener('click', function(e) { if (e.target === practiceModal) closePractice(); });
   document.querySelector('#practiceModal .practice-modal-inner').addEventListener('click', function(e) { e.stopPropagation(); });
@@ -2034,16 +1860,11 @@ function renderDeviceResult() {
 /* 音频 */
 (function() {
   let audioCtx = null;
-  function initAudio() {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-  }
+  function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
   function playBeep() {
     initAudio(); if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+    const osc = audioCtx.createOscillator(); const gainNode = audioCtx.createGain();
+    osc.type = 'square'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
     gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
     gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
     osc.connect(gainNode); gainNode.connect(audioCtx.destination);
@@ -2071,156 +1892,55 @@ function renderDeviceResult() {
   const f6Btn = document.getElementById('f6Btn');
   const guideHand = document.getElementById('guideHand');
   const faultItem2 = document.getElementById('faultItem2');
-  let currentStep = 0;
-  let isPracticing = false;
-
+  let currentStep = 0, isPracticing = false;
   function resetPractice() {
     currentStep = 0; isPracticing = false;
-    mainScreen.style.display = 'flex';
-    faultScreen.style.display = 'none';
-    resetBtn.style.display = 'none';
-    practiceBtn.textContent = '练习';
+    mainScreen.style.display = 'flex'; faultScreen.style.display = 'none';
+    resetBtn.style.display = 'none'; practiceBtn.textContent = '练习';
     closeModal(); closeBtn.classList.remove('hidden');
     if (guideHand) guideHand.style.display = 'none';
     if (faultItem2) faultItem2.classList.remove('fault-item-highlight');
     if (faultItem2) faultItem2.onclick = null;
     if (f6Btn) f6Btn.onclick = null;
   }
-  function openModal() {
-    modal.classList.add('active'); isPracticing = true;
-    practiceBtn.textContent = '继续练习';
-    resetBtn.style.display = 'block';
-    renderStep();
-  }
+  function openModal() { modal.classList.add('active'); isPracticing = true; practiceBtn.textContent = '继续练习'; resetBtn.style.display = 'block'; renderStep(); }
   function closeModal() { modal.classList.remove('active'); }
   function renderStep() {
     closeBtn.classList.remove('hidden');
     if (currentStep === 0) {
-      modalContent.innerHTML = `
-        <h2>步骤 1：判断主电当前状态</h2>
-        <p>请根据面板指示灯，判断主电当前的状态：</p>
-        <button class="option-btn" data-answer="correct">1. 主电灯亮</button>
-        <button class="option-btn" data-answer="wrong1">2. 主电灯不亮</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>步骤 1：判断主电当前状态</h2><p>请根据面板指示灯，判断主电当前的状态：</p><button class="option-btn" data-answer="correct">1. 主电灯亮</button><button class="option-btn" data-answer="wrong1">2. 主电灯不亮</button>`; bindOptions();
     } else if (currentStep === 1) {
-      modalContent.innerHTML = `
-        <h2>步骤 2：备电灯现在是什么情况</h2>
-        <p>请根据面板指示灯，判断备电当前的状态：</p>
-        <button class="option-btn" data-answer="wrong2">1. 备电灯不亮，备电未运行</button>
-        <button class="option-btn" data-answer="correct2">2. 备电灯不亮，备电故障</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>步骤 2：备电灯现在是什么情况</h2><p>请根据面板指示灯，判断备电当前的状态：</p><button class="option-btn" data-answer="wrong2">1. 备电灯不亮，备电未运行</button><button class="option-btn" data-answer="correct2">2. 备电灯不亮，备电故障</button>`; bindOptions();
     } else if (currentStep === 2) {
-      modalContent.innerHTML = `
-        <h2>步骤 3：进入查故障界面</h2>
-        <p>请点击键盘上的 <span class="highlight-orange">F6</span> 键，进入查故障界面。</p>
-        <p style="font-size: 14px; color: #666;">（请直接在面板上点击 F6 按钮）</p>
-        <div class="click-anywhere">点击任意空白处继续</div>
-      `;
+      modalContent.innerHTML = `<h2>步骤 3：进入查故障界面</h2><p>请点击键盘上的 <span class="highlight-orange">F6</span> 键，进入查故障界面。</p><p style="font-size: 14px; color: #666;">（请直接在面板上点击 F6 按钮）</p><div class="click-anywhere">点击任意空白处继续</div>`;
       closeBtn.classList.add('hidden');
-      modalContent.onclick = function(e) {
-        if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) {
-          if (isPracticing && currentStep === 2) closeModal();
-        }
-      };
-      f6Btn.onclick = function() {
-        if (isPracticing && currentStep === 2) {
-          mainScreen.style.display = 'none';
-          faultScreen.style.display = 'flex';
-          currentStep = 3;
-          if (guideHand) guideHand.style.display = 'block';
-          if (faultItem2) faultItem2.classList.add('fault-item-highlight');
-          faultItem2.onclick = function() {
-            if (isPracticing && currentStep === 3) {
-              if (guideHand) guideHand.style.display = 'none';
-              if (faultItem2) faultItem2.classList.remove('fault-item-highlight');
-              currentStep = 4; openModal();
-            }
-          };
-        }
-      };
-    } else if (currentStep === 3) { /* 等待点击 */ }
+      modalContent.onclick = function(e) { if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) { if (isPracticing && currentStep === 2) closeModal(); } };
+      f6Btn.onclick = function() { if (isPracticing && currentStep === 2) { mainScreen.style.display = 'none'; faultScreen.style.display = 'flex'; currentStep = 3; if (guideHand) guideHand.style.display = 'block'; if (faultItem2) faultItem2.classList.add('fault-item-highlight'); faultItem2.onclick = function() { if (isPracticing && currentStep === 3) { if (guideHand) guideHand.style.display = 'none'; if (faultItem2) faultItem2.classList.remove('fault-item-highlight'); currentStep = 4; openModal(); } }; } };
+    } else if (currentStep === 3) { /* 等待 */ }
     else if (currentStep === 4) {
-      modalContent.innerHTML = `
-        <h2>步骤 4：确认故障</h2>
-        <p>可以看到 <span class="highlight-orange">备电故障</span> 了。</p>
-        <button class="next-btn" id="nextStepBtn">下一步</button>
-      `;
+      modalContent.innerHTML = `<h2>步骤 4：确认故障</h2><p>可以看到 <span class="highlight-orange">备电故障</span> 了。</p><button class="next-btn" id="nextStepBtn">下一步</button>`;
       document.getElementById('nextStepBtn').onclick = function() { currentStep = 5; renderStep(); };
     } else if (currentStep === 5) {
-      modalContent.innerHTML = `
-        <h2>步骤 5：退出故障界面</h2>
-        <p>已确认备电故障。请再次点击 <span class="highlight-orange">F6</span> 键，退出故障信息界面。</p>
-        <p style="font-size: 14px; color: #666;">（请直接在面板上再次点击 F6 按钮）</p>
-        <div class="click-anywhere">点击任意空白处继续</div>
-      `;
+      modalContent.innerHTML = `<h2>步骤 5：退出故障界面</h2><p>已确认备电故障。请再次点击 <span class="highlight-orange">F6</span> 键，退出故障信息界面。</p><p style="font-size: 14px; color: #666;">（请直接在面板上再次点击 F6 按钮）</p><div class="click-anywhere">点击任意空白处继续</div>`;
       closeBtn.classList.add('hidden');
-      modalContent.onclick = function(e) {
-        if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) {
-          if (isPracticing && currentStep === 5) closeModal();
-        }
-      };
-      f6Btn.onclick = function() {
-        if (isPracticing && currentStep === 5) {
-          mainScreen.style.display = 'flex';
-          faultScreen.style.display = 'none';
-          currentStep = 6; openModal();
-        }
-      };
+      modalContent.onclick = function(e) { if (e.target === modalContent || e.target.tagName === 'H2' || e.target.tagName === 'P' || e.target.classList.contains('click-anywhere')) { if (isPracticing && currentStep === 5) closeModal(); } };
+      f6Btn.onclick = function() { if (isPracticing && currentStep === 5) { mainScreen.style.display = 'flex'; faultScreen.style.display = 'none'; currentStep = 6; openModal(); } };
     } else if (currentStep === 6) {
-      modalContent.innerHTML = `
-        <h2>步骤 6：判断电源运行情况</h2>
-        <p>根据面板指示灯，选择正确的运行状态：</p>
-        <button class="option-btn" data-answer="ans1">1. 主电运行</button>
-        <button class="option-btn" data-answer="ans2">2. 备电运行，主电故障</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>步骤 6：判断电源运行情况</h2><p>根据面板指示灯，选择正确的运行状态：</p><button class="option-btn" data-answer="ans1">1. 主电运行</button><button class="option-btn" data-answer="ans2">2. 备电运行，主电故障</button>`; bindOptions();
     } else if (currentStep === 7) {
-      modalContent.innerHTML = `
-        <h2>步骤 7：回答备电情况</h2>
-        <p>现在回答，备电情况：</p>
-        <button class="option-btn" data-answer="normal">1. 备电正常</button>
-        <button class="option-btn" data-answer="fault2">2. 备电故障</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>步骤 7：回答备电情况</h2><p>现在回答，备电情况：</p><button class="option-btn" data-answer="normal">1. 备电正常</button><button class="option-btn" data-answer="fault2">2. 备电故障</button>`; bindOptions();
     } else if (currentStep === 8) {
-      modalContent.innerHTML = `
-        <h2>问答题 1</h2>
-        <p>问题：主电正常，备电故障，如何切换到备电？</p>
-        <button class="option-btn" data-answer="qa1">1. 修备电，关主电</button>
-        <button class="option-btn" data-answer="qa1_wrong">2. 关主电</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>问答题 1</h2><p>问题：主电正常，备电故障，如何切换到备电？</p><button class="option-btn" data-answer="qa1">1. 修备电，关主电</button><button class="option-btn" data-answer="qa1_wrong">2. 关主电</button>`; bindOptions();
     } else if (currentStep === 9) {
-      modalContent.innerHTML = `
-        <h2>问答题 2</h2>
-        <p>问题：主电正常，备电正常，如何切换到备电？</p>
-        <button class="option-btn" data-answer="qa2">1. 关主电</button>
-        <button class="option-btn" data-answer="qa2_wrong">2. 修备电，关主电</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>问答题 2</h2><p>问题：主电正常，备电正常，如何切换到备电？</p><button class="option-btn" data-answer="qa2">1. 关主电</button><button class="option-btn" data-answer="qa2_wrong">2. 修备电，关主电</button>`; bindOptions();
     } else if (currentStep === 10) {
-      modalContent.innerHTML = `
-        <h2>问答题 3</h2>
-        <p>问题：主电故障，备电正常，如何切换到主电？</p>
-        <button class="option-btn" data-answer="qa3">1. 修主电</button>
-        <button class="option-btn" data-answer="qa3_wrong">2. 修备电，关主电</button>
-      `; bindOptions();
+      modalContent.innerHTML = `<h2>问答题 3</h2><p>问题：主电故障，备电正常，如何切换到主电？</p><button class="option-btn" data-answer="qa3">1. 修主电</button><button class="option-btn" data-answer="qa3_wrong">2. 修备电，关主电</button>`; bindOptions();
     } else if (currentStep === 11) {
-      modalContent.innerHTML = `
-        <h2>解析</h2>
-        <p><strong>1. 主电正常，备电故障，如何切换到备电？</strong></p>
-        <p>口述：修备电，关主电</p>
-        <p style="margin-top: 10px;"><strong>2. 主电正常，备电正常，如何切换到备电？</strong></p>
-        <p>口述：关主电</p>
-        <p style="margin-top: 10px;"><strong>3. 主电故障，备电正常，如何切换到主电？</strong></p>
-        <p>口述：修主电</p>
-        <div class="result-text result-success" style="margin-top: 20px;">✅ 练习全部完成！您已掌握电源工作状态检查的全部要点。</div>
-        <button class="next-btn" id="finishBtn">关闭</button>
-      `;
+      modalContent.innerHTML = `<h2>解析</h2><p><strong>1. 主电正常，备电故障，如何切换到备电？</strong></p><p>口述：修备电，关主电</p><p style="margin-top: 10px;"><strong>2. 主电正常，备电正常，如何切换到备电？</strong></p><p>口述：关主电</p><p style="margin-top: 10px;"><strong>3. 主电故障，备电正常，如何切换到主电？</strong></p><p>口述：修主电</p><div class="result-text result-success" style="margin-top: 20px;">✅ 练习全部完成！您已掌握电源工作状态检查的全部要点。</div><button class="next-btn" id="finishBtn">关闭</button>`;
       document.getElementById('finishBtn').onclick = function() { resetPractice(); };
     }
   }
-  function bindOptions() {
-    modalContent.querySelectorAll('.option-btn').forEach(btn => {
-      btn.onclick = function() { handleAnswer(this.dataset.answer); };
-    });
-  }
+  function bindOptions() { modalContent.querySelectorAll('.option-btn').forEach(btn => { btn.onclick = function() { handleAnswer(this.dataset.answer); }; }); }
   function handleAnswer(answer) {
     if (answer === 'correct') { currentStep = 1; renderStep(); }
     else if (answer === 'wrong1') { showFailResult('主电灯亮'); }
@@ -2238,12 +1958,7 @@ function renderDeviceResult() {
     else if (answer === 'qa3_wrong') { showFailResult('修主电'); }
   }
   function showFailResult(correctAnswer) {
-    modalContent.innerHTML = `
-      <h2>回答错误</h2>
-      <div class="result-text result-fail">❌ 回答错误，考试 0 分，考试结束</div>
-      <p style="margin-top: 15px; font-size: 14px; color: #555;">正确答案是：<span class="highlight-orange">${correctAnswer}</span></p>
-      <button class="next-btn" id="retryBtn">重试</button>
-    `;
+    modalContent.innerHTML = `<h2>回答错误</h2><div class="result-text result-fail">❌ 回答错误，考试 0 分，考试结束</div><p style="margin-top: 15px; font-size: 14px; color: #555;">正确答案是：<span class="highlight-orange">${correctAnswer}</span></p><button class="next-btn" id="retryBtn">重试</button>`;
     document.getElementById('retryBtn').onclick = function() { resetPractice(); };
   }
   practiceBtn.addEventListener('click', function() { openModal(); });
@@ -2315,120 +2030,64 @@ function checkAnswer(userAnswer, q) {
   function isKeyActive(k) { if (activeKeys === null) return true; return activeKeys.includes(k); }
 
   function showDefaultScreen() {
-    screenTitle.textContent = '故障信息';
-    screenRightTitle.textContent = '合计: 0002';
-    screenLeftContent.innerHTML = `
-      <div class="msg-item"><span class="msg-time">0002 21/11/30 15:48 2-8</span><span class="msg-text">探测器故障</span></div>
-      <div class="msg-item"><span class="msg-time">0001 21/11/30 15:48</span><span class="msg-text">备电故障</span></div>
-    `;
+    screenTitle.textContent = '故障信息'; screenRightTitle.textContent = '合计: 0002';
+    screenLeftContent.innerHTML = `<div class="msg-item"><span class="msg-time">0002 21/11/30 15:48 2-8</span><span class="msg-text">探测器故障</span></div><div class="msg-item"><span class="msg-time">0001 21/11/30 15:48</span><span class="msg-text">备电故障</span></div>`;
     screenFooter.innerHTML = `<div class="footer-grid"><span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span></div>`;
-    manualStatusLine.textContent = '手动 禁止';
-    autoStatusLine.textContent = '自动 禁止';
+    manualStatusLine.textContent = '手动 禁止'; autoStatusLine.textContent = '自动 禁止';
   }
   function showMainScreen() {
-    screenTitle.textContent = '首警: 21/11/30 15:18 2-1';
-    screenRightTitle.textContent = '';
-    screenLeftContent.innerHTML = `
-      <div class="msg-item"><span class="msg-time">0002 21/11/30 15:18 2-12 手报</span><span class="msg-text">展板手报</span></div>
-      <div class="msg-item"><span class="msg-time">0001 21/11/30 15:18 2-1</span><span class="msg-text">展板烟感</span></div>
-      <div style="margin-top:6px;"></div>
-      <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 联动: 0001 反馈: 0000</span></div>
-      <div class="msg-item"><span class="msg-time">0001 21/11/30 15:18 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
-    `;
+    screenTitle.textContent = '首警: 21/11/30 15:18 2-1'; screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `<div class="msg-item"><span class="msg-time">0002 21/11/30 15:18 2-12 手报</span><span class="msg-text">展板手报</span></div><div class="msg-item"><span class="msg-time">0001 21/11/30 15:18 2-1</span><span class="msg-text">展板烟感</span></div><div style="margin-top:6px;"></div><div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 联动: 0001 反馈: 0000</span></div><div class="msg-item"><span class="msg-time">0001 21/11/30 15:18 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>`;
     screenFooter.innerHTML = `<div class="footer-grid"><span>跨机自动</span><span>回首页</span><span>查火警</span><span>查联动</span><span>手动控制</span><span>查故障</span></div>`;
-    if (opState && opState.currentManualState) manualStatusLine.textContent = opState.currentManualState;
-    else manualStatusLine.textContent = '手动 禁止';
+    if (opState && opState.currentManualState) manualStatusLine.textContent = opState.currentManualState; else manualStatusLine.textContent = '手动 禁止';
     autoStatusLine.textContent = '自动 禁止';
   }
   function showTestMenu() {
-    screenTitle.textContent = '测试菜单';
-    screenRightTitle.textContent = '';
-    screenLeftContent.innerHTML = `
-      <div style="line-height:2;font-size:15px;padding:4px 8px;">
-        1 &nbsp;探测器模拟曲线<br>2 &nbsp;回路状态信号浏览<br>3 &nbsp;现场部件数据查询<br>4 &nbsp;回路部件状态信号值<br>5 &nbsp;现场部件类型状态<br>6 &nbsp;用户密码权限管理<br>7 &nbsp;总线盘<br>8 &nbsp;消防信息<br>9 &nbsp;分区信息<br>0 &nbsp;模式二联动编程查询
-      </div>
-    `;
+    screenTitle.textContent = '测试菜单'; screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `<div style="line-height:2;font-size:15px;padding:4px 8px;">1 &nbsp;探测器模拟曲线<br>2 &nbsp;回路状态信号浏览<br>3 &nbsp;现场部件数据查询<br>4 &nbsp;回路部件状态信号值<br>5 &nbsp;现场部件类型状态<br>6 &nbsp;用户密码权限管理<br>7 &nbsp;总线盘<br>8 &nbsp;消防信息<br>9 &nbsp;分区信息<br>0 &nbsp;模式二联动编程查询</div>`;
     screenFooter.innerHTML = `<div class="footer-grid"><span>查询</span><span>测试</span><span>设置</span><span>安装</span><span>系统</span><span>退出</span></div>`;
   }
   function showLoginScreen(password) {
-    screenTitle.textContent = '用户登录';
-    screenRightTitle.textContent = '';
-    screenLeftContent.innerHTML = `
-      <div style="padding:20px 30px;line-height:2;font-size:16px;">
-        请输入密码(3或10位数字)<br>
-        <span id="pwdDisplay" style="font-size:22px;letter-spacing:4px;color:#ffeb3b;font-weight:bold;">${password || '█'}</span>
-      </div>
-    `;
+    screenTitle.textContent = '用户登录'; screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `<div style="padding:20px 30px;line-height:2;font-size:16px;">请输入密码(3或10位数字)<br><span id="pwdDisplay" style="font-size:22px;letter-spacing:4px;color:#ffeb3b;font-weight:bold;">${password || '█'}</span></div>`;
     screenFooter.innerHTML = `<div class="footer-grid"><span>修改</span><span></span><span></span><span></span><span>确认</span><span>退出</span></div>`;
   }
   function showSettingsMenu() {
-    screenTitle.textContent = '设置菜单';
-    screenRightTitle.textContent = '';
-    screenLeftContent.innerHTML = `
-      <div style="line-height:2;font-size:15px;padding:4px 8px;">
-        1 &nbsp;设置时间<br>2 &nbsp;设置部件屏蔽<br>3 &nbsp;开关打印机<br>4 &nbsp;打印历史记录<br>5 &nbsp;<span style="background:#ffeb3b;color:#000;padding:0 4px;">设置手动控制状态</span><br>6 &nbsp;控制器自检<br>7 &nbsp;设置手动控制设备<br>8 &nbsp;设置灭火启动方式<br>9 &nbsp;设置故障输出时间<br>0 &nbsp;设置控制器消音
-      </div>
-    `;
+    screenTitle.textContent = '设置菜单'; screenRightTitle.textContent = '';
+    screenLeftContent.innerHTML = `<div style="line-height:2;font-size:15px;padding:4px 8px;">1 &nbsp;设置时间<br>2 &nbsp;设置部件屏蔽<br>3 &nbsp;开关打印机<br>4 &nbsp;打印历史记录<br>5 &nbsp;<span style="background:#ffeb3b;color:#000;padding:0 4px;">设置手动控制状态</span><br>6 &nbsp;控制器自检<br>7 &nbsp;设置手动控制设备<br>8 &nbsp;设置灭火启动方式<br>9 &nbsp;设置故障输出时间<br>0 &nbsp;设置控制器消音</div>`;
     screenFooter.innerHTML = `<div class="footer-grid"><span>查询</span><span>测试</span><span>设置</span><span>安装</span><span>系统</span><span>退出</span></div>`;
   }
   function showManualControlSettings(manualValue, currentState) {
-    screenTitle.textContent = '设置手动控制状态';
-    screenRightTitle.textContent = '';
+    screenTitle.textContent = '设置手动控制状态'; screenRightTitle.textContent = '';
     const display = manualValue || '手动';
-    screenLeftContent.innerHTML = `
-      <div style="padding:40px 0;text-align:center;">
-        <span id="manualCtlDisplay" style="font-size:28px;font-weight:bold;color:#fff;letter-spacing:4px;">${display}</span>
-      </div>
-      <div style="padding:0 20px;font-size:13px;color:#e0f0ff;">请输入正确的数据</div>
-    `;
+    screenLeftContent.innerHTML = `<div style="padding:40px 0;text-align:center;"><span id="manualCtlDisplay" style="font-size:28px;font-weight:bold;color:#fff;letter-spacing:4px;">${display}</span></div><div style="padding:0 20px;font-size:13px;color:#e0f0ff;">请输入正确的数据</div>`;
     if (currentState) manualStatusLine.textContent = currentState;
     screenFooter.innerHTML = `<div class="footer-grid"><span>修改</span><span>禁止</span><span>允许</span><span>取消</span><span>确认</span><span>退出</span></div>`;
   }
 
   function resetPractice() {
     currentIndex = 0; isPracticing = false;
-    resetBtn.style.display = 'none';
-    practiceBtn.textContent = '练习';
+    resetBtn.style.display = 'none'; practiceBtn.textContent = '练习';
     closeModal(); closeBtn.classList.remove('hidden');
     resetModalPosition(); stopOpTimer();
-    opTaskPanel.classList.remove('active');
-    defaultKnob.style.display = 'flex';
-    setActiveKeys(null); opState = null;
-    showDefaultScreen();
+    opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex';
+    setActiveKeys(null); opState = null; showDefaultScreen();
   }
-  function openModal() {
-    modal.classList.add('active'); isPracticing = true;
-    practiceBtn.textContent = '继续练习';
-    resetBtn.style.display = 'block';
-    renderStep();
-  }
+  function openModal() { modal.classList.add('active'); isPracticing = true; practiceBtn.textContent = '继续练习'; resetBtn.style.display = 'block'; renderStep(); }
   function closeModal() { modal.classList.remove('active'); }
   function renderStep() {
     closeBtn.classList.remove('hidden');
     if (currentIndex < quizQuestions.length) {
-      opTaskPanel.classList.remove('active');
-      defaultKnob.style.display = 'flex';
-      setActiveKeys(null);
+      opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex'; setActiveKeys(null);
       const q = quizQuestions[currentIndex];
-      modalContent.innerHTML = `
-        <h2>第 ${currentIndex + 1} / ${quizQuestions.length} 题</h2>
-        <p>${q.question}</p>
-        <textarea class="answer-input" id="answerInput"></textarea>
-        <button class="submit-btn" id="submitBtn">提交</button>
-      `;
+      modalContent.innerHTML = `<h2>第 ${currentIndex + 1} / ${quizQuestions.length} 题</h2><p>${q.question}</p><textarea class="answer-input" id="answerInput"></textarea><button class="submit-btn" id="submitBtn">提交</button>`;
       const input = document.getElementById('answerInput');
-      const submitBtn = document.getElementById('submitBtn');
-      submitBtn.onclick = function() {
+      document.getElementById('submitBtn').onclick = function() {
         const val = input.value.trim();
         const res = checkAnswer(val, q);
         if (res.pass) { currentIndex++; renderStep(); }
         else {
-          modalContent.innerHTML = `
-            <h2>回答错误</h2>
-            <div class="result-text result-fail">❌ 回答错误，考试 0 分，考试结束</div>
-            <p style="margin-top:15px;font-size:14px;color:#555;">正确答案是：<span class="highlight-orange">${q.reference}</span></p>
-            <button class="next-btn" id="retryBtn">重试</button>
-          `;
+          modalContent.innerHTML = `<h2>回答错误</h2><div class="result-text result-fail">❌ 回答错误，考试 0 分，考试结束</div><p style="margin-top:15px;font-size:14px;color:#555;">正确答案是：<span class="highlight-orange">${q.reference}</span></p><button class="next-btn" id="retryBtn">重试</button>`;
           document.getElementById('retryBtn').onclick = resetPractice;
         }
       };
@@ -2439,87 +2098,38 @@ function checkAnswer(userAnswer, q) {
 
   function startOpRound(round) {
     opRound = round; opTimeLeft = 180;
-    opState = {
-      stage: round === 1 ? 'idle' : 'manualControl',
-      password: '', manualValue: '',
-      currentManualState: round === 1 ? '手动 禁止' : '手动 允许',
-      round: round
-    };
-    closeModal();
-    opTaskPanel.classList.add('active');
-    defaultKnob.style.display = 'none';
+    opState = { stage: round === 1 ? 'idle' : 'manualControl', password: '', manualValue: '', currentManualState: round === 1 ? '手动 禁止' : '手动 允许', round: round };
+    closeModal(); opTaskPanel.classList.add('active'); defaultKnob.style.display = 'none';
     opStepBadge.textContent = `第 ${round} 轮`;
-    opQuestion.innerHTML = round === 1
-      ? '请操作：<span class="highlight">手动调成允许</span>'
-      : '请操作：<span class="highlight">除此之外还有什么办法可以转换允许和禁止？（用手动禁止的方法，将手动调回禁止）</span>';
-    opSubmitBtn.disabled = false;
-    opSubmitBtn.textContent = '提交操作结果';
+    opQuestion.innerHTML = round === 1 ? '请操作：<span class="highlight">手动调成允许</span>' : '请操作：<span class="highlight">除此之外还有什么办法可以转换允许和禁止？（用手动禁止的方法，将手动调回禁止）</span>';
+    opSubmitBtn.disabled = false; opSubmitBtn.textContent = '提交操作结果';
     if (round === 1) { showDefaultScreen(); setActiveKeys(null); }
     else { showManualControlSettings('', '手动 允许'); setActiveKeys(['取消']); }
     startOpTimer();
   }
-  function startOpTimer() {
-    stopOpTimer(); updateTimerDisplay();
-    opTimerId = setInterval(() => {
-      opTimeLeft--; updateTimerDisplay();
-      if (opTimeLeft <= 0) { stopOpTimer(); opTimeoutFail(); }
-    }, 1000);
-  }
+  function startOpTimer() { stopOpTimer(); updateTimerDisplay(); opTimerId = setInterval(() => { opTimeLeft--; updateTimerDisplay(); if (opTimeLeft <= 0) { stopOpTimer(); opTimeoutFail(); } }, 1000); }
   function stopOpTimer() { if (opTimerId) { clearInterval(opTimerId); opTimerId = null; } }
-  function updateTimerDisplay() {
-    const m = Math.floor(opTimeLeft / 60), s = opTimeLeft % 60;
-    opTimerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-    if (opTimeLeft <= 30) opTimerEl.classList.add('warning');
-    else opTimerEl.classList.remove('warning');
-  }
+  function updateTimerDisplay() { const m = Math.floor(opTimeLeft / 60), s = opTimeLeft % 60; opTimerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`; if (opTimeLeft <= 30) opTimerEl.classList.add('warning'); else opTimerEl.classList.remove('warning'); }
   function opTimeoutFail() {
-    opSubmitBtn.disabled = true;
-    opTaskPanel.classList.remove('active');
-    defaultKnob.style.display = 'flex';
-    setActiveKeys(null);
-    modal.classList.add('active');
-    modalContent.innerHTML = `
-      <h2>操作超时</h2>
-      <div class="result-text result-fail">❌ 时间到，考试 0 分，考试结束</div>
-      <button class="next-btn" id="retryBtn">重试</button>
-    `;
+    opSubmitBtn.disabled = true; opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex'; setActiveKeys(null); modal.classList.add('active');
+    modalContent.innerHTML = `<h2>操作超时</h2><div class="result-text result-fail">❌ 时间到，考试 0 分，考试结束</div><button class="next-btn" id="retryBtn">重试</button>`;
     document.getElementById('retryBtn').onclick = resetPractice;
   }
 
   opSubmitBtn.onclick = function() {
     const currentManual = opState.currentManualState;
     const expected = opRound === 1 ? '手动 允许' : '手动 禁止';
-    stopOpTimer();
-    opTaskPanel.classList.remove('active');
-    defaultKnob.style.display = 'flex';
-    setActiveKeys(null);
-    modal.classList.add('active');
+    stopOpTimer(); opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex'; setActiveKeys(null); modal.classList.add('active');
     if (currentManual === expected) {
       if (opRound === 1) {
-        modalContent.innerHTML = `
-          <h2>✅ 第一轮操作正确</h2>
-          <p>手动已调成允许。准备进入第二轮：除此之外还有什么办法可以转换允许和禁止。</p>
-          <button class="next-btn" id="nextRoundBtn">开始第二轮</button>
-        `;
+        modalContent.innerHTML = `<h2>✅ 第一轮操作正确</h2><p>手动已调成允许。准备进入第二轮：除此之外还有什么办法可以转换允许和禁止。</p><button class="next-btn" id="nextRoundBtn">开始第二轮</button>`;
         document.getElementById('nextRoundBtn').onclick = function() { closeModal(); currentIndex++; startOpRound(2); };
       } else {
-        modalContent.innerHTML = `
-          <h2>🎉 练习完成</h2>
-          <div class="result-text result-success">✅ 全部操作正确，练习结束！</div>
-          <button class="next-btn" id="finishBtn">关闭</button>
-        `;
+        modalContent.innerHTML = `<h2>🎉 练习完成</h2><div class="result-text result-success">✅ 全部操作正确，练习结束！</div><button class="next-btn" id="finishBtn">关闭</button>`;
         document.getElementById('finishBtn').onclick = resetPractice;
       }
     } else {
-      modalContent.innerHTML = `
-        <h2>操作错误</h2>
-        <div class="result-text result-fail">❌ 操作错误，考试 0 分，考试结束</div>
-        <p style="margin-top:15px;font-size:14px;color:#555;">
-          当前手动状态：<span class="highlight-orange">${currentManual || '未设置'}</span><br>
-          期望手动状态：<span class="highlight-orange">${expected}</span>
-        </p>
-        <button class="next-btn" id="retryBtn">重试</button>
-      `;
+      modalContent.innerHTML = `<h2>操作错误</h2><div class="result-text result-fail">❌ 操作错误，考试 0 分，考试结束</div><p style="margin-top:15px;font-size:14px;color:#555;">当前手动状态：<span class="highlight-orange">${currentManual || '未设置'}</span><br>期望手动状态：<span class="highlight-orange">${expected}</span></p><button class="next-btn" id="retryBtn">重试</button>`;
       document.getElementById('retryBtn').onclick = resetPractice;
     }
   };
@@ -2527,8 +2137,7 @@ function checkAnswer(userAnswer, q) {
   document.querySelectorAll('#practiceModal2 .keyboard-area button').forEach(btn => {
     btn.addEventListener('click', function() {
       if (!opTaskPanel.classList.contains('active')) return;
-      const key = this.dataset.key;
-      if (!isKeyActive(key)) return;
+      const key = this.dataset.key; if (!isKeyActive(key)) return;
       handleKeyPress(key);
     });
   });
@@ -2541,11 +2150,7 @@ function checkAnswer(userAnswer, q) {
       if (st.stage === 'login') {
         if (key === 'F1') { st.password = ''; showLoginScreen(''); return; }
         if (/^[0-9#*]$/.test(key)) { st.password += key; showLoginScreen(st.password); return; }
-        if (key === 'F5') {
-          if (st.password === '119') { st.stage = 'settingsMenu'; st.password = ''; showSettingsMenu(); }
-          else { st.password = ''; showLoginScreen(''); }
-          return;
-        }
+        if (key === 'F5') { if (st.password === '119') { st.stage = 'settingsMenu'; st.password = ''; showSettingsMenu(); } else { st.password = ''; showLoginScreen(''); } return; }
         if (key === 'F6') { st.stage = 'testMenu'; st.password = ''; showTestMenu(); return; }
         return;
       }
@@ -2582,151 +2187,101 @@ function checkAnswer(userAnswer, q) {
     if (e.target.closest('.close-btn')) return;
     e.preventDefault();
     const rect = draggable.getBoundingClientRect();
-    draggable.style.position = 'fixed';
-    draggable.style.left = rect.left + 'px';
-    draggable.style.top = rect.top + 'px';
-    draggable.style.margin = '0';
-    draggable.style.transform = 'none';
-    isDragging = true;
-    startX = (e.touches ? e.touches[0].clientX : e.clientX);
-    startY = (e.touches ? e.touches[0].clientY : e.clientY);
-    startLeft = rect.left; startTop = rect.top;
-    document.body.style.cursor = 'grabbing';
+    draggable.style.position = 'fixed'; draggable.style.left = rect.left + 'px'; draggable.style.top = rect.top + 'px';
+    draggable.style.margin = '0'; draggable.style.transform = 'none';
+    isDragging = true; startX = (e.touches ? e.touches[0].clientX : e.clientX); startY = (e.touches ? e.touches[0].clientY : e.clientY);
+    startLeft = rect.left; startTop = rect.top; document.body.style.cursor = 'grabbing';
   }
   function onDragMove(e) {
     if (!isDragging) return;
     e.preventDefault();
-    const clientX = (e.touches ? e.touches[0].clientX : e.clientX);
-    const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
-    const dx = clientX - startX, dy = clientY - startY;
-    const rect = draggable.getBoundingClientRect();
+    const clientX = (e.touches ? e.touches[0].clientX : e.clientX); const clientY = (e.touches ? e.touches[0].clientY : e.clientY);
+    const dx = clientX - startX, dy = clientY - startY; const rect = draggable.getBoundingClientRect();
     let newLeft = startLeft + dx, newTop = startTop + dy;
     const maxLeft = window.innerWidth - rect.width, maxTop = window.innerHeight - rect.height;
-    newLeft = Math.max(0, Math.min(maxLeft, newLeft));
-    newTop = Math.max(0, Math.min(maxTop, newTop));
-    draggable.style.left = newLeft + 'px';
-    draggable.style.top = newTop + 'px';
+    newLeft = Math.max(0, Math.min(maxLeft, newLeft)); newTop = Math.max(0, Math.min(maxTop, newTop));
+    draggable.style.left = newLeft + 'px'; draggable.style.top = newTop + 'px';
   }
   function onDragEnd() { if (!isDragging) return; isDragging = false; document.body.style.cursor = ''; }
-  dragHandle.addEventListener('mousedown', onDragStart);
-  document.addEventListener('mousemove', onDragMove);
-  document.addEventListener('mouseup', onDragEnd);
-  dragHandle.addEventListener('touchstart', onDragStart, { passive: false });
-  document.addEventListener('touchmove', onDragMove, { passive: false });
-  document.addEventListener('touchend', onDragEnd);
-  function resetModalPosition() {
-    draggable.style.position = ''; draggable.style.left = ''; draggable.style.top = '';
-    draggable.style.margin = ''; draggable.style.transform = '';
-  }
+  dragHandle.addEventListener('mousedown', onDragStart); document.addEventListener('mousemove', onDragMove); document.addEventListener('mouseup', onDragEnd);
+  dragHandle.addEventListener('touchstart', onDragStart, { passive: false }); document.addEventListener('touchmove', onDragMove, { passive: false }); document.addEventListener('touchend', onDragEnd);
+  function resetModalPosition() { draggable.style.position = ''; draggable.style.left = ''; draggable.style.top = ''; draggable.style.margin = ''; draggable.style.transform = ''; }
   resetPractice();
   window.resetPractice2 = resetPractice;
 })();
 
-/* ============================================================
- * 课题2 弹窗与启动
- * ============================================================ */
+/* 课题2 弹窗启动 */
 (function() {
   const practiceModal2 = document.getElementById('practiceModal2');
   const startBtn2 = document.getElementById('startPractice2Btn');
   const closeModalBtn2 = document.getElementById('closePracticeModal2');
-  startBtn2.addEventListener('click', function() {
-    practiceModal2.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  });
-  function closePractice2() {
-    practiceModal2.classList.remove('active');
-    document.body.style.overflow = '';
-    if (typeof window.resetPractice2 === 'function') window.resetPractice2();
-  }
+  startBtn2.addEventListener('click', function() { practiceModal2.classList.add('active'); document.body.style.overflow = 'hidden'; });
+  function closePractice2() { practiceModal2.classList.remove('active'); document.body.style.overflow = ''; if (typeof window.resetPractice2 === 'function') window.resetPractice2(); }
   closeModalBtn2.addEventListener('click', closePractice2);
   practiceModal2.addEventListener('click', function(e) { if (e.target === practiceModal2) closePractice2(); });
   document.querySelector('#practiceModal2 .practice-modal-inner').addEventListener('click', function(e) { e.stopPropagation(); });
   window.closePractice2 = closePractice2;
 })();
 
-/* ============================================================
- * 面板动态缩放（课题1）
- * ============================================================ */
-(function() {
-  const panel = document.querySelector('#practiceModal .practice-modal-inner .panel');
-  function adjustScale() {
-    if (!panel) return;
-    const winW = window.innerWidth, winH = window.innerHeight;
-    const panelW = 1300, panelH = 720;
-    const isLandscapeSmall = window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches;
-    let scale;
-    if (isLandscapeSmall) {
-      const scaleX = winW / panelW, scaleY = winH / panelH;
-      scale = Math.min(scaleX, scaleY) * 0.98;
-      scale = Math.min(scale, 0.75);
-    } else {
-      const scaleX = (winW - 40) / panelW, scaleY = (winH - 40) / panelH;
-      scale = Math.min(1, scaleX, scaleY);
-    }
-    panel.style.transform = `scale(${scale})`;
-  }
-  adjustScale();
-  window.addEventListener('resize', adjustScale);
-  window.addEventListener('orientationchange', function() { setTimeout(adjustScale, 200); });
-})();
+/* ================================================================
+ * ★★★★★ 横屏游戏模式：智能缩放 ★★★★★
+ * 横屏时：计算面板缩放比例，让它铺满屏幕并保持完整可见。
+ * 这是核心逻辑，确保横屏时"开始练习"和所有按键都能看到。
+ * ================================================================ */
+function applyGameScale() {
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+  if (!isLandscape) return;
 
-/* ============================================================
- * 面板动态缩放（课题2）
- * ============================================================ */
-(function() {
-  const panel = document.querySelector('#practiceModal2 .panel2');
-  function adjustScale() {
-    if (!panel) return;
-    const winW = window.innerWidth, winH = window.innerHeight;
-    const panelW = 1400, panelH = 780;
-    const isLandscapeSmall = window.matchMedia('(orientation: landscape) and (max-height: 500px)').matches;
-    let scale;
-    if (isLandscapeSmall) {
-      const scaleX = winW / panelW, scaleY = winH / panelH;
-      scale = Math.min(scaleX, scaleY) * 0.98;
-      scale = Math.min(scale, 0.75);
-    } else {
-      const scaleX = (winW - 40) / panelW, scaleY = (winH - 40) / panelH;
-      scale = Math.min(1, scaleX, scaleY);
-    }
-    panel.style.transform = `scale(${scale})`;
-  }
-  adjustScale();
-  window.addEventListener('resize', adjustScale);
-  window.addEventListener('orientationchange', function() { setTimeout(adjustScale, 200); });
-})();
+  const winW = window.innerWidth;
+  const winH = window.innerHeight;
 
-/* ============================================================
- * 移动端点击穿透修复
- * ============================================================ */
+  // 课题1面板 1300x720
+  const panel1 = document.querySelector('#practiceModal .practice-modal-inner .panel');
+  if (panel1) {
+    const scaleX = winW / 1300;
+    const scaleY = winH / 720;
+    const scale = Math.min(scaleX, scaleY) * 0.98;
+    panel1.style.transform = `scale(${scale})`;
+  }
+
+  // 课题2面板 1400x780
+  const panel2 = document.querySelector('#practiceModal2 .panel2');
+  if (panel2) {
+    const scaleX = winW / 1400;
+    const scaleY = winH / 780;
+    const scale = Math.min(scaleX, scaleY) * 0.98;
+    panel2.style.transform = `scale(${scale})`;
+  }
+}
+
+// 监听屏幕旋转
+window.addEventListener('resize', function() {
+  // 延迟一点，等浏览器完成旋转
+  setTimeout(applyGameScale, 100);
+  setTimeout(applyGameScale, 300);
+});
+window.addEventListener('orientationchange', function() {
+  setTimeout(applyGameScale, 200);
+  setTimeout(applyGameScale, 500);
+});
+// 页面加载时也执行
+setTimeout(applyGameScale, 500);
+setTimeout(applyGameScale, 1000);
+
+/* 移动端点击穿透修复 */
 if ('ontouchstart' in window) {
   document.querySelectorAll('#practiceModal .panel button, #practiceModal .panel .btn, #practiceModal .panel .btn-f').forEach(btn => {
-    btn.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      this.click();
-    }, { passive: false });
+    btn.addEventListener('touchstart', function(e) { e.preventDefault(); this.click(); }, { passive: false });
   });
   document.querySelectorAll('#practiceModal2 .panel2 button, #practiceModal2 .panel2 .btn, #practiceModal2 .panel2 .btn-f').forEach(btn => {
-    btn.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      this.click();
-    }, { passive: false });
+    btn.addEventListener('touchstart', function(e) { e.preventDefault(); this.click(); }, { passive: false });
   });
 }
 
-/* ============================================================
- * 序章事件绑定
- * ============================================================ */
+/* 序章事件绑定 */
 document.addEventListener('DOMContentLoaded', function() {
-  if (startDeviceQuizBtn) {
-    startDeviceQuizBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      startDeviceQuiz();
-    });
-  }
-  if (deviceQuizModal) {
-    deviceQuizModal.addEventListener('click', function(e) { e.stopPropagation(); });
-  }
+  if (startDeviceQuizBtn) { startDeviceQuizBtn.addEventListener('click', function(e) { e.stopPropagation(); startDeviceQuiz(); }); }
+  if (deviceQuizModal) { deviceQuizModal.addEventListener('click', function(e) { e.stopPropagation(); }); }
 });
 </script>
 </body>
