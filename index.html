@@ -446,6 +446,258 @@ html.phone-rotated .practice-modal-close{position:fixed !important;top:10px !imp
   .modal-overlay .modal .choice-btn{padding:11px 14px !important;font-size:14px !important;margin-bottom:8px !important}
   .float-tip{font-size:15px !important;padding:12px 20px !important}
 }
+/* ===== 课题1 专属样式（独立前缀 #originalPanel，仅作用于课题1） ===== */
+.practice-modal-inner #originalPanel .header{
+  display:flex;align-items:center;height:60px;
+  margin-bottom:10px;justify-content:flex-end;
+}
+.practice-modal-inner #originalPanel .logo-area{
+  position:static;top:auto;left:auto;
+  display:flex;align-items:center;width:260px;
+}
+.practice-modal-inner #originalPanel .logo-svg{width:50px;height:50px;margin-right:12px}
+.practice-modal-inner #originalPanel .logo-text{display:flex;flex-direction:column}
+.practice-modal-inner #originalPanel .logo-text .chinese{font-size:24px;font-weight:bold;color:#2b6ca3;letter-spacing:1px}
+.practice-modal-inner #originalPanel .logo-text .english{font-size:12px;color:#2b6ca3;letter-spacing:.5px}
+.practice-modal-inner #originalPanel .main-body{display:flex;flex:1;gap:20px}
+.practice-modal-inner #originalPanel .left-panel{
+  width:280px;padding-top:15px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.practice-modal-inner #originalPanel .alarm-module{
+  position:static;top:auto;left:auto;
+  display:flex;border:3px solid #555;border-radius:10px;
+  padding:12px 20px;gap:40px;background:#d2d6d8;
+  box-shadow:inset 0 1px 4px rgba(0,0,0,.2);
+}
+.practice-modal-inner #originalPanel .alarm-item{display:flex;align-items:center;gap:10px}
+.practice-modal-inner #originalPanel .alarm-item .led-dot{margin-bottom:0}
+.practice-modal-inner #originalPanel .alarm-item .text{
+  display:flex;flex-direction:column;font-size:16px;
+  font-weight:bold;color:#333;line-height:1.1;
+}
+.practice-modal-inner #originalPanel .alarm-item .text .en{font-size:11px;font-weight:normal;color:#555}
+.practice-modal-inner #originalPanel .indicator-grid{
+  position:static;top:auto;left:auto;
+  display:flex;gap:30px;padding-left:5px;
+}
+.practice-modal-inner #originalPanel .indicator-column{
+  display:flex;flex-direction:column;gap:12px;flex:1;
+}
+.practice-modal-inner #originalPanel .indicator-row{
+  display:flex;align-items:center;font-size:15px;color:#333;height:auto;
+}
+.practice-modal-inner #originalPanel .indicator-row .led-dot{
+  width:13px;height:13px;margin-right:8px;margin-bottom:0;flex-shrink:0;
+}
+.practice-modal-inner #originalPanel .indicator-row .text{
+  line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
+}
+.practice-modal-inner #originalPanel .indicator-row .text .en{
+  font-size:10px;color:#555;display:block;font-weight:normal;
+}
+.practice-modal-inner #originalPanel .center-panel{
+  flex:1;display:flex;flex-direction:column;align-items:center;position:relative;
+}
+.practice-modal-inner #originalPanel .screen-frame{
+  position:static;top:auto;left:auto;
+  width:100%;height:310px;background:#a8aeaf;
+  border-radius:8px;padding:10px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 2px 5px rgba(255,255,255,.6);
+}
+.practice-modal-inner #originalPanel .screen{
+  font-size:14px;
+}
+.practice-modal-inner #originalPanel .screen-header{
+  padding:5px 8px;font-size:14px;
+}
+.practice-modal-inner #originalPanel .screen-content{
+  padding:6px;gap:6px;
+}
+.practice-modal-inner #originalPanel .screen-left{
+  flex:2;gap:4px;
+}
+.practice-modal-inner #originalPanel .screen-right{
+  flex:1;border-left:1px solid #2e7ba6;padding-left:8px;
+  font-size:14px;
+}
+.practice-modal-inner #originalPanel .screen-right .screen-right-top div{line-height:1.3}
+.practice-modal-inner #originalPanel .screen-right-bottom{font-size:12px;text-align:right;color:#cce8ff}
+.practice-modal-inner #originalPanel .msg-item{display:flex;line-height:1.4;padding:2px 3px;font-size:14px}
+.practice-modal-inner #originalPanel .msg-time{color:#fff;margin-right:6px}
+.practice-modal-inner #originalPanel .msg-text{color:#fff;flex:1}
+.practice-modal-inner #originalPanel .msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
+.practice-modal-inner #originalPanel .screen-footer{
+  display:flex;background:#2e7ba6;
+  border-top:2px solid #1c5a7d;padding:4px;gap:35px;
+  justify-content:center;font-size:14px;font-weight:bold;color:#e0f0ff;
+  min-height:auto;
+}
+.practice-modal-inner #originalPanel .screen-btn-text{cursor:default;padding:0;pointer-events:none}
+.practice-modal-inner #originalPanel .fault-screen{display:none}
+.practice-modal-inner #originalPanel .fault-screen.active{display:flex}
+.practice-modal-inner #originalPanel .fault-item-clickable{cursor:pointer;transition:background .2s}
+.practice-modal-inner #originalPanel .fault-item-clickable:hover{background:rgba(255,255,255,.2)}
+.practice-modal-inner #originalPanel .fault-item-highlight{
+  background:rgba(255,165,0,.4);border-radius:4px;
+  animation:highlightPulse 1s infinite;
+}
+@keyframes highlightPulse{
+  0%,100%{background:rgba(255,165,0,.4)}
+  50%{background:rgba(255,165,0,.8)}
+}
+.practice-modal-inner #originalPanel .guide-hand{
+  position:absolute;bottom:50px;left:50%;transform:translateX(-50%);
+  width:50px;height:50px;background:rgba(255,165,0,.8);
+  border-radius:50%;display:flex;justify-content:center;align-items:center;
+  color:#fff;font-size:24px;box-shadow:0 4px 15px rgba(255,165,0,.6);
+  pointer-events:none;animation:slideUp 1.5s ease-in-out infinite alternate;z-index:100;
+}
+.practice-modal-inner #originalPanel .guide-hand::after{content:'👆';font-size:30px}
+
+.practice-modal-inner #originalPanel .keyboard-area{
+  position:static;bottom:auto;left:auto;
+  margin-top:20px;width:100%;
+  display:flex;flex-direction:column;gap:8px;align-items:center;
+}
+.practice-modal-inner #originalPanel .f-row{display:flex;gap:14px;margin-bottom:8px;justify-content:center}
+.practice-modal-inner #originalPanel .btn-f{
+  background:#6fa8d6;color:#fff;width:65px;height:35px;
+  border-radius:5px;font-size:15px;font-weight:bold;border:none;
+  cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
+  display:flex;justify-content:center;align-items:center;
+}
+.practice-modal-inner #originalPanel .keyboard-row{
+  display:flex;gap:10px;align-items:center;justify-content:center;
+}
+.practice-modal-inner #originalPanel .btn{
+  border-radius:5px;border:none;font-weight:bold;cursor:pointer;
+  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
+  display:flex;justify-content:center;align-items:center;
+  transition:all .1s;position:relative;line-height:1.1;padding:0 3px;
+}
+.practice-modal-inner #originalPanel .btn-num{
+  background:#5b8db8;color:#fff;font-size:16px;
+  width:65px;height:38px;flex-direction:column;
+}
+.practice-modal-inner #originalPanel .btn-num .sub{font-size:10px;margin-top:-1px;font-weight:normal}
+.practice-modal-inner #originalPanel .btn-func{
+  background:#ff7e00;color:#fff;font-size:14px;
+  width:65px;height:38px;flex-direction:column;
+}
+.practice-modal-inner #originalPanel .btn-func .sub{font-size:10px;margin-top:1px;font-weight:normal}
+.practice-modal-inner #originalPanel .btn-white{
+  background:#e0e4e6;color:#333;font-size:13px;
+  width:65px;height:38px;flex-direction:column;
+}
+.practice-modal-inner #originalPanel .btn-white .sub{font-size:10px;color:#666;margin-top:1px;font-weight:normal}
+.practice-modal-inner #originalPanel .btn-large{width:65px;height:38px;font-size:14px;flex-direction:column}
+.practice-modal-inner #originalPanel .btn-large.red-text{background:#d32f2f;color:#fff}
+.practice-modal-inner #originalPanel .btn-large.green-text{background:#388e3c;color:#fff}
+.practice-modal-inner #originalPanel .btn-large .sub{
+  font-size:10px;color:rgba(255,255,255,.8);margin-top:1px;font-weight:normal;
+}
+.practice-modal-inner #originalPanel .btn-arrow{
+  width:65px;height:38px;background:#ff7e00;color:#fff;font-size:20px;
+}
+.practice-modal-inner #originalPanel .right-panel{
+  width:170px;padding-top:15px;
+  display:flex;flex-direction:column;align-items:center;gap:20px;
+}
+.practice-modal-inner #originalPanel .digital-display{
+  position:static;top:auto;right:auto;
+  width:100px;height:45px;background:#1a1a1a;
+  border:2px solid #555;border-radius:4px;
+  display:flex;justify-content:center;align-items:center;
+  font-family:'Digital-7','Courier New',monospace;font-size:30px;
+  color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
+  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
+  letter-spacing:2px;
+}
+.practice-modal-inner #originalPanel .key-switch-area{
+  position:static;top:auto;right:auto;
+  display:flex;flex-direction:column;align-items:center;
+  width:100%;margin-top:15px;
+}
+.practice-modal-inner #originalPanel .key-labels{
+  display:flex;justify-content:space-between;
+  width:120px;font-size:14px;color:#333;margin-bottom:8px;
+}
+.practice-modal-inner #originalPanel .key-label-item{display:flex;flex-direction:column;align-items:center}
+.practice-modal-inner #originalPanel .key-label-item .en{font-size:10px;color:#555}
+.practice-modal-inner #originalPanel .key-switch{
+  width:50px;height:50px;
+  background:radial-gradient(circle at 30% 30%,#ccc,#666);
+  border-radius:50%;border:2px solid #444;
+  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);
+  display:flex;justify-content:center;align-items:center;
+}
+.practice-modal-inner #originalPanel .key-switch-inner{
+  width:38px;height:38px;background:#555;border-radius:50%;
+  display:flex;justify-content:center;align-items:center;
+  box-shadow:inset 0 2px 4px rgba(0,0,0,.8);
+}
+.practice-modal-inner #originalPanel .key-inserted{
+  position:absolute;top:-5px;left:50%;
+  transform:translateX(-50%) rotate(-45deg);
+  transform-origin:bottom center;
+  width:8px;height:20px;
+  background:linear-gradient(to bottom,#d4af37,#b8860b);
+  border-radius:2px 2px 0 0;
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);
+  z-index:10;
+}
+.practice-modal-inner #originalPanel .key-inserted::after{
+  content:'';position:absolute;bottom:-5px;left:50%;
+  transform:translateX(-50%);
+  width:18px;height:8px;
+  background:linear-gradient(to bottom,#c0c0c0,#888);
+  border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+.practice-modal-inner #originalPanel .key-switch-text{
+  margin-top:18px;font-size:16px;font-weight:bold;color:#333;
+}
+.practice-modal-inner #originalPanel .key-switch-text .en{
+  font-size:12px;color:#555;display:block;text-align:center;
+}
+.practice-modal-inner #originalPanel .speaker{
+  position:static;bottom:auto;right:auto;
+  width:75px;height:75px;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  grid-template-rows:repeat(6,1fr);gap:4px;margin-top:20px;
+}
+.practice-modal-inner #originalPanel .speaker-hole{
+  background:#333;border-radius:50%;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
+}
+.practice-modal-inner #originalPanel .bottom-left-panel{
+  position:absolute;bottom:25px;left:35px;
+  width:240px;height:95px;background:#c0c4c6;
+  border:2px solid #999;border-radius:5px;
+  display:flex;justify-content:flex-end;align-items:center;padding:12px;
+  box-shadow:inset 0 0 6px rgba(0,0,0,.2);
+}
+.practice-modal-inner #originalPanel .knob{
+  width:38px;height:38px;border-radius:50%;
+  background:#e0e4e6;border:2px solid #888;
+  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.3);
+  display:flex;justify-content:center;align-items:center;margin-right:25px;
+}
+.practice-modal-inner #originalPanel .knob::after{
+  content:'';width:10px;height:10px;background:#555;border-radius:50%;
+}
+.practice-modal-inner #originalPanel .knob-led{
+  position:absolute;bottom:-15px;right:6px;
+  width:8px;height:8px;background:#00ff00;border-radius:50%;
+  box-shadow:0 0 6px #00ff00;
+}
+.practice-modal-inner #originalPanel .bottom-right-label{
+  position:absolute;top:15px;right:25px;
+  background:#e67e22;color:#fff;padding:10px 15px;
+  font-size:16px;border-radius:4px;font-weight:bold;
+  box-shadow:0 2px 5px rgba(0,0,0,.3);
+  z-index:20;text-align:center;line-height:1.4;
+}
 </style>
 </head>
 <body>
@@ -539,140 +791,176 @@ html.phone-rotated .practice-modal-close{position:fixed !important;top:10px !imp
         <button class="practice-btn" id="practiceBtn">练习</button>
         <button class="reset-btn" id="resetBtn">重置</button>
       </div>
-      <div class="logo-area">
-        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/><path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/></svg>
-        <div class="logo-text"><span class="chinese">青鸟消防</span><span class="english">JADE BIRD FIRE</span></div>
-      </div>
-      <div class="alarm-module">
-        <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
-        <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
-      </div>
-      <div class="indicator-grid">
-        <div class="indicator-column">
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
-          <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
-          <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
-        </div>
-        <div class="indicator-column">
-          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
-          <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
-          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">消音<span class="en">Silence</span></div></div>
-          <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
-          <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
+      <div class="header">
+        <div class="logo-area">
+          <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
+            <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
+          </svg>
+          <div class="logo-text">
+            <span class="chinese">青鸟消防</span>
+            <span class="english">JADE BIRD FIRE</span>
+          </div>
         </div>
       </div>
-      <div class="screen-frame">
-        <div class="screen" id="mainScreen">
-          <div class="screen-header"><span>首警: 25/07/03 12:48 2-1</span><span>青鸟消防</span></div>
-          <div class="screen-content">
-            <div class="screen-left">
-              <div class="msg-item msg-highlight"><span class="msg-time">0002 25/07/03 12:48 2-12 手报</span><span class="msg-text">展板手报</span></div>
-              <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-1</span><span class="msg-text">展板烟感</span></div>
-              <div style="margin-top:5px;"></div>
-              <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span></div>
-              <div class="msg-item"><span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
-              <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-2 动作</span><span class="msg-text">展板温感</span></div>
+      <div class="main-body">
+        <div class="left-panel">
+          <div class="alarm-module">
+            <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
+            <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
+          </div>
+          <div class="indicator-grid">
+            <div class="indicator-column">
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
+              <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
+              <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
             </div>
-            <div class="screen-right">
-              <div>
-                <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
-                <div style="margin-bottom:5px;">25/07/03 12:48</div>
-                <div>声光故障: 000</div><div>声光屏蔽: 000</div>
-                <div>用户权限: 0</div><div>正常 运行</div>
-                <div>手动:允许</div><div>自动:禁止</div>
+            <div class="indicator-column">
+              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
+              <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
+              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">消音<span class="en">Silence</span></div></div>
+              <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
+              <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="center-panel">
+          <div class="screen-frame">
+            <div class="screen" id="mainScreen">
+              <div class="screen-header"><span>首警: 25/07/03 12:48 2-1</span><span>青鸟消防</span></div>
+              <div class="screen-content">
+                <div class="screen-left">
+                  <div class="msg-item msg-highlight"><span class="msg-time">0002 25/07/03 12:48 2-12 手报</span><span class="msg-text">展板手报</span></div>
+                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-1</span><span class="msg-text">展板烟感</span></div>
+                  <div style="margin-top:5px;"></div>
+                  <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span></div>
+                  <div class="msg-item"><span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
+                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-2 动作</span><span class="msg-text">展板温感</span></div>
+                </div>
+                <div class="screen-right">
+                  <div>
+                    <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
+                    <div style="margin-bottom:5px;">25/07/03 12:48</div>
+                    <div>声光故障: 000</div>
+                    <div>声光屏蔽: 000</div>
+                    <div>用户权限: 0</div>
+                    <div>正常 运行</div>
+                    <div>手动:允许</div>
+                    <div>自动:禁止</div>
+                  </div>
+                  <div class="screen-right-bottom">2025-07-03<br>17:06:01</div>
+                </div>
               </div>
-              <div class="screen-right-bottom">2025-07-03<br>17:06:01</div>
-            </div>
-          </div>
-          <div class="screen-footer">
-            <div class="footer-grid"><span>回首页</span><span>查火警</span><span>查联动</span><span>手动控制</span><span>查故障</span><span></span></div>
-          </div>
-        </div>
-        <div class="screen fault-screen" id="faultScreen" style="display:none">
-          <div class="screen-header"><span>故障信息</span><span>合计: 0002</span></div>
-          <div class="screen-content">
-            <div class="screen-left" style="flex:2.5;position:relative;">
-              <div class="msg-item fault-item-clickable" id="faultItem1"><span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span></div>
-              <div class="msg-item indent"><span class="msg-text">展板层号灯</span></div>
-              <div class="msg-item fault-item-clickable" id="faultItem2"><span class="msg-time">0001 25/07/03 12:48 备电故障</span></div>
-              <div class="guide-hand" id="guideHand" style="display:none;"></div>
-            </div>
-            <div class="screen-right">
-              <div>
-                <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
-                <div style="margin-bottom:5px;">25/07/03 12:48</div>
-                <div>声光故障: 000</div><div>声光屏蔽: 000</div>
-                <div>用户权限: 0</div><div>正常 运行</div>
-                <div>手动:允许</div><div>自动:禁止</div>
+              <div class="screen-footer">
+                <span class="screen-btn-text">回首页</span>
+                <span class="screen-btn-text">查火警</span>
+                <span class="screen-btn-text">查联动</span>
+                <span class="screen-btn-text">手动控制</span>
+                <span class="screen-btn-text">查故障</span>
               </div>
-              <div class="screen-right-bottom">2025-07-03<br>17:06:54</div>
+            </div>
+            <div class="screen fault-screen" id="faultScreen">
+              <div class="screen-header"><span>故障信息</span><span>合计: 0002</span></div>
+              <div class="screen-content">
+                <div class="screen-left" style="flex:2.5;position:relative;">
+                  <div class="msg-item fault-item-clickable" id="faultItem1"><span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span></div>
+                  <div class="msg-item indent"><span class="msg-text">展板层号灯</span></div>
+                  <div class="msg-item fault-item-clickable" id="faultItem2"><span class="msg-time">0001 25/07/03 12:48 备电故障</span></div>
+                  <div class="guide-hand" id="guideHand" style="display:none;"></div>
+                </div>
+                <div class="screen-right">
+                  <div>
+                    <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
+                    <div style="margin-bottom:5px;">25/07/03 12:48</div>
+                    <div>声光故障: 000</div>
+                    <div>声光屏蔽: 000</div>
+                    <div>用户权限: 0</div>
+                    <div>正常 运行</div>
+                    <div>手动:允许</div>
+                    <div>自动:禁止</div>
+                  </div>
+                  <div class="screen-right-bottom">2025-07-03<br>17:06:54</div>
+                </div>
+              </div>
+              <div class="screen-footer">
+                <span class="screen-btn-text">回首页</span>
+                <span class="screen-btn-text">上一条</span>
+                <span class="screen-btn-text">下一条</span>
+                <span class="screen-btn-text">上一页</span>
+                <span class="screen-btn-text">下一页</span>
+                <span class="screen-btn-text">退出</span>
+              </div>
             </div>
           </div>
-          <div class="screen-footer">
-            <div class="footer-grid"><span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span></div>
+          <div class="keyboard-area">
+            <div class="f-row">
+              <button class="btn-f">F1</button>
+              <button class="btn-f">F2</button>
+              <button class="btn-f">F3</button>
+              <button class="btn-f">F4</button>
+              <button class="btn-f">F5</button>
+              <button class="btn-f" id="f6Btn">F6</button>
+            </div>
+            <div class="keyboard-row">
+              <button class="btn btn-num">1<span class="sub">..</span></button>
+              <button class="btn btn-num">2<span class="sub">abc</span></button>
+              <button class="btn btn-num">3<span class="sub">def</span></button>
+              <button class="btn btn-func">功能<br><span class="sub">Function</span></button>
+              <button class="btn btn-arrow">▲</button>
+              <button class="btn btn-white">取消<br><span class="sub">Cancel</span></button>
+              <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
+            </div>
+            <div class="keyboard-row">
+              <button class="btn btn-num">4<span class="sub">ghi</span></button>
+              <button class="btn btn-num">5<span class="sub">jkl</span></button>
+              <button class="btn btn-num">6<span class="sub">mno</span></button>
+              <button class="btn btn-arrow">◀</button>
+              <button class="btn btn-func">确定<br><span class="sub">Enter</span></button>
+              <button class="btn btn-arrow">▶</button>
+              <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
+            </div>
+            <div class="keyboard-row">
+              <button class="btn btn-num">7<span class="sub">pqrs</span></button>
+              <button class="btn btn-num">8<span class="sub">tuv</span></button>
+              <button class="btn btn-num">9<span class="sub">wxyz</span></button>
+              <button class="btn btn-white">中/英<br><span class="sub">CN/EN</span></button>
+              <button class="btn btn-arrow">▼</button>
+              <button class="btn btn-white">自定义<br><span class="sub">Custom</span></button>
+              <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
+            </div>
+            <div class="keyboard-row">
+              <button class="btn btn-num">*</button>
+              <button class="btn btn-num">0<span class="sub">_</span></button>
+              <button class="btn btn-num">#</button>
+              <button class="btn btn-white">声光启<br><span class="sub">Signal On</span></button>
+              <button class="btn btn-white">声光停<br><span class="sub">Signal Off</span></button>
+              <button class="btn btn-white">联动<br><span class="sub">Control</span></button>
+              <button class="btn btn-large red-text">启动<br><span class="sub">Start</span></button>
+            </div>
+          </div>
+        </div>
+        <div class="right-panel">
+          <div class="digital-display">170</div>
+          <div class="key-switch-area">
+            <div class="key-labels">
+              <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
+              <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
+            </div>
+            <div class="key-switch">
+              <div class="key-inserted"></div>
+              <div class="key-switch-inner"><div class="key-switch-slot" style="transform:rotate(-45deg);"></div></div>
+            </div>
+            <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
+          </div>
+          <div class="speaker">
+            <script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script>
           </div>
         </div>
       </div>
-      <div class="keyboard-area">
-        <div class="f-row">
-          <button class="btn-f" data-key="F1">F1</button>
-          <button class="btn-f" data-key="F2">F2</button>
-          <button class="btn-f" data-key="F3">F3</button>
-          <button class="btn-f" data-key="F4">F4</button>
-          <button class="btn-f" data-key="F5">F5</button>
-          <button class="btn-f" data-key="F6" id="f6Btn">F6</button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
-          <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
-          <button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
-          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button>
-          <button class="btn btn-arrow" data-key="▲">▲</button>
-          <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
-          <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
-          <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
-          <button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
-          <button class="btn btn-arrow" data-key="◀">◀</button>
-          <button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button>
-          <button class="btn btn-arrow" data-key="▶">▶</button>
-          <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
-          <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
-          <button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
-          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button>
-          <button class="btn btn-arrow" data-key="▼">▼</button>
-          <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
-          <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn btn-num" data-key="*">*</button>
-          <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
-          <button class="btn btn-num" data-key="#">#</button>
-          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button>
-          <button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button>
-          <button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button>
-          <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
-        </div>
-      </div>
-      <div class="digital-display">170</div>
-      <div class="key-switch-area">
-        <div class="key-labels">
-          <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
-          <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
-        </div>
-        <div class="key-switch"><div class="key-inserted"></div><div class="key-switch-inner"><div class="key-switch-slot" style="transform:rotate(-45deg);"></div></div></div>
-        <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
-      </div>
-      <div class="speaker"><script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script></div>
       <div class="bottom-left-panel"><div class="knob"><div class="knob-led"></div></div></div>
       <div class="bottom-right-label">火灾报警控制器<br>(联动型)</div>
     </div>
