@@ -6,7 +6,6 @@
 <title>中级消控实测模拟练习</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
-
 html,body{
   width:100%;height:100%;overflow:hidden;background:#0e1a24;
   background-image:
@@ -14,27 +13,16 @@ html,body{
     radial-gradient(circle at 85% 75%,rgba(255,140,60,.08),transparent 50%),
     linear-gradient(160deg,#101f2c,#162b3b 50%,#0e1a24);
   font-family:'Microsoft YaHei','PingFang SC','SimHei',system-ui,sans-serif;
-  display:flex;justify-content:center;align-items:center;padding:12px;
-  margin:0;
+  display:flex;justify-content:center;align-items:center;padding:12px;margin:0;
 }
-
-#app-root{
-  width:100%;height:100%;
-  display:flex;justify-content:center;align-items:center;
-  position:relative;
-}
-
-/* ========== 主页 ========== */
+#app-root{width:100%;height:100%;display:flex;justify-content:center;align-items:center;position:relative}
 .home-wrapper{
   max-width:1100px;width:100%;height:calc(100% - 24px);max-height:760px;
-  background:rgba(18,32,46,.72);
-  backdrop-filter:blur(24px) saturate(140%);
-  -webkit-backdrop-filter:blur(24px) saturate(140%);
-  border-radius:28px;
+  background:rgba(18,32,46,.72);backdrop-filter:blur(24px) saturate(140%);
+  -webkit-backdrop-filter:blur(24px) saturate(140%);border-radius:28px;
   border:1px solid rgba(120,180,240,.14);
   box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.03) inset;
-  padding:22px 24px 18px;
-  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  padding:22px 24px 18px;display:flex;flex-direction:column;position:relative;overflow:hidden;
 }
 .home-wrapper::before{
   content:'';position:absolute;top:-100px;right:-100px;width:260px;height:260px;
@@ -49,8 +37,7 @@ html,body{
 }
 .brand{display:flex;align-items:center;gap:12px}
 .brand-icon{
-  width:42px;height:42px;
-  background:linear-gradient(145deg,#3f9ef0,#1a5590);
+  width:42px;height:42px;background:linear-gradient(145deg,#3f9ef0,#1a5590);
   border-radius:13px;display:flex;align-items:center;justify-content:center;
   box-shadow:0 8px 18px -6px #1c5f9e,0 0 0 1px rgba(255,255,255,.12) inset;
 }
@@ -64,8 +51,7 @@ html,body{
 .header-stats{display:flex;gap:10px}
 .stat-item{
   display:flex;flex-direction:column;align-items:center;
-  background:rgba(30,55,80,.5);
-  border:1px solid rgba(120,180,240,.15);
+  background:rgba(30,55,80,.5);border:1px solid rgba(120,180,240,.15);
   border-radius:11px;padding:5px 14px;min-width:68px;
 }
 .stat-label{font-size:9px;color:#8fb8d8;letter-spacing:.8px;font-weight:600}
@@ -74,29 +60,21 @@ html,body{
   background:linear-gradient(135deg,#ffb347,#ff8c1a);
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
-.section-title{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:14px;position:relative;z-index:2;flex-shrink:0;
-}
+.section-title{display:flex;align-items:center;gap:12px;margin-bottom:14px;position:relative;z-index:2;flex-shrink:0}
 .section-title h2{font-size:16px;font-weight:700;color:#ffffffd9}
 .section-title .badge{
-  font-size:11px;
-  background:linear-gradient(135deg,#2a4b6e,#1e3a54);
-  color:#aad0ff;padding:3px 10px;border-radius:40px;
-  border:1px solid #3a6f9e;
+  font-size:11px;background:linear-gradient(135deg,#2a4b6e,#1e3a54);
+  color:#aad0ff;padding:3px 10px;border-radius:40px;border:1px solid #3a6f9e;
 }
 .cards-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:12px;flex:1;position:relative;z-index:2;
-  align-content:start;min-height:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  flex:1;position:relative;z-index:2;align-content:start;min-height:0;
 }
 .topic-card{
   background:linear-gradient(155deg,rgba(38,62,83,.95),rgba(22,42,58,.98));
-  border-radius:18px;
-  border:1px solid rgba(90,150,210,.22);
+  border-radius:18px;border:1px solid rgba(90,150,210,.22);
   box-shadow:0 16px 28px -14px #050c14,0 1px 0 rgba(255,255,255,.08) inset;
-  padding:14px 12px 10px;
-  display:flex;flex-direction:column;
+  padding:14px 12px 10px;display:flex;flex-direction:column;
   transition:all .25s cubic-bezier(.2,.9,.3,1.1);
   position:relative;overflow:hidden;cursor:pointer;min-height:0;
 }
@@ -105,22 +83,19 @@ html,body{
   background:linear-gradient(90deg,#4da6ff,#7bc0ff,#4da6ff);opacity:.85;
 }
 .topic-card:hover{
-  transform:translateY(-4px);
-  border-color:rgba(120,190,250,.45);
+  transform:translateY(-4px);border-color:rgba(120,190,250,.45);
   box-shadow:0 22px 36px -16px #030a12,0 0 0 1px rgba(100,170,230,.25) inset;
 }
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
 .card-icon{
-  width:34px;height:34px;
-  background:linear-gradient(145deg,#1e3f5a,#142c3e);
+  width:34px;height:34px;background:linear-gradient(145deg,#1e3f5a,#142c3e);
   border-radius:10px;display:flex;align-items:center;justify-content:center;
   font-size:16px;border:1px solid rgba(90,150,210,.35);
 }
 .card-badge{
   background:linear-gradient(135deg,#2f577b,#1e3f5a);
   color:#bbddff;padding:2px 8px;border-radius:40px;
-  font-size:9px;font-weight:700;
-  border:1px solid rgba(90,150,210,.35);
+  font-size:9px;font-weight:700;border:1px solid rgba(90,150,210,.35);
 }
 .card-title{font-size:12px;font-weight:700;color:#fff;line-height:1.35;margin-bottom:5px}
 .card-desc{font-size:10px;color:#b0cee4;line-height:1.4;margin-bottom:10px;flex:1}
@@ -130,24 +105,21 @@ html,body{
 }
 .card-tags{display:flex;gap:4px;flex-wrap:wrap}
 .tag{
-  background:rgba(28,51,70,.85);color:#9ec3e0;
-  font-size:8px;padding:2px 6px;border-radius:20px;
-  border:1px solid rgba(70,120,170,.35);
+  background:rgba(28,51,70,.85);color:#9ec3e0;font-size:8px;
+  padding:2px 6px;border-radius:20px;border:1px solid rgba(70,120,170,.35);
 }
 .start-btn{
   background:linear-gradient(145deg,#3d8fd9,#266bb0);
-  border:none;border-radius:40px;padding:6px 12px;
-  color:#fff;font-weight:700;font-size:11px;
-  display:flex;align-items:center;gap:4px;cursor:pointer;
+  border:none;border-radius:40px;padding:6px 12px;color:#fff;
+  font-weight:700;font-size:11px;display:flex;align-items:center;
+  gap:4px;cursor:pointer;
   box-shadow:0 6px 12px -6px #1b5180,inset 0 1px 0 rgba(255,255,255,.25);
-  border:1px solid rgba(120,190,250,.55);
-  transition:all .18s;white-space:nowrap;
+  border:1px solid rgba(120,190,250,.55);transition:all .18s;white-space:nowrap;
 }
 .start-btn:hover{background:linear-gradient(145deg,#4b9cf0,#2f7bc0);transform:translateY(-1px)}
 .footer-note{
   text-align:center;font-size:11px;color:#7a9cb8;
-  margin-top:8px;padding-top:10px;
-  border-top:1px solid rgba(90,150,210,.1);
+  margin-top:8px;padding-top:10px;border-top:1px solid rgba(90,150,210,.1);
   display:flex;justify-content:space-between;align-items:center;
   position:relative;z-index:2;flex-shrink:0;
 }
@@ -157,7 +129,7 @@ html,body{
   font-size:10px;border:1px solid rgba(70,120,170,.3);
 }
 
-/* ========== 序章：设备识别弹窗 ========== */
+/* 序章弹窗 */
 .device-quiz-modal{
   position:fixed;top:0;left:0;width:100%;height:100%;
   background:rgba(5,12,20,.95);
@@ -167,50 +139,34 @@ html,body{
 }
 .device-quiz-modal.active{display:flex}
 .device-quiz-container{
-  background:#152533;border-radius:22px;
-  padding:20px 22px 16px;
-  max-width:720px;width:100%;
-  max-height:calc(100% - 28px);
+  background:#152533;border-radius:22px;padding:20px 22px 16px;
+  max-width:720px;width:100%;max-height:calc(100% - 28px);
   display:flex;flex-direction:column;
   box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px #2f5573 inset;
   overflow:hidden;position:relative;
 }
 .device-quiz-close{
-  position:absolute;top:12px;right:16px;
-  width:34px;height:34px;border-radius:50%;
-  background:rgba(0,0,0,.4);
-  border:1px solid rgba(120,180,240,.3);
-  color:#c0d9ee;font-size:20px;font-weight:300;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .2s;z-index:100;line-height:1;
+  position:absolute;top:12px;right:16px;width:34px;height:34px;
+  border-radius:50%;background:rgba(0,0,0,.4);
+  border:1px solid rgba(120,180,240,.3);color:#c0d9ee;
+  font-size:20px;font-weight:300;display:flex;align-items:center;
+  justify-content:center;cursor:pointer;transition:all .2s;z-index:100;line-height:1;
 }
 .device-quiz-close:hover{background:#1f405b;color:#fff;transform:rotate(90deg)}
-.device-quiz-header{
-  display:flex;align-items:center;gap:10px;
-  margin-bottom:12px;flex-shrink:0;
-}
+.device-quiz-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-shrink:0}
 .device-quiz-header h2{font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
 .device-quiz-header .quiz-subtitle{
-  font-size:11px;color:#8fb8d8;
-  background:rgba(30,55,80,.6);
+  font-size:11px;color:#8fb8d8;background:rgba(30,55,80,.6);
   padding:3px 10px;border-radius:20px;
-  border:1px solid rgba(90,150,210,.2);
-  margin-left:auto;
+  border:1px solid rgba(90,150,210,.2);margin-left:auto;
 }
 .device-quiz-question{
-  font-size:15px;font-weight:600;color:#e0f0ff;
-  margin-bottom:12px;line-height:1.5;
-  padding:10px 12px;
-  background:rgba(30,55,80,.35);
-  border-radius:10px;border-left:3px solid #4da6ff;
-  flex-shrink:0;
+  font-size:15px;font-weight:600;color:#e0f0ff;margin-bottom:12px;
+  line-height:1.5;padding:10px 12px;background:rgba(30,55,80,.35);
+  border-radius:10px;border-left:3px solid #4da6ff;flex-shrink:0;
 }
 .device-quiz-question .target{color:#ffb347;font-weight:800}
-.device-quiz-options{
-  display:grid;grid-template-columns:repeat(2,1fr);
-  gap:12px;flex:1;overflow:hidden;
-  align-content:start;min-height:0;
-}
+.device-quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex:1;overflow:hidden;align-content:start;min-height:0}
 .device-quiz-options.image-grid{grid-template-rows:repeat(2,1fr)}
 .device-quiz-options.image-grid .device-quiz-option{height:100%;min-height:0;max-height:170px}
 .device-quiz-options.image-grid .device-quiz-option img{
@@ -224,8 +180,9 @@ html,body{
   color:#b0cee4;text-align:center;display:flex;align-items:center;justify-content:center;
 }
 .device-quiz-option{
-  background:#0f1f2e;border:2px solid #2d4b63;border-radius:12px;cursor:pointer;
-  transition:all .2s;display:flex;flex-direction:column;overflow:hidden;padding:6px;
+  background:#0f1f2e;border:2px solid #2d4b63;border-radius:12px;
+  cursor:pointer;transition:all .2s;display:flex;flex-direction:column;
+  overflow:hidden;padding:6px;
 }
 .device-quiz-option:hover{border-color:#4da6ff;background:#142c3e;transform:translateY(-2px)}
 .device-quiz-option.correct{border-color:#2ecc71;box-shadow:0 0 0 3px #2ecc71,0 0 20px rgba(46,204,113,.3)}
@@ -233,1213 +190,265 @@ html,body{
 .device-quiz-option.wrong{border-color:#e74c3c;box-shadow:0 0 0 3px #e74c3c,0 0 20px rgba(231,76,60,.3)}
 .device-quiz-option.wrong .option-text{color:#e4a3a3}
 .device-quiz-image-box{flex-shrink:0;display:flex;justify-content:center;margin-bottom:12px}
-.device-quiz-image-box img{
-  height:160px;max-width:100%;border-radius:10px;
-  border:2px solid #2d4b63;background:#0a1622;object-fit:contain;padding:4px;
-}
-.device-quiz-feedback{
-  text-align:center;font-size:13px;font-weight:700;
-  padding:9px;border-radius:10px;margin-top:10px;display:none;flex-shrink:0;
-}
+.device-quiz-image-box img{height:160px;max-width:100%;border-radius:10px;border:2px solid #2d4b63;background:#0a1622;object-fit:contain;padding:4px}
+.device-quiz-feedback{text-align:center;font-size:13px;font-weight:700;padding:9px;border-radius:10px;margin-top:10px;display:none;flex-shrink:0}
 .device-quiz-feedback.success{display:block;background:#1e4a2e;color:#a3e4b8;border:1px solid #2ecc71}
 .device-quiz-feedback.fail{display:block;background:#4a1e1e;color:#e4a3a3;border:1px solid #e74c3c}
 .device-quiz-next-btn{
   display:block;width:100%;padding:10px;margin-top:10px;
   background:linear-gradient(145deg,#3d8fd9,#266bb0);
   border:none;border-radius:10px;color:#fff;font-size:14px;font-weight:700;
-  cursor:pointer;transition:all .2s;flex-shrink:0;
-  border:1px solid rgba(120,190,250,.5);
+  cursor:pointer;transition:all .2s;flex-shrink:0;border:1px solid rgba(120,190,250,.5);
 }
 .device-quiz-next-btn:hover{background:linear-gradient(145deg,#4b9cf0,#2f7bc0)}
 .device-quiz-next-btn.secondary{background:linear-gradient(145deg,#3f5567,#2e4254);border-color:#4e6377}
 .device-quiz-score{text-align:center;font-size:11px;color:#8fb8d8;margin-top:6px;flex-shrink:0}
 
-/* ========== 练习弹窗容器 ========== */
+/* 练习弹窗 */
 .practice-modal{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:#0a1219;
+  position:fixed;top:0;left:0;width:100%;height:100%;background:#0a1219;
   display:none;justify-content:center;align-items:center;
   z-index:10000;overflow:hidden;touch-action:none;
-  -webkit-overflow-scrolling:none;overscroll-behavior:none;
 }
 .practice-modal.active{display:flex}
 .practice-modal-inner{
-  width:100%;height:100%;
-  display:flex;justify-content:center;align-items:center;
+  width:100%;height:100%;display:flex;justify-content:center;align-items:center;
   background:radial-gradient(circle at 50% 30%,#16283a 0%,#0a1219 80%);
   position:relative;overflow:hidden;
 }
 .practice-modal-close{
-  position:absolute;top:16px;right:20px;
-  font-size:28px;font-weight:300;color:#c0d9ee;
-  cursor:pointer;background:rgba(0,0,0,.45);
+  position:absolute;top:16px;right:20px;font-size:28px;font-weight:300;
+  color:#c0d9ee;cursor:pointer;background:rgba(0,0,0,.45);
   width:46px;height:46px;border-radius:50%;
   display:flex;align-items:center;justify-content:center;
-  transition:all .2s;z-index:100;
-  border:1px solid rgba(120,180,240,.35);
-  line-height:1;backdrop-filter:blur(8px);
-  box-shadow:0 4px 16px rgba(0,0,0,.5);
+  transition:all .2s;z-index:100;border:1px solid rgba(120,180,240,.35);
+  line-height:1;backdrop-filter:blur(8px);box-shadow:0 4px 16px rgba(0,0,0,.5);
 }
 .practice-modal-close:hover{background:#1f405b;color:#fff;transform:rotate(90deg);border-color:#6aabf0}
 
-/* ===== 课题1 面板（完全按原始文件1:1覆盖） ===== */
-.practice-modal-inner .panel{
-  width:1300px;height:720px;
-  background:#d2d6d8;
-  border:10px solid #a8aeaf;
-  border-radius:16px;
+/* ===== 通用面板（课题1/2/3 共用） ===== */
+.panel,.panel2,.panel3{
+  background:#d2d6d8;border:10px solid #a8aeaf;border-radius:18px;
   box-shadow:0 25px 50px rgba(0,0,0,.6),inset 0 0 12px rgba(255,255,255,.5),inset 0 0 2px rgba(0,0,0,.3);
-  position:relative;display:flex;flex-direction:column;
-  padding:20px 35px;overflow:hidden;margin:0 auto;
-  font-family:'Microsoft YaHei','SimHei',Arial,sans-serif;
-  transform-origin:center center;flex-shrink:0;
+  position:relative;padding:20px 35px;overflow:hidden;
+  flex-shrink:0;transform-origin:center center;
 }
-.practice-modal-inner .panel .lesson-header{
-  position:absolute;top:25px;left:35px;
-  display:flex;align-items:center;gap:10px;z-index:50;
-}
-.practice-modal-inner .panel .lesson-title{
-  font-size:15px;font-weight:bold;color:#fff;
-  background:#2b6ca3;padding:6px 14px;border-radius:4px;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
+.panel{width:1300px;height:720px}
+.panel2{width:1400px;height:780px}
+.panel3{width:1400px;height:780px}
+.lesson-header{position:absolute;top:22px;left:35px;display:flex;align-items:center;gap:10px;z-index:50}
+.lesson-title{
+  font-size:15px;font-weight:bold;color:#fff;background:#2b6ca3;
+  padding:7px 16px;border-radius:4px;box-shadow:0 2px 6px rgba(0,0,0,.3);
   letter-spacing:.5px;white-space:nowrap;border:1px solid #1a4a73;
 }
-.practice-modal-inner .panel .practice-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#e67e22;padding:6px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #b85e10;
+.practice-btn{
+  font-size:14px;font-weight:bold;color:#fff;background:#e67e22;
+  padding:7px 16px;border:none;border-radius:4px;cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);transition:background .2s;
+  border:1px solid #b85e10;
 }
-.practice-modal-inner .panel .practice-btn:hover{background:#d35400}
-.practice-modal-inner .panel .practice-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
-.practice-modal-inner .panel .reset-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#c0392b;padding:6px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #a93226;
-  display:none;
+.reset-btn{
+  font-size:14px;font-weight:bold;color:#fff;background:#c0392b;
+  padding:7px 16px;border:none;border-radius:4px;cursor:pointer;
+  box-shadow:0 2px 6px rgba(0,0,0,.3);transition:background .2s;
+  border:1px solid #a93226;display:none;
 }
-.practice-modal-inner .panel .reset-btn:hover{background:#a93226}
-.practice-modal-inner .panel .reset-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
-.practice-modal-inner .panel .header{
-  display:flex;align-items:center;height:60px;
-  margin-bottom:10px;justify-content:flex-end;
+.logo-area{position:absolute;top:70px;left:45px;display:flex;align-items:center;z-index:5}
+.logo-svg{width:46px;height:46px;margin-right:12px}
+.logo-text{display:flex;flex-direction:column}
+.logo-text .chinese{font-size:24px;font-weight:bold;color:#2b6ca3;letter-spacing:2px;line-height:1.1}
+.logo-text .english{font-size:11px;color:#2b6ca3;letter-spacing:1px;opacity:.8}
+.alarm-module{
+  position:absolute;top:145px;left:45px;display:flex;
+  border:3px solid #555;border-radius:10px;padding:14px 36px;
+  gap:60px;background:#d2d6d8;box-shadow:inset 0 1px 4px rgba(0,0,0,.2);z-index:5;
 }
-.practice-modal-inner .panel .logo-area{display:flex;align-items:center;width:260px}
-.practice-modal-inner .panel .logo-svg{width:50px;height:50px;margin-right:12px}
-.practice-modal-inner .panel .logo-text{display:flex;flex-direction:column}
-.practice-modal-inner .panel .logo-text .chinese{font-size:24px;font-weight:bold;color:#2b6ca3;letter-spacing:1px}
-.practice-modal-inner .panel .logo-text .english{font-size:12px;color:#2b6ca3;letter-spacing:.5px}
-.practice-modal-inner .panel .main-body{display:flex;flex:1;gap:20px}
-.practice-modal-inner .panel .left-panel{
-  width:280px;padding-top:15px;
-  display:flex;flex-direction:column;gap:20px;
-}
-.practice-modal-inner .panel .alarm-module{
-  display:flex;border:3px solid #555;border-radius:10px;
-  padding:12px 20px;gap:40px;background:#d2d6d8;
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.2);
-}
-.practice-modal-inner .panel .alarm-item{display:flex;align-items:center;gap:10px}
-.practice-modal-inner .panel .alarm-item .led-dot{margin-bottom:0}
-.practice-modal-inner .panel .alarm-item .text{
-  display:flex;flex-direction:column;font-size:16px;
-  font-weight:bold;color:#333;line-height:1.1;
-}
-.practice-modal-inner .panel .alarm-item .en{font-size:11px;font-weight:normal;color:#555}
-.practice-modal-inner .panel .indicator-grid{display:flex;gap:30px;padding-left:5px}
-.practice-modal-inner .panel .indicator-column{
-  display:flex;flex-direction:column;gap:12px;flex:1;
-}
-.practice-modal-inner .panel .indicator-row{
-  display:flex;align-items:center;font-size:15px;color:#333;
-}
-.practice-modal-inner .panel .indicator-row .led-dot{
-  width:13px;height:13px;margin-right:8px;margin-bottom:0;flex-shrink:0;
-}
-.practice-modal-inner .panel .indicator-row .text{
-  line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
-}
-.practice-modal-inner .panel .indicator-row .en{
-  font-size:10px;color:#555;display:block;font-weight:normal;
-}
-.practice-modal-inner .panel .led-dot{
-  width:14px;height:14px;border-radius:50%;
-  background-color:#4a4a4a;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
-  border:1px solid #999;
-}
-.practice-modal-inner .panel .led-dot.red{
-  background-color:#ff1a1a;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
-  border:1px solid #cc0000;
-}
-.practice-modal-inner .panel .led-dot.green{
-  background-color:#00ff00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #00ff00,0 0 2px #00cc00;
-  border:1px solid #009900;
-}
-.practice-modal-inner .panel .led-dot.yellow{
-  background-color:#ffcc00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ffcc00,0 0 2px #ff9900;
-  border:1px solid #cc9900;
-}
-.practice-modal-inner .panel .led-dot.blinking{animation:blink 1s infinite}
+.alarm-item{display:flex;align-items:center;gap:14px}
+.alarm-item .led-dot{width:18px;height:18px;border-radius:50%;background-color:#4a4a4a;box-shadow:inset 0 2px 4px rgba(0,0,0,.6);border:1px solid #999;flex-shrink:0}
+.alarm-item .led-dot.red{background-color:#ff1a1a;box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;border:1px solid #cc0000}
+.alarm-item .text{display:flex;flex-direction:column;font-size:20px;font-weight:bold;color:#333;line-height:1.1}
+.alarm-item .text .en{font-size:12px;font-weight:normal;color:#555}
+.indicator-grid{position:absolute;top:240px;left:45px;display:flex;gap:60px;z-index:5}
+.indicator-column{display:flex;flex-direction:column;gap:20px}
+.indicator-row{display:flex;align-items:center;font-size:17px;color:#333;height:24px}
+.indicator-row .led-dot{width:15px;height:15px;border-radius:50%;background-color:#4a4a4a;box-shadow:inset 0 2px 4px rgba(0,0,0,.6);border:1px solid #999;margin-right:11px;flex-shrink:0}
+.indicator-row .led-dot.red{background-color:#ff1a1a;box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;border:1px solid #cc0000}
+.indicator-row .led-dot.green{background-color:#00ff00;box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #00ff00,0 0 2px #00cc00;border:1px solid #009900}
+.indicator-row .led-dot.yellow{background-color:#ffcc00;box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ffcc00,0 0 2px #ff9900;border:1px solid #cc9900}
+.indicator-row .led-dot.blinking{animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.practice-modal-inner .panel .center-panel{
-  flex:1;display:flex;flex-direction:column;align-items:center;position:relative;
-}
-.practice-modal-inner .panel .screen-frame{
-  width:100%;height:310px;background:#a8aeaf;
-  border-radius:8px;padding:10px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 2px 5px rgba(255,255,255,.6);
-  position:relative;
-}
-.practice-modal-inner .panel .screen{
-  width:100%;height:100%;background:#5cb8e6;
-  border:2px solid #444;display:flex;flex-direction:column;
-  font-family:'Consolas','Courier New',monospace;font-size:14px;
-  color:#fff;overflow:hidden;
-  box-shadow:inset 0 0 12px rgba(0,0,0,.4);
-  position:relative;
-}
-.practice-modal-inner .panel .screen-header{
-  display:flex;justify-content:space-between;
-  padding:5px 8px;background:#2e7ba6;font-weight:bold;
-  border-bottom:2px solid #1c5a7d;color:#e0f0ff;
-}
-.practice-modal-inner .panel .screen-content{
-  display:flex;flex:1;padding:6px;gap:6px;
-}
-.practice-modal-inner .panel .screen-left{
-  flex:2;display:flex;flex-direction:column;gap:4px;
-}
-.practice-modal-inner .panel .screen-right{
-  flex:1;border-left:1px solid #2e7ba6;padding-left:8px;
-  display:flex;flex-direction:column;justify-content:space-between;
-}
-.practice-modal-inner .panel .msg-item{display:flex;line-height:1.4;padding:2px 3px}
-.practice-modal-inner .panel .msg-time{color:#fff;margin-right:6px}
-.practice-modal-inner .panel .msg-text{color:#fff;flex:1}
-.practice-modal-inner .panel .msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
-.practice-modal-inner .panel .screen-right-bottom{text-align:right;font-size:12px;color:#cce8ff}
-.practice-modal-inner .panel .screen-footer{
-  display:flex;background:#2e7ba6;
-  border-top:2px solid #1c5a7d;padding:4px;gap:35px;
-  justify-content:center;font-size:14px;font-weight:bold;color:#e0f0ff;
-}
-.practice-modal-inner .panel .screen-btn-text{cursor:default;padding:0;pointer-events:none}
-.practice-modal-inner .panel .keyboard-area{
-  margin-top:20px;width:100%;
-  display:flex;flex-direction:column;gap:8px;align-items:center;
-}
-.practice-modal-inner .panel .f-row{
-  display:flex;gap:14px;margin-bottom:8px;justify-content:center;
-}
-.practice-modal-inner .panel .btn-f{
-  background:#6fa8d6;color:#fff;width:65px;height:35px;
-  border-radius:5px;font-size:15px;font-weight:bold;border:none;
-  cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.practice-modal-inner .panel .btn-f:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
-.practice-modal-inner .panel .keyboard-row{
-  display:flex;gap:10px;align-items:center;justify-content:center;
-}
-.practice-modal-inner .panel .btn{
-  border-radius:5px;border:none;font-weight:bold;cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-  transition:all .1s;position:relative;line-height:1.1;padding:0 3px;
-}
-.practice-modal-inner .panel .btn:active{box-shadow:inset 0 2px 4px rgba(0,0,0,.5);transform:translateY(1px)}
-.practice-modal-inner .panel .btn-num{
-  background:#5b8db8;color:#fff;font-size:16px;
-  width:65px;height:38px;flex-direction:column;
-}
-.practice-modal-inner .panel .btn-num .sub{font-size:10px;margin-top:-1px;font-weight:normal}
-.practice-modal-inner .panel .btn-func{
-  background:#ff7e00;color:#fff;font-size:14px;
-  width:65px;height:38px;flex-direction:column;
-}
-.practice-modal-inner .panel .btn-func .sub{font-size:10px;margin-top:1px;font-weight:normal}
-.practice-modal-inner .panel .btn-white{
-  background:#e0e4e6;color:#333;font-size:13px;
-  width:65px;height:38px;flex-direction:column;
-}
-.practice-modal-inner .panel .btn-white .sub{font-size:10px;color:#666;margin-top:1px;font-weight:normal}
-.practice-modal-inner .panel .btn-large{width:65px;height:38px;font-size:14px;flex-direction:column}
-.practice-modal-inner .panel .btn-large.red-text{background:#d32f2f;color:#fff}
-.practice-modal-inner .panel .btn-large.green-text{background:#388e3c;color:#fff}
-.practice-modal-inner .panel .btn-large .sub{
-  font-size:10px;color:rgba(255,255,255,.8);
-  margin-top:1px;font-weight:normal;
-}
-.practice-modal-inner .panel .btn-arrow{
-  width:65px;height:38px;background:#ff7e00;color:#fff;font-size:20px;
-}
-.practice-modal-inner .panel .right-panel{
-  width:170px;padding-top:15px;
-  display:flex;flex-direction:column;align-items:center;gap:20px;
-}
-.practice-modal-inner .panel .digital-display{
-  width:100px;height:45px;background:#1a1a1a;
-  border:2px solid #555;border-radius:4px;
-  display:flex;justify-content:center;align-items:center;
-  font-family:'Digital-7','Courier New',monospace;font-size:30px;
-  color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
-  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
-  letter-spacing:2px;position:relative;
-}
-.practice-modal-inner .panel .digital-display::after{
-  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
-  background-size:100% 4px;pointer-events:none;
-}
-.practice-modal-inner .panel .key-switch-area{
-  display:flex;flex-direction:column;align-items:center;
-  position:relative;width:100%;margin-top:15px;
-}
-.practice-modal-inner .panel .key-labels{
-  display:flex;justify-content:space-between;
-  width:120px;font-size:14px;color:#333;margin-bottom:8px;
-}
-.practice-modal-inner .panel .key-label-item{display:flex;flex-direction:column;align-items:center}
-.practice-modal-inner .panel .key-label-item .en{font-size:10px;color:#555}
-.practice-modal-inner .panel .key-switch{
-  width:50px;height:50px;
-  background:radial-gradient(circle at 30% 30%,#ccc,#666);
-  border-radius:50%;border:2px solid #444;
-  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.practice-modal-inner .panel .key-switch-inner{
-  width:38px;height:38px;background:#555;border-radius:50%;
-  display:flex;justify-content:center;align-items:center;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.8);
-}
-.practice-modal-inner .panel .key-inserted{
-  position:absolute;top:-5px;left:50%;
-  transform:translateX(-50%) rotate(-45deg);
-  transform-origin:bottom center;
-  width:8px;height:20px;
-  background:linear-gradient(to bottom,#d4af37,#b8860b);
-  border-radius:2px 2px 0 0;
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);
-  z-index:10;
-}
-.practice-modal-inner .panel .key-inserted::after{
-  content:'';position:absolute;bottom:-5px;left:50%;
-  transform:translateX(-50%);
-  width:18px;height:8px;
-  background:linear-gradient(to bottom,#c0c0c0,#888);
-  border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5);
-}
-.practice-modal-inner .panel .key-switch-text{
-  margin-top:18px;font-size:16px;font-weight:bold;color:#333;
-}
-.practice-modal-inner .panel .key-switch-text .en{
-  font-size:12px;color:#555;display:block;text-align:center;
-}
-.practice-modal-inner .panel .speaker{
-  width:75px;height:75px;
-  display:grid;grid-template-columns:repeat(6,1fr);
-  grid-template-rows:repeat(6,1fr);gap:4px;margin-top:20px;
-}
-.practice-modal-inner .panel .speaker-hole{
-  background:#333;border-radius:50%;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
-}
-.practice-modal-inner .panel .bottom-left-panel{
-  position:absolute;bottom:25px;left:35px;
-  width:240px;height:95px;background:#c0c4c6;
-  border:2px solid #999;border-radius:5px;
-  display:flex;justify-content:flex-end;align-items:center;padding:12px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.2);
-}
-.practice-modal-inner .panel .knob{
-  width:38px;height:38px;border-radius:50%;
-  background:#e0e4e6;border:2px solid #888;
-  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.3);
-  display:flex;justify-content:center;align-items:center;margin-right:25px;
-}
-.practice-modal-inner .panel .knob::after{
-  content:'';width:10px;height:10px;background:#555;border-radius:50%;
-}
-.practice-modal-inner .panel .knob-led{
-  position:absolute;bottom:-15px;right:6px;
-  width:8px;height:8px;background:#00ff00;border-radius:50%;
-  box-shadow:0 0 6px #00ff00;
-}
-.practice-modal-inner .panel .bottom-right-label{
-  position:absolute;top:15px;right:25px;
-  background:#e67e22;color:#fff;padding:10px 15px;
-  font-size:16px;border-radius:4px;font-weight:bold;
-  box-shadow:0 2px 5px rgba(0,0,0,.3);
-  z-index:20;text-align:center;line-height:1.4;
-}
-.practice-modal-inner .panel .fault-screen{display:none}
-.practice-modal-inner .panel .fault-screen.active{display:flex}
-.practice-modal-inner .panel .click-anywhere{
-  font-size:14px;color:#e67e22;text-align:center;
-  margin-top:20px;font-weight:bold;animation:pulse 1.5s infinite;
-}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.practice-modal-inner .panel .fault-item-clickable{cursor:pointer;transition:background .2s}
-.practice-modal-inner .panel .fault-item-clickable:hover{background:rgba(255,255,255,.2)}
+.indicator-row .text{line-height:1.1;display:flex;flex-direction:column;font-weight:bold}
+.indicator-row .text .en{font-size:11px;color:#555;font-weight:normal}
+.screen-frame{position:absolute;top:80px;left:470px;width:620px;height:360px;background:#a8aeaf;border-radius:10px;padding:12px;box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 3px 8px rgba(255,255,255,.6);z-index:5}
+.screen{width:100%;height:100%;background:#5cb8e6;border:2px solid #444;display:flex;flex-direction:column;font-family:'Consolas','Courier New',monospace;font-size:19px;color:#fff;overflow:hidden;box-shadow:inset 0 0 12px rgba(0,0,0,.4);position:relative}
+.screen-header{display:flex;justify-content:space-between;padding:8px 14px;background:#2e7ba6;font-weight:bold;border-bottom:2px solid #1c5a7d;color:#e0f0ff;font-size:18px;flex-shrink:0}
+.screen-content{display:flex;flex:1;padding:12px 14px;gap:12px;overflow:hidden}
+.screen-left{flex:2.5;display:flex;flex-direction:column;gap:8px}
+.screen-right{flex:1;border-left:1px solid #2e7ba6;padding-left:14px;display:flex;flex-direction:column;justify-content:space-between;font-size:17px}
+.screen-right-top div{line-height:1.7}
+.screen-right-bottom{text-align:right;font-size:17px;color:#cce8ff}
+.msg-item{display:flex;line-height:1.7;font-size:17px;padding:3px 0}
+.msg-time{color:#fff;margin-right:10px}
+.msg-text{color:#fff;flex:1}
+.msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
+.screen-footer{display:flex;background:#2e7ba6;border-top:2px solid #1c5a7d;padding:6px 10px;justify-content:center;font-size:17px;font-weight:bold;color:#e0f0ff;flex-shrink:0;min-height:44px;position:relative}
+.screen-btn-text{cursor:default;padding:0 4px;pointer-events:none}
+.footer-grid{display:grid;grid-template-columns:repeat(6,1fr);width:100%;align-items:center;text-align:center}
+.footer-grid span{white-space:nowrap;font-size:17px;font-weight:bold;color:#e0f0ff}
+.digital-display{position:absolute;top:125px;right:70px;width:130px;height:65px;background:#1a1a1a;border:3px solid #555;border-radius:5px;display:flex;justify-content:center;align-items:center;font-family:'Digital-7','Courier New',monospace;font-size:44px;color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;box-shadow:inset 0 0 10px rgba(0,0,0,.8);letter-spacing:4px;z-index:5}
+.digital-display::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);background-size:100% 4px;pointer-events:none}
+.key-switch-area{position:absolute;top:245px;right:55px;display:flex;flex-direction:column;align-items:center;width:150px;z-index:5}
+.key-labels{display:flex;justify-content:space-between;width:130px;font-size:16px;color:#333;margin-bottom:8px}
+.key-label-item{display:flex;flex-direction:column;align-items:center}
+.key-label-item .en{font-size:11px;color:#555}
+.key-switch{width:60px;height:60px;background:radial-gradient(circle at 30% 30%,#ccc,#666);border-radius:50%;border:2px solid #444;position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center}
+.key-switch-inner{width:46px;height:46px;background:#555;border-radius:50%;display:flex;justify-content:center;align-items:center;box-shadow:inset 0 2px 4px rgba(0,0,0,.8)}
+.key-inserted{position:absolute;top:-5px;left:50%;transform:translateX(-50%) rotate(-45deg);transform-origin:bottom center;width:9px;height:22px;background:linear-gradient(to bottom,#d4af37,#b8860b);border-radius:2px 2px 0 0;box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);z-index:10}
+.key-inserted::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:20px;height:9px;background:linear-gradient(to bottom,#c0c0c0,#888);border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5)}
+.key-switch-text{margin-top:20px;font-size:18px;font-weight:bold;color:#333;text-align:center}
+.key-switch-text .en{font-size:13px;color:#555;display:block;text-align:center}
+.speaker{position:absolute;bottom:130px;right:60px;width:88px;height:88px;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(6,1fr);gap:4px;z-index:5}
+.speaker-hole{background:#333;border-radius:50%;box-shadow:inset 0 1px 2px rgba(0,0,0,.8)}
+.bottom-left-panel{position:absolute;bottom:40px;left:45px;width:380px;height:170px;background:#c0c4c6;border:2px solid #999;border-radius:5px;display:flex;justify-content:flex-end;align-items:center;padding:14px 22px;box-shadow:inset 0 0 6px rgba(0,0,0,.2);z-index:5;overflow:hidden}
+.knob{width:38px;height:38px;border-radius:50%;background:#e0e4e6;border:2px solid #888;position:relative;box-shadow:0 2px 5px rgba(0,0,0,.3);display:flex;justify-content:center;align-items:center;margin-right:25px}
+.knob::after{content:'';width:10px;height:10px;background:#555;border-radius:50%}
+.knob-led{position:absolute;bottom:-15px;right:6px;width:8px;height:8px;background:#00ff00;border-radius:50%;box-shadow:0 0 6px #00ff00}
+.bottom-right-label{position:absolute;top:22px;right:35px;background:#e67e22;color:#fff;padding:9px 18px;font-size:17px;border-radius:4px;font-weight:bold;box-shadow:0 2px 5px rgba(0,0,0,.3);z-index:10;text-align:center;line-height:1.4}
+.keyboard-area{position:absolute;bottom:45px;left:430px;width:660px;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:5}
+.f-row{display:flex;gap:12px;margin-bottom:8px;justify-content:center}
+.btn-f{background:#3a7ca5;color:#fff;width:72px;height:40px;border-radius:5px;font-size:17px;font-weight:bold;border:none;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);display:flex;justify-content:center;align-items:center}
+.keyboard-row{display:flex;gap:10px;align-items:center;justify-content:center}
+.btn{border-radius:5px;border:none;font-weight:bold;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);display:flex;justify-content:center;align-items:center;transition:all .1s;position:relative;line-height:1.1;padding:0 3px;flex-shrink:0}
+.btn-num{background:#5b8db8;color:#fff;font-size:18px;width:72px;height:48px;flex-direction:column}
+.btn-num .sub{font-size:11px;margin-top:-1px;font-weight:normal}
+.btn-func{background:#ff7e00;color:#fff;font-size:15px;width:72px;height:48px;flex-direction:column}
+.btn-func .sub{font-size:11px;margin-top:1px;font-weight:normal}
+.btn-white{background:#e0e4e6;color:#333;font-size:14px;width:72px;height:48px;flex-direction:column}
+.btn-white .sub{font-size:11px;color:#666;margin-top:1px;font-weight:normal}
+.btn-large{width:72px;height:48px;font-size:15px;flex-direction:column}
+.btn-large.red-text{background:#d32f2f;color:#fff}
+.btn-large.green-text{background:#388e3c;color:#fff}
+.btn-large .sub{font-size:11px;color:rgba(255,255,255,.8);margin-top:1px;font-weight:normal}
+.btn-arrow{width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px}
+.op-task-panel{position:absolute;inset:0;display:none;flex-direction:column;padding:14px 18px;background:#c0c4c6;border-radius:3px;z-index:10}
+.op-task-panel.active{display:flex}
+.op-task-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:8px;margin-bottom:10px;border-bottom:2px solid #8a9296;flex-shrink:0}
+.op-task-title{font-size:14px;font-weight:bold;color:#2b6ca3;display:flex;align-items:center;gap:6px}
+.op-task-title .step-badge{font-size:11px;color:#fff;background:#e67e22;padding:2px 8px;border-radius:10px}
+.op-task-timer{font-size:15px;font-weight:bold;font-family:'Consolas','Courier New',monospace;color:#c0392b;background:rgba(192,57,43,.12);padding:4px 10px;border-radius:6px;border:1px solid rgba(192,57,43,.3);letter-spacing:1px}
+.op-task-timer.warning{color:#fff;background:#e74c3c;animation:pulse .8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+.op-task-question{font-size:14px;font-weight:bold;color:#333;line-height:1.4;margin-bottom:6px;flex-shrink:0}
+.op-task-question .highlight{color:#e67e22}
+.op-task-submit{margin-top:auto;flex-shrink:0;width:100%;padding:6px;background:#2b6ca3;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:bold;cursor:pointer;transition:background .2s}
+.op-task-submit:hover{background:#1d4f7a}
+.op-task-submit:disabled{background:#8a9296;cursor:not-allowed}
+.op-answer-btn{margin-top:6px;flex-shrink:0;width:100%;padding:6px;background:#e67e22;color:#fff;border:none;border-radius:6px;font-size:13px;font-weight:bold;cursor:pointer;transition:background .2s;display:none}
+.op-answer-btn:hover{background:#d35400}
+
+/* 引导手指 */
 .practice-modal-inner .panel .guide-hand{
-  position:absolute;bottom:50px;left:50%;
-  transform:translateX(-50%);
-  width:50px;height:50px;
-  background:rgba(255,165,0,.8);
+  position:absolute;bottom:60px;left:50%;transform:translateX(-50%);
+  width:56px;height:56px;background:rgba(255,165,0,.9);
   border-radius:50%;display:flex;justify-content:center;align-items:center;
-  color:#fff;font-size:24px;
-  box-shadow:0 4px 15px rgba(255,165,0,.6);
-  pointer-events:none;
-  animation:slideUp 1.5s ease-in-out infinite alternate;z-index:100;
+  color:#fff;font-size:30px;box-shadow:0 4px 20px rgba(255,165,0,.8);
+  pointer-events:none;animation:slideUp 1.2s ease-in-out infinite alternate;z-index:99999;
 }
-.practice-modal-inner .panel .guide-hand::after{content:'👆';font-size:30px}
+.practice-modal-inner .panel .guide-hand::after{content:'👆';font-size:32px}
 @keyframes slideUp{
   0%{transform:translate(-50%,0);opacity:1}
   100%{transform:translate(-50%,-30px);opacity:.8}
 }
-.practice-modal-inner .panel .fault-item-highlight{
-  background:rgba(255,165,0,.4);border-radius:4px;
-  animation:highlightPulse 1s infinite;
-}
-@keyframes highlightPulse{
-  0%,100%{background:rgba(255,165,0,.4)}
-  50%{background:rgba(255,165,0,.8)}
-}
 
-/* 内部模态 */
-.practice-modal-inner .modal-overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,.65);
-  display:none;justify-content:center;align-items:center;
-  z-index:11000;backdrop-filter:blur(4px);padding:20px;
-}
-.practice-modal-inner .modal-overlay.active{display:flex}
-.practice-modal-inner .modal{
-  background:#fff;border-radius:16px;padding:30px;
-  width:600px;max-width:90%;
-  box-shadow:0 24px 60px rgba(0,0,0,.6);
-  position:relative;max-height:80%;overflow-y:auto;
-}
-.practice-modal-inner .modal h2{
-  font-size:22px;color:#2b6ca3;margin-bottom:15px;
-  border-bottom:2px solid #e0e0e0;padding-bottom:10px;
-}
-.practice-modal-inner .modal p{
-  font-size:16px;line-height:1.6;color:#333;margin-bottom:15px;
-}
-.practice-modal-inner .modal .option-btn{
-  display:block;width:100%;padding:12px 20px;
-  margin-bottom:10px;background:#f0f4f8;
-  border:2px solid #d0d7de;border-radius:8px;
-  font-size:16px;font-weight:bold;color:#333;
-  cursor:pointer;text-align:left;transition:all .2s;
-}
-.practice-modal-inner .modal .option-btn:hover{background:#e1e9f0;border-color:#2b6ca3}
-.practice-modal-inner .modal .option-btn:active{transform:scale(.99)}
-.practice-modal-inner .modal .close-btn{
-  position:absolute;top:15px;right:20px;
-  font-size:28px;font-weight:bold;color:#999;
-  cursor:pointer;background:none;border:none;line-height:1;
-}
-.practice-modal-inner .modal .close-btn:hover{color:#333}
-.practice-modal-inner .modal .close-btn.hidden{display:none}
-.practice-modal-inner .modal .highlight-orange{color:#e67e22;font-weight:bold}
-.practice-modal-inner .modal .result-text{
-  font-size:18px;font-weight:bold;text-align:center;
-  padding:15px;border-radius:8px;margin-top:15px;
-}
-.practice-modal-inner .modal .result-success{background:#d4edda;color:#155724}
-.practice-modal-inner .modal .result-fail{background:#f8d7da;color:#721c24}
-.practice-modal-inner .modal .next-btn{
-  display:block;width:100%;padding:12px;margin-top:15px;
-  background:#2b6ca3;color:#fff;border:none;
-  border-radius:8px;font-size:16px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
-}
-.practice-modal-inner .modal .next-btn:hover{background:#1d4f7a}
-
-/* ===== 课题2 面板（保持原样，未改动） ===== */
-.panel2{
-  width:1400px;height:780px;
-  background:#d2d6d8;
-  border:10px solid #a8aeaf;
-  border-radius:18px;
-  box-shadow:0 25px 50px rgba(0,0,0,.6),inset 0 0 12px rgba(255,255,255,.5),inset 0 0 2px rgba(0,0,0,.3);
-  position:relative;
-  padding:20px 35px;
-  overflow:hidden;
-  transform-origin:center center;
-  flex-shrink:0;
-}
-.panel2 .lesson-header{
-  position:absolute;top:22px;left:35px;
-  display:flex;align-items:center;gap:12px;z-index:50;
-}
-.panel2 .lesson-title{
-  font-size:15px;font-weight:bold;color:#fff;
-  background:#2b6ca3;padding:7px 16px;border-radius:4px;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  letter-spacing:.5px;white-space:nowrap;border:1px solid #1a4a73;
-}
-.panel2 .practice-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#e67e22;padding:7px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #b85e10;
-}
-.panel2 .reset-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#c0392b;padding:7px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #a93226;
-  display:none;
-}
-.panel2 .logo-area{
-  position:absolute;top:70px;left:45px;
-  display:flex;align-items:center;z-index:5;
-}
-.panel2 .logo-svg{width:46px;height:46px;margin-right:12px}
-.panel2 .logo-text{display:flex;flex-direction:column}
-.panel2 .logo-text .chinese{font-size:24px;font-weight:bold;color:#2b6ca3;letter-spacing:2px;line-height:1.1}
-.panel2 .logo-text .english{font-size:11px;color:#2b6ca3;letter-spacing:1px;opacity:.8}
-.panel2 .alarm-module{
-  position:absolute;top:145px;left:45px;
-  display:flex;border:3px solid #555;border-radius:10px;
-  padding:14px 36px;gap:60px;background:#d2d6d8;
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.2);z-index:5;
-}
-.panel2 .alarm-item{display:flex;align-items:center;gap:14px}
-.panel2 .alarm-item .led-dot{
-  width:18px;height:18px;border-radius:50%;
-  background-color:#4a4a4a;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
-  border:1px solid #999;flex-shrink:0;
-}
-.panel2 .alarm-item .led-dot.red{
-  background-color:#ff1a1a;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
-  border:1px solid #cc0000;
-}
-.panel2 .alarm-item .text{
-  display:flex;flex-direction:column;font-size:20px;
-  font-weight:bold;color:#333;line-height:1.1;
-}
-.panel2 .alarm-item .text .en{font-size:12px;font-weight:normal;color:#555}
-.panel2 .indicator-grid{
-  position:absolute;top:240px;left:45px;
-  display:flex;gap:60px;z-index:5;
-}
-.panel2 .indicator-column{display:flex;flex-direction:column;gap:20px}
-.panel2 .indicator-row{
-  display:flex;align-items:center;font-size:17px;color:#333;height:24px;
-}
-.panel2 .indicator-row .led-dot{
-  width:15px;height:15px;border-radius:50%;
-  background-color:#4a4a4a;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
-  border:1px solid #999;margin-right:11px;flex-shrink:0;
-}
-.panel2 .indicator-row .led-dot.red{
-  background-color:#ff1a1a;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
-  border:1px solid #cc0000;
-}
-.panel2 .indicator-row .led-dot.green{
-  background-color:#00ff00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #00ff00,0 0 2px #00cc00;
-  border:1px solid #009900;
-}
-.panel2 .indicator-row .led-dot.yellow{
-  background-color:#ffcc00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ffcc00,0 0 2px #ff9900;
-  border:1px solid #cc9900;
-}
-.panel2 .indicator-row .led-dot.blinking{animation:blink 1s infinite}
-.panel2 .indicator-row .text{
-  line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
-}
-.panel2 .indicator-row .text .en{font-size:11px;color:#555;font-weight:normal}
-.panel2 .screen-frame{
-  position:absolute;top:80px;left:470px;
-  width:620px;height:360px;background:#a8aeaf;
-  border-radius:10px;padding:12px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 3px 8px rgba(255,255,255,.6);
-  z-index:5;
-}
-.panel2 .screen{
-  width:100%;height:100%;background:#5cb8e6;
-  border:2px solid #444;display:flex;flex-direction:column;
-  font-family:'Consolas','Courier New',monospace;font-size:19px;
-  color:#fff;overflow:hidden;
-  box-shadow:inset 0 0 12px rgba(0,0,0,.4);position:relative;
-}
-.panel2 .screen-header{
-  display:flex;justify-content:space-between;
-  padding:8px 14px;background:#2e7ba6;font-weight:bold;
-  border-bottom:2px solid #1c5a7d;color:#e0f0ff;font-size:18px;
-  flex-shrink:0;
-}
-.panel2 .screen-content{
-  display:flex;flex:1;padding:12px 14px;gap:12px;overflow:hidden;
-}
-.panel2 .screen-left{
-  flex:2.5;display:flex;flex-direction:column;gap:8px;
-}
-.panel2 .screen-right{
-  flex:1;border-left:1px solid #2e7ba6;padding-left:14px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  font-size:17px;
-}
-.panel2 .screen-right-top div{line-height:1.7}
-.panel2 .screen-right-bottom{
-  text-align:right;font-size:17px;color:#cce8ff;
-}
-.panel2 .msg-item{
-  display:flex;line-height:1.7;font-size:17px;padding:3px 0;
-}
-.panel2 .msg-time{color:#fff;margin-right:10px}
-.panel2 .msg-text{color:#fff;flex:1}
-.panel2 .msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
-.panel2 .screen-footer{
-  display:flex;background:#2e7ba6;
-  border-top:2px solid #1c5a7d;padding:6px 10px;
-  justify-content:center;font-size:17px;font-weight:bold;color:#e0f0ff;
-  flex-shrink:0;
-  min-height:44px;
-  position:relative;
-}
-.panel2 .screen-btn-text{cursor:default;padding:0 4px;pointer-events:none}
-.panel2 .footer-grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  width:100%;
-  align-items:center;
-  text-align:center;
-}
-.panel2 .footer-grid span{
-  white-space:nowrap;
-  font-size:17px;
-  font-weight:bold;
-  color:#e0f0ff;
-}
-.panel2 .digital-display{
-  position:absolute;top:125px;right:70px;
-  width:130px;height:65px;background:#1a1a1a;
-  border:3px solid #555;border-radius:5px;
-  display:flex;justify-content:center;align-items:center;
-  font-family:'Digital-7','Courier New',monospace;font-size:44px;
-  color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
-  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
-  letter-spacing:4px;z-index:5;
-}
-.panel2 .digital-display::after{
-  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
-  background-size:100% 4px;pointer-events:none;
-}
-.panel2 .key-switch-area{
-  position:absolute;top:245px;right:55px;
-  display:flex;flex-direction:column;align-items:center;
-  width:150px;z-index:5;
-}
-.panel2 .key-labels{
-  display:flex;justify-content:space-between;
-  width:130px;font-size:16px;color:#333;margin-bottom:8px;
-}
-.panel2 .key-label-item{display:flex;flex-direction:column;align-items:center}
-.panel2 .key-label-item .en{font-size:11px;color:#555}
-.panel2 .key-switch{
-  width:60px;height:60px;
-  background:radial-gradient(circle at 30% 30%,#ccc,#666);
-  border-radius:50%;border:2px solid #444;
-  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.panel2 .key-switch-inner{
-  width:46px;height:46px;background:#555;border-radius:50%;
-  display:flex;justify-content:center;align-items:center;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.8);
-}
-.panel2 .key-inserted{
-  position:absolute;top:-5px;left:50%;
-  transform:translateX(-50%) rotate(-45deg);
-  transform-origin:bottom center;
-  width:9px;height:22px;
-  background:linear-gradient(to bottom,#d4af37,#b8860b);
-  border-radius:2px 2px 0 0;
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);
-  z-index:10;
-}
-.panel2 .key-inserted::after{
-  content:'';position:absolute;bottom:-5px;left:50%;
-  transform:translateX(-50%);
-  width:20px;height:9px;
-  background:linear-gradient(to bottom,#c0c0c0,#888);
-  border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5);
-}
-.panel2 .key-switch-text{
-  margin-top:20px;font-size:18px;font-weight:bold;color:#333;text-align:center;
-}
-.panel2 .key-switch-text .en{
-  font-size:13px;color:#555;display:block;text-align:center;
-}
-.panel2 .speaker{
-  position:absolute;bottom:130px;right:60px;
-  width:88px;height:88px;
-  display:grid;grid-template-columns:repeat(6,1fr);
-  grid-template-rows:repeat(6,1fr);gap:4px;z-index:5;
-}
-.panel2 .speaker-hole{
-  background:#333;border-radius:50%;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
-}
-.panel2 .bottom-left-panel{
-  position:absolute;bottom:40px;left:45px;
-  width:380px;height:170px;background:#c0c4c6;
-  border:2px solid #999;border-radius:5px;
-  display:flex;justify-content:flex-end;align-items:center;
-  padding:14px 22px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.2);z-index:5;
-  overflow:hidden;
-}
-.panel2 .op-task-panel{
-  position:absolute;inset:0;
-  display:none;
-  flex-direction:column;
-  padding:14px 18px;
-  background:#c0c4c6;
-  border-radius:3px;
-  z-index:10;
-}
-.panel2 .op-task-panel.active{display:flex}
-.panel2 .op-task-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:8px;margin-bottom:10px;
-  border-bottom:2px solid #8a9296;
-  flex-shrink:0;
-}
-.panel2 .op-task-title{
-  font-size:14px;font-weight:bold;color:#2b6ca3;
-  display:flex;align-items:center;gap:6px;
-}
-.panel2 .op-task-title .step-badge{
-  font-size:11px;color:#fff;background:#e67e22;
-  padding:2px 8px;border-radius:10px;
-}
-.panel2 .op-task-timer{
-  font-size:15px;font-weight:bold;
-  font-family:'Consolas','Courier New',monospace;
-  color:#c0392b;
-  background:rgba(192,57,43,.12);
-  padding:4px 10px;border-radius:6px;
-  border:1px solid rgba(192,57,43,.3);
-  letter-spacing:1px;
-}
-.panel2 .op-task-timer.warning{
-  color:#fff;background:#e74c3c;
-  animation:pulse .8s infinite;
-}
-.panel2 .op-task-question{
-  font-size:15px;font-weight:bold;color:#333;
-  line-height:1.5;margin-bottom:10px;
-  flex-shrink:0;
-}
-.panel2 .op-task-question .highlight{color:#e67e22}
-.panel2 .op-task-submit{
-  margin-top:auto;flex-shrink:0;
-  width:100%;padding:8px;
-  background:#2b6ca3;color:#fff;
-  border:none;border-radius:6px;
-  font-size:14px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
-}
-.panel2 .op-task-submit:hover{background:#1d4f7a}
-.panel2 .op-task-submit:disabled{background:#8a9296;cursor:not-allowed}
-.panel2 .bottom-right-label{
-  position:absolute;top:22px;right:35px;
-  background:#e67e22;color:#fff;padding:9px 18px;
-  font-size:17px;border-radius:4px;font-weight:bold;
-  box-shadow:0 2px 5px rgba(0,0,0,.3);
-  z-index:10;text-align:center;line-height:1.4;
-}
-.panel2 .keyboard-area{
-  position:absolute;bottom:45px;left:430px;
-  width:660px;display:flex;flex-direction:column;
-  align-items:center;gap:8px;z-index:5;
-}
-.panel2 .f-row{
-  display:flex;gap:12px;margin-bottom:8px;justify-content:center;
-}
-.panel2 .btn-f{
-  background:#3a7ca5;color:#fff;width:72px;height:40px;
-  border-radius:5px;font-size:17px;font-weight:bold;border:none;
-  cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.panel2 .btn-f:active{
-  transform:translateY(1px);
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.5);
-}
-.panel2 .keyboard-row{
-  display:flex;gap:10px;align-items:center;justify-content:center;
-}
-.panel2 .btn{
-  border-radius:5px;border:none;font-weight:bold;cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-  transition:all .1s;position:relative;line-height:1.1;
-  padding:0 3px;flex-shrink:0;
-}
-.panel2 .btn:active{
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.5);transform:translateY(1px);
-}
-.panel2 .btn-num{
-  background:#5b8db8;color:#fff;font-size:18px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel2 .btn-num .sub{font-size:11px;margin-top:-1px;font-weight:normal}
-.panel2 .btn-func{
-  background:#ff7e00;color:#fff;font-size:15px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel2 .btn-func .sub{font-size:11px;margin-top:1px;font-weight:normal}
-.panel2 .btn-white{
-  background:#e0e4e6;color:#333;font-size:14px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel2 .btn-white .sub{font-size:11px;color:#666;margin-top:1px;font-weight:normal}
-.panel2 .btn-large{width:72px;height:48px;font-size:15px;flex-direction:column}
-.panel2 .btn-large.red-text{background:#d32f2f;color:#fff}
-.panel2 .btn-large.green-text{background:#388e3c;color:#fff}
-.panel2 .btn-large .sub{
-  font-size:11px;color:rgba(255,255,255,.8);
-  margin-top:1px;font-weight:normal;
-}
-.panel2 .btn-arrow{
-  width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px;
-}
-
-/* ===== 课题3 面板（保持原样） ===== */
-.panel3{
-  width:1400px;height:780px;
-  background:#d2d6d8;
-  border:10px solid #a8aeaf;
-  border-radius:18px;
-  box-shadow:0 25px 50px rgba(0,0,0,.6),inset 0 0 12px rgba(255,255,255,.5),inset 0 0 2px rgba(0,0,0,.3);
-  position:relative;
-  padding:20px 35px;
-  overflow:hidden;
-  transform-origin:center center;
-  flex-shrink:0;
-}
-.panel3 .lesson-header{
-  position:absolute;top:22px;left:35px;
-  display:flex;align-items:center;gap:12px;z-index:50;
-}
-.panel3 .lesson-title{
-  font-size:15px;font-weight:bold;color:#fff;
-  background:#2b6ca3;padding:7px 16px;border-radius:4px;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  letter-spacing:.5px;white-space:nowrap;border:1px solid #1a4a73;
-}
-.panel3 .practice-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#e67e22;padding:7px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #b85e10;
-}
-.panel3 .reset-btn{
-  font-size:14px;font-weight:bold;color:#fff;
-  background:#c0392b;padding:7px 16px;border:none;
-  border-radius:4px;cursor:pointer;
-  box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #a93226;
-  display:none;
-}
-.panel3 .logo-area{
-  position:absolute;top:70px;left:45px;
-  display:flex;align-items:center;z-index:5;
-}
-.panel3 .logo-svg{width:46px;height:46px;margin-right:12px}
-.panel3 .logo-text{display:flex;flex-direction:column}
-.panel3 .logo-text .chinese{font-size:24px;font-weight:bold;color:#2b6ca3;letter-spacing:2px;line-height:1.1}
-.panel3 .logo-text .english{font-size:11px;color:#2b6ca3;letter-spacing:1px;opacity:.8}
-.panel3 .alarm-module{
-  position:absolute;top:145px;left:45px;
-  display:flex;border:3px solid #555;border-radius:10px;
-  padding:14px 36px;gap:60px;background:#d2d6d8;
-  box-shadow:inset 0 1px 4px rgba(0,0,0,.2);z-index:5;
-}
-.panel3 .alarm-item{display:flex;align-items:center;gap:14px}
-.panel3 .alarm-item .led-dot{
-  width:18px;height:18px;border-radius:50%;
-  background-color:#4a4a4a;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
-  border:1px solid #999;flex-shrink:0;
-}
-.panel3 .alarm-item .led-dot.red{
-  background-color:#ff1a1a;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
-  border:1px solid #cc0000;
-}
-.panel3 .alarm-item .text{
-  display:flex;flex-direction:column;font-size:20px;
-  font-weight:bold;color:#333;line-height:1.1;
-}
-.panel3 .alarm-item .text .en{font-size:12px;font-weight:normal;color:#555}
-.panel3 .indicator-grid{
-  position:absolute;top:240px;left:45px;
-  display:flex;gap:60px;z-index:5;
-}
-.panel3 .indicator-column{display:flex;flex-direction:column;gap:20px}
-.panel3 .indicator-row{
-  display:flex;align-items:center;font-size:17px;color:#333;height:24px;
-}
-.panel3 .indicator-row .led-dot{
-  width:15px;height:15px;border-radius:50%;
-  background-color:#4a4a4a;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.6);
-  border:1px solid #999;margin-right:11px;flex-shrink:0;
-}
-.panel3 .indicator-row .led-dot.red{
-  background-color:#ff1a1a;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ff1a1a,0 0 2px #ff0000;
-  border:1px solid #cc0000;
-}
-.panel3 .indicator-row .led-dot.green{
-  background-color:#00ff00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #00ff00,0 0 2px #00cc00;
-  border:1px solid #009900;
-}
-.panel3 .indicator-row .led-dot.yellow{
-  background-color:#ffcc00;
-  box-shadow:inset 0 2px 3px rgba(255,255,255,.4),0 0 10px #ffcc00,0 0 2px #ff9900;
-  border:1px solid #cc9900;
-}
-.panel3 .indicator-row .led-dot.blinking{animation:blink 1s infinite}
-.panel3 .indicator-row .text{
-  line-height:1.1;display:flex;flex-direction:column;font-weight:bold;
-}
-.panel3 .indicator-row .text .en{font-size:11px;color:#555;font-weight:normal}
-.panel3 .screen-frame{
-  position:absolute;top:80px;left:470px;
-  width:620px;height:360px;background:#a8aeaf;
-  border-radius:10px;padding:12px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.5),0 3px 8px rgba(255,255,255,.6);
-  z-index:5;
-}
-.panel3 .screen{
-  width:100%;height:100%;background:#5cb8e6;
-  border:2px solid #444;display:flex;flex-direction:column;
-  font-family:'Consolas','Courier New',monospace;font-size:19px;
-  color:#fff;overflow:hidden;
-  box-shadow:inset 0 0 12px rgba(0,0,0,.4);position:relative;
-}
-.panel3 .screen-header{
-  display:flex;justify-content:space-between;
-  padding:8px 14px;background:#2e7ba6;font-weight:bold;
-  border-bottom:2px solid #1c5a7d;color:#e0f0ff;font-size:18px;
-  flex-shrink:0;
-}
-.panel3 .screen-content{
-  display:flex;flex:1;padding:12px 14px;gap:12px;overflow:hidden;
-}
-.panel3 .screen-left{
-  flex:2.5;display:flex;flex-direction:column;gap:8px;
-}
-.panel3 .screen-right{
-  flex:1;border-left:1px solid #2e7ba6;padding-left:14px;
-  display:flex;flex-direction:column;justify-content:space-between;
-  font-size:17px;
-}
-.panel3 .screen-right-top div{line-height:1.7}
-.panel3 .screen-right-bottom{
-  text-align:right;font-size:17px;color:#cce8ff;
-}
-.panel3 .msg-item{
-  display:flex;line-height:1.7;font-size:17px;padding:3px 0;
-}
-.panel3 .msg-time{color:#fff;margin-right:10px}
-.panel3 .msg-text{color:#fff;flex:1}
-.panel3 .msg-highlight{background:rgba(0,0,0,.25);border-radius:2px}
-.panel3 .screen-footer{
-  display:flex;background:#2e7ba6;
-  border-top:2px solid #1c5a7d;padding:6px 10px;
-  justify-content:center;font-size:17px;font-weight:bold;color:#e0f0ff;
-  flex-shrink:0;
-  min-height:44px;
-  position:relative;
-}
-.panel3 .screen-btn-text{cursor:default;padding:0 4px;pointer-events:none}
-.panel3 .footer-grid{
-  display:grid;
-  grid-template-columns:repeat(6,1fr);
-  width:100%;
-  align-items:center;
-  text-align:center;
-}
-.panel3 .footer-grid span{
-  white-space:nowrap;
-  font-size:17px;
-  font-weight:bold;
-  color:#e0f0ff;
-}
-.panel3 .digital-display{
-  position:absolute;top:125px;right:70px;
-  width:130px;height:65px;background:#1a1a1a;
-  border:3px solid #555;border-radius:5px;
-  display:flex;justify-content:center;align-items:center;
-  font-family:'Digital-7','Courier New',monospace;font-size:44px;
-  color:#ff1a1a;text-shadow:0 0 10px #ff0000,0 0 20px #ff0000;
-  box-shadow:inset 0 0 10px rgba(0,0,0,.8);
-  letter-spacing:4px;z-index:5;
-}
-.panel3 .digital-display::after{
-  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
-  background:linear-gradient(transparent 50%,rgba(0,0,0,.1) 50%);
-  background-size:100% 4px;pointer-events:none;
-}
-.panel3 .key-switch-area{
-  position:absolute;top:245px;right:55px;
-  display:flex;flex-direction:column;align-items:center;
-  width:150px;z-index:5;
-}
-.panel3 .key-labels{
-  display:flex;justify-content:space-between;
-  width:130px;font-size:16px;color:#333;margin-bottom:8px;
-}
-.panel3 .key-label-item{display:flex;flex-direction:column;align-items:center}
-.panel3 .key-label-item .en{font-size:11px;color:#555}
-.panel3 .key-switch{
-  width:60px;height:60px;
-  background:radial-gradient(circle at 30% 30%,#ccc,#666);
-  border-radius:50%;border:2px solid #444;
-  position:relative;box-shadow:0 2px 5px rgba(0,0,0,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.panel3 .key-switch-inner{
-  width:46px;height:46px;background:#555;border-radius:50%;
-  display:flex;justify-content:center;align-items:center;
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.8);
-}
-.panel3 .key-inserted{
-  position:absolute;top:-5px;left:50%;
-  transform:translateX(-50%) rotate(-45deg);
-  transform-origin:bottom center;
-  width:9px;height:22px;
-  background:linear-gradient(to bottom,#d4af37,#b8860b);
-  border-radius:2px 2px 0 0;
-  box-shadow:inset 0 1px 1px rgba(255,255,255,.6),0 1px 3px rgba(0,0,0,.5);
-  z-index:10;
-}
-.panel3 .key-inserted::after{
-  content:'';position:absolute;bottom:-5px;left:50%;
-  transform:translateX(-50%);
-  width:20px;height:9px;
-  background:linear-gradient(to bottom,#c0c0c0,#888);
-  border-radius:2px;box-shadow:0 1px 2px rgba(0,0,0,.5);
-}
-.panel3 .key-switch-text{
-  margin-top:20px;font-size:18px;font-weight:bold;color:#333;text-align:center;
-}
-.panel3 .key-switch-text .en{
-  font-size:13px;color:#555;display:block;text-align:center;
-}
-.panel3 .speaker{
-  position:absolute;bottom:130px;right:60px;
-  width:88px;height:88px;
-  display:grid;grid-template-columns:repeat(6,1fr);
-  grid-template-rows:repeat(6,1fr);gap:4px;z-index:5;
-}
-.panel3 .speaker-hole{
-  background:#333;border-radius:50%;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.8);
-}
-.panel3 .bottom-left-panel{
-  position:absolute;bottom:40px;left:45px;
-  width:380px;height:170px;background:#c0c4c6;
-  border:2px solid #999;border-radius:5px;
-  display:flex;justify-content:flex-end;align-items:center;
-  padding:14px 22px;
-  box-shadow:inset 0 0 6px rgba(0,0,0,.2);z-index:5;
-  overflow:hidden;
-}
-.panel3 .op-task-panel{
-  position:absolute;inset:0;
-  display:none;
-  flex-direction:column;
-  padding:14px 18px;
-  background:#c0c4c6;
-  border-radius:3px;
-  z-index:10;
-}
-.panel3 .op-task-panel.active{display:flex}
-.panel3 .op-task-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:8px;margin-bottom:10px;
-  border-bottom:2px solid #8a9296;
-  flex-shrink:0;
-}
-.panel3 .op-task-title{
-  font-size:14px;font-weight:bold;color:#2b6ca3;
-  display:flex;align-items:center;gap:6px;
-}
-.panel3 .op-task-title .step-badge{
-  font-size:11px;color:#fff;background:#e67e22;
-  padding:2px 8px;border-radius:10px;
-}
-.panel3 .op-task-timer{
-  font-size:15px;font-weight:bold;
-  font-family:'Consolas','Courier New',monospace;
-  color:#c0392b;
-  background:rgba(192,57,43,.12);
-  padding:4px 10px;border-radius:6px;
-  border:1px solid rgba(192,57,43,.3);
-  letter-spacing:1px;
-}
-.panel3 .op-task-timer.warning{
-  color:#fff;background:#e74c3c;
-  animation:pulse .8s infinite;
-}
-.panel3 .op-task-question{
-  font-size:14px;font-weight:bold;color:#333;
-  line-height:1.4;margin-bottom:6px;
-  flex-shrink:0;
-}
-.panel3 .op-task-question .highlight{color:#e67e22}
-.panel3 .op-task-submit{
-  margin-top:auto;flex-shrink:0;
-  width:100%;padding:6px;
-  background:#2b6ca3;color:#fff;
-  border:none;border-radius:6px;
-  font-size:13px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
-}
-.panel3 .op-answer-btn{
-  margin-top:6px;flex-shrink:0;
-  width:100%;padding:6px;
-  background:#e67e22;color:#fff;
-  border:none;border-radius:6px;
-  font-size:13px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
-  display:none;
-}
-.panel3 .bottom-right-label{
-  position:absolute;top:22px;right:35px;
-  background:#e67e22;color:#fff;padding:9px 18px;
-  font-size:17px;border-radius:4px;font-weight:bold;
-  box-shadow:0 2px 5px rgba(0,0,0,.3);
-  z-index:10;text-align:center;line-height:1.4;
-}
-.panel3 .keyboard-area{
-  position:absolute;bottom:45px;left:430px;
-  width:660px;display:flex;flex-direction:column;
-  align-items:center;gap:8px;z-index:5;
-}
-.panel3 .f-row{
-  display:flex;gap:12px;margin-bottom:8px;justify-content:center;
-}
-.panel3 .btn-f{
-  background:#3a7ca5;color:#fff;width:72px;height:40px;
-  border-radius:5px;font-size:17px;font-weight:bold;border:none;
-  cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-}
-.panel3 .keyboard-row{
-  display:flex;gap:10px;align-items:center;justify-content:center;
-}
-.panel3 .btn{
-  border-radius:5px;border:none;font-weight:bold;cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
-  display:flex;justify-content:center;align-items:center;
-  transition:all .1s;position:relative;line-height:1.1;
-  padding:0 3px;flex-shrink:0;
-}
-.panel3 .btn-num{
-  background:#5b8db8;color:#fff;font-size:18px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel3 .btn-num .sub{font-size:11px;margin-top:-1px;font-weight:normal}
-.panel3 .btn-func{
-  background:#ff7e00;color:#fff;font-size:15px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel3 .btn-func .sub{font-size:11px;margin-top:1px;font-weight:normal}
-.panel3 .btn-white{
-  background:#e0e4e6;color:#333;font-size:14px;
-  width:72px;height:48px;flex-direction:column;
-}
-.panel3 .btn-white .sub{font-size:11px;color:#666;margin-top:1px;font-weight:normal}
-.panel3 .btn-large{width:72px;height:48px;font-size:15px;flex-direction:column}
-.panel3 .btn-large.red-text{background:#d32f2f;color:#fff}
-.panel3 .btn-large.green-text{background:#388e3c;color:#fff}
-.panel3 .btn-arrow{
-  width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px;
-}
-
-.modal-overlay{
-  position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,.35);
-  display:none;justify-content:center;align-items:center;
-  z-index:11000;padding:20px;
-}
+/* 弹窗（内部） */
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.35);display:none;justify-content:center;align-items:center;z-index:11000;padding:20px}
 .modal-overlay.active{display:flex}
-.modal{
-  background:#fff;border-radius:18px;padding:0;
-  width:620px;max-width:92%;
-  box-shadow:0 28px 70px rgba(0,0,0,.55);
-  position:relative;max-height:85vh;overflow:hidden;
-  display:flex;flex-direction:column;
-}
-
-.float-tip{
-  position:fixed;top:50%;left:50%;
-  transform:translate(-50%,-50%) scale(0.9);
-  background:rgba(43,108,163,.95);color:#fff;
-  padding:16px 32px;border-radius:12px;
-  font-size:20px;font-weight:bold;z-index:12000;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
-  opacity:0;pointer-events:none;
-  transition:opacity .3s,transform .3s;
-}
+.modal{background:#fff;border-radius:18px;padding:0;width:620px;max-width:92%;box-shadow:0 28px 70px rgba(0,0,0,.55);position:relative;max-height:85vh;overflow:hidden;display:flex;flex-direction:column}
+.modal-drag-handle{padding:16px 28px;background:linear-gradient(135deg,#eaf3fa,#d8e8f5);border-bottom:1px solid #c8dae8;border-radius:18px 18px 0 0;cursor:grab;user-select:none;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-drag-handle .drag-title{font-size:15px;font-weight:bold;color:#2b6ca3;display:flex;align-items:center;gap:10px}
+.modal .close-btn{position:absolute;top:14px;right:20px;font-size:24px;font-weight:bold;color:#8a9296;cursor:pointer;background:rgba(0,0,0,.06);border:none;line-height:1;z-index:10;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.modal .close-btn:hover{background:#c0392b;color:#fff;transform:rotate(90deg)}
+.modal .close-btn.hidden{display:none}
+.modal-body{padding:26px 30px 30px;overflow-y:auto;flex:1}
+.modal h2{font-size:22px;color:#2b6ca3;margin-bottom:18px;border-bottom:2px solid #e8eef3;padding-bottom:12px;display:flex;align-items:center;gap:8px}
+.modal h2::before{content:'';display:inline-block;width:6px;height:22px;background:linear-gradient(180deg,#3d8fd9,#266bb0);border-radius:3px}
+.modal p{font-size:16px;line-height:1.7;color:#333;margin-bottom:16px}
+.modal .highlight-orange{color:#e67e22;font-weight:bold;background:rgba(230,126,34,.1);padding:2px 8px;border-radius:4px}
+.modal .result-text{font-size:18px;font-weight:bold;text-align:center;padding:18px;border-radius:10px;margin-top:20px}
+.modal .result-success{background:#e6f7ec;color:#155724;border:1px solid #b7e4c7}
+.modal .result-fail{background:#fde9ea;color:#721c24;border:1px solid #f5c2c7}
+.modal .next-btn{display:block;width:100%;padding:14px;margin-top:18px;background:linear-gradient(135deg,#3d8fd9,#266bb0);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(38,107,176,.3)}
+.modal .answer-input{width:100%;padding:16px 18px;border:2px solid #d0d7de;border-radius:12px;font-size:16px;font-family:'Microsoft YaHei',sans-serif;color:#333;line-height:1.6;resize:vertical;min-height:100px;outline:none;user-select:text;-webkit-user-select:text;transition:all .25s ease;background:linear-gradient(180deg,#fafbfd,#f0f4f8);box-shadow:inset 0 1px 3px rgba(0,0,0,.04)}
+.modal .answer-input:focus{border-color:#3d8fd9;background:linear-gradient(180deg,#ffffff,#f5faff);box-shadow:0 0 0 4px rgba(61,143,217,.15),inset 0 1px 3px rgba(0,0,0,.04)}
+.modal .submit-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px 20px;margin-top:16px;background:linear-gradient(135deg,#3d8fd9,#266bb0);color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;transition:all .2s ease;box-shadow:0 4px 14px rgba(38,107,176,.35);letter-spacing:.5px}
+.modal .option-btn{display:block;width:100%;padding:14px 20px;margin-bottom:10px;background:linear-gradient(180deg,#fafbfd,#f0f4f8);border:2px solid #d0d7de;border-radius:10px;font-size:16px;font-weight:bold;color:#333;cursor:pointer;text-align:left;transition:all .2s}
+.modal .choice-btn{display:block;width:100%;padding:14px;margin-top:10px;background:linear-gradient(180deg,#fafbfd,#f0f4f8);color:#333;border:2px solid #d0d7de;border-radius:10px;font-size:16px;font-weight:bold;cursor:pointer;transition:all .2s;text-align:left}
+.modal .choice-btn.selected{background:#3d8fd9;color:#fff;border-color:#266bb0}
+.float-tip{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);background:rgba(43,108,163,.95);color:#fff;padding:16px 32px;border-radius:12px;font-size:20px;font-weight:bold;z-index:12000;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
 .float-tip.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
-/* ========== 电脑端响应式 ========== */
-@media(max-width:1480px){.practice-modal-inner .panel{transform:scale(.9)}.panel2{transform:scale(.9)}.panel3{transform:scale(.9)}}
-@media(max-width:1366px){.practice-modal-inner .panel{transform:scale(.82)}.panel2{transform:scale(.82)}.panel3{transform:scale(.82)}}
-@media(max-width:1180px){.practice-modal-inner .panel{transform:scale(.70)}.panel2{transform:scale(.70)}.panel3{transform:scale(.70)}}
-@media(max-width:980px){.practice-modal-inner .panel{transform:scale(.58)}.panel2{transform:scale(.58)}.panel3{transform:scale(.58)}}
-@media(max-width:820px){.practice-modal-inner .panel{transform:scale(.48)}.panel2{transform:scale(.48)}.panel3{transform:scale(.48)}}
-@media(max-width:680px){.practice-modal-inner .panel{transform:scale(.40)}.panel2{transform:scale(.40)}.panel3{transform:scale(.40)}}
-@media(max-width:560px){.practice-modal-inner .panel{transform:scale(.32)}.panel2{transform:scale(.32)}.panel3{transform:scale(.32)}}
-@media(max-width:460px){.practice-modal-inner .panel{transform:scale(.26)}.panel2{transform:scale(.26)}.panel3{transform:scale(.26)}}
-@media(max-width:380px){.practice-modal-inner .panel{transform:scale(.22)}.panel2{transform:scale(.22)}.panel3{transform:scale(.22)}}
+/* 电脑端响应式 */
+@media(max-width:1480px){.panel,.panel2,.panel3{transform:scale(.9)}}
+@media(max-width:1366px){.panel,.panel2,.panel3{transform:scale(.82)}}
+@media(max-width:1180px){.panel,.panel2,.panel3{transform:scale(.70)}}
+@media(max-width:980px){.panel,.panel2,.panel3{transform:scale(.58)}}
+@media(max-width:820px){.panel,.panel2,.panel3{transform:scale(.48)}}
+@media(max-width:680px){.panel,.panel2,.panel3{transform:scale(.40)}}
+@media(max-width:560px){.panel,.panel2,.panel3{transform:scale(.32)}}
+@media(max-width:460px){.panel,.panel2,.panel3{transform:scale(.26)}}
+@media(max-width:380px){.panel,.panel2,.panel3{transform:scale(.22)}}
+@media(max-width:900px){.home-wrapper{padding:18px 18px 14px;border-radius:24px}.brand-text h1{font-size:18px}.cards-grid{grid-template-columns:repeat(3,1fr);gap:10px}}
+@media(max-width:700px){.home-wrapper{padding:14px 12px;border-radius:20px}.brand-text h1{font-size:16px}.cards-grid{grid-template-columns:1fr;gap:10px}}
 
-@media(max-width:900px){
-  .home-wrapper{padding:18px 18px 14px;border-radius:24px}
-  .brand-text h1{font-size:18px}
-  .cards-grid{grid-template-columns:repeat(3,1fr);gap:10px}
-}
-@media(max-width:700px){
-  .home-wrapper{padding:14px 12px;border-radius:20px}
-  .brand-text h1{font-size:16px}
-  .cards-grid{grid-template-columns:1fr;gap:10px}
+/* ================================================================
+   ★ 手机竖屏自动横屏
+   ================================================================ */
+html.phone-rotated,
+html.phone-rotated body{overflow:hidden !important;background:#0e1a24}
+html.phone-rotated #app-root.rotated{position:fixed !important;top:0 !important;left:0 !important;display:block !important;overflow:hidden !important;background:#0e1a24}
+html.phone-rotated #app-root.rotated .home-wrapper{width:100% !important;height:100% !important;max-width:none !important;max-height:none !important;border-radius:0 !important;padding:10px 16px !important;display:flex !important;flex-direction:column !important;position:relative !important;overflow:hidden !important}
+html.phone-rotated #app-root.rotated .app-header{margin-bottom:8px !important;padding-bottom:8px !important}
+html.phone-rotated #app-root.rotated .brand-icon{width:32px !important;height:32px !important}
+html.phone-rotated #app-root.rotated .brand-icon svg{width:18px !important;height:18px !important}
+html.phone-rotated #app-root.rotated .brand-text h1{font-size:14px !important}
+html.phone-rotated #app-root.rotated .brand-text .sub{font-size:9px !important}
+html.phone-rotated #app-root.rotated .stat-item{padding:3px 10px !important;min-width:50px !important}
+html.phone-rotated #app-root.rotated .stat-value{font-size:14px !important}
+html.phone-rotated #app-root.rotated .section-title{margin-bottom:6px !important}
+html.phone-rotated #app-root.rotated .section-title h2{font-size:12px !important}
+html.phone-rotated #app-root.rotated .cards-grid{display:grid !important;grid-template-columns:repeat(4,1fr) !important;grid-template-rows:1fr !important;gap:10px !important;flex:1 !important;min-height:0 !important;align-content:stretch !important;overflow:hidden !important}
+html.phone-rotated #app-root.rotated .topic-card{padding:8px 10px 6px !important;height:100% !important;min-height:0 !important;overflow:hidden !important;display:flex !important;flex-direction:column !important}
+html.phone-rotated #app-root.rotated .card-icon{width:26px !important;height:26px !important;font-size:13px !important}
+html.phone-rotated #app-root.rotated .card-badge{font-size:8px !important;padding:2px 6px !important}
+html.phone-rotated #app-root.rotated .card-title{font-size:10px !important}
+html.phone-rotated #app-root.rotated .card-desc{font-size:8.5px !important;line-height:1.35 !important;margin-bottom:6px !important}
+html.phone-rotated #app-root.rotated .card-meta{padding-top:6px !important}
+html.phone-rotated #app-root.rotated .tag{font-size:7px !important;padding:1px 5px !important}
+html.phone-rotated #app-root.rotated .start-btn{padding:4px 10px !important;font-size:9px !important}
+html.phone-rotated #app-root.rotated .footer-note{font-size:9px !important;margin-top:4px !important;padding-top:6px !important}
+html.phone-rotated .practice-modal-inner{width:100% !important;height:100% !important;overflow:hidden !important;position:relative !important}
+html.phone-rotated .practice-modal-close{position:fixed !important;top:10px !important;right:12px !important;width:36px !important;height:36px !important;font-size:22px !important;z-index:100000 !important}
+
+@media (hover: none) and (pointer: coarse){
+  .practice-modal-inner .panel,
+  .practice-modal-inner .panel2,
+  .practice-modal-inner .panel3{position:absolute !important;top:50% !important;left:50% !important;margin:0 !important;transform-origin:center center !important}
+  .modal-overlay{padding:12px !important}
+  .modal-overlay .modal{width:90% !important;max-width:480px !important;max-height:82% !important;border-radius:14px !important}
+  .modal-overlay .modal-body{padding:18px 20px 20px !important}
+  .modal-overlay .modal h2{font-size:18px !important;margin-bottom:12px !important;padding-bottom:8px !important}
+  .modal-overlay .modal p{font-size:14px !important;margin-bottom:12px !important}
+  .modal-overlay .modal .answer-input{padding:12px 14px !important;font-size:14px !important;min-height:70px !important}
+  .modal-overlay .modal .submit-btn,
+  .modal-overlay .modal .next-btn{padding:11px !important;font-size:14px !important;margin-top:12px !important}
+  .modal-overlay .modal .option-btn,
+  .modal-overlay .modal .choice-btn{padding:11px 14px !important;font-size:14px !important;margin-bottom:8px !important}
+  .float-tip{font-size:15px !important;padding:12px 20px !important}
 }
 </style>
 </head>
+<body>
 <body>
 
 <div id="app-root">
@@ -1460,14 +469,8 @@ html,body{
       </div>
     </div>
     <div class="header-stats">
-      <div class="stat-item">
-        <span class="stat-label">今日练习</span>
-        <span class="stat-value highlight">4</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-label">总课题</span>
-        <span class="stat-value">4</span>
-      </div>
+      <div class="stat-item"><span class="stat-label">今日练习</span><span class="stat-value highlight">4</span></div>
+      <div class="stat-item"><span class="stat-label">总课题</span><span class="stat-value">4</span></div>
     </div>
   </div>
 
@@ -1477,87 +480,40 @@ html,body{
   </div>
 
   <div class="cards-grid">
-    <!-- 序章 -->
     <div class="topic-card">
-      <div class="card-header">
-        <div class="card-icon">🔍</div>
-        <div class="card-badge">序章</div>
-      </div>
+      <div class="card-header"><div class="card-icon">🔍</div><div class="card-badge">序章</div></div>
       <div class="card-title">课题·序章：消防控制设备识别</div>
       <div class="card-desc">两种题型随机出题：①给图选设备名 ②给设备名选图。认识集中火灾报警控制器、消防电话总机、多线盘、总线盘、CRT图形显示装置。</div>
       <div class="card-meta">
-        <div class="card-tags">
-          <span class="tag">设备识别</span>
-          <span class="tag">两种题型</span>
-          <span class="tag">随机抽题</span>
-        </div>
-        <button class="start-btn" id="startDeviceQuizBtn">
-          <span>开始练习</span>
-          <span style="font-size:13px;">→</span>
-        </button>
+        <div class="card-tags"><span class="tag">设备识别</span><span class="tag">两种题型</span><span class="tag">随机抽题</span></div>
+        <button class="start-btn" id="startDeviceQuizBtn"><span>开始练习</span><span style="font-size:13px;">→</span></button>
       </div>
     </div>
-
-    <!-- 课题1 -->
     <div class="topic-card">
-      <div class="card-header">
-        <div class="card-icon">⚡</div>
-        <div class="card-badge">课题 1</div>
-      </div>
+      <div class="card-header"><div class="card-icon">⚡</div><div class="card-badge">课题 1</div></div>
       <div class="card-title">火灾自动报警系统控制器的电源工作状态检查</div>
       <div class="card-desc">通过青鸟消防控制面板实操，判断主电/备电运行状态，排查备电故障，完成电源切换问答。</div>
       <div class="card-meta">
-        <div class="card-tags">
-          <span class="tag">电源</span>
-          <span class="tag">备电故障</span>
-          <span class="tag">实操</span>
-        </div>
-        <button class="start-btn" id="startPracticeBtn">
-          <span>开始练习</span>
-          <span style="font-size:13px;">→</span>
-        </button>
+        <div class="card-tags"><span class="tag">电源</span><span class="tag">备电故障</span><span class="tag">实操</span></div>
+        <button class="start-btn" id="startPracticeBtn"><span>开始练习</span><span style="font-size:13px;">→</span></button>
       </div>
     </div>
-
-    <!-- 课题2 -->
     <div class="topic-card">
-      <div class="card-header">
-        <div class="card-icon">🔧</div>
-        <div class="card-badge">课题 2</div>
-      </div>
+      <div class="card-header"><div class="card-icon">🔧</div><div class="card-badge">课题 2</div></div>
       <div class="card-title">火灾报警控制器手动控制状态的切换方法</div>
       <div class="card-desc">通过青鸟消防控制面板实操，掌握手动控制状态的检查与切换方法，含两道问答题与两轮操作题。</div>
       <div class="card-meta">
-        <div class="card-tags">
-          <span class="tag">手动控制</span>
-          <span class="tag">状态切换</span>
-          <span class="tag">实操</span>
-        </div>
-        <button class="start-btn" id="startPractice2Btn">
-          <span>开始练习</span>
-          <span style="font-size:13px;">→</span>
-        </button>
+        <div class="card-tags"><span class="tag">手动控制</span><span class="tag">状态切换</span><span class="tag">实操</span></div>
+        <button class="start-btn" id="startPractice2Btn"><span>开始练习</span><span style="font-size:13px;">→</span></button>
       </div>
     </div>
-
-    <!-- 课题3 -->
     <div class="topic-card">
-      <div class="card-header">
-        <div class="card-icon">📊</div>
-        <div class="card-badge">课题 3</div>
-      </div>
+      <div class="card-header"><div class="card-icon">📊</div><div class="card-badge">课题 3</div></div>
       <div class="card-title">火灾自动报警系统工作状态判断及信息查询</div>
       <div class="card-desc">通过青鸟消防控制面板实操，判断火警、故障、屏蔽、监管等状态，完成火警信息、监管信息、联动信息、历史火警查询。</div>
       <div class="card-meta">
-        <div class="card-tags">
-          <span class="tag">状态判断</span>
-          <span class="tag">信息查询</span>
-          <span class="tag">实操</span>
-        </div>
-        <button class="start-btn" id="startPractice3Btn">
-          <span>开始练习</span>
-          <span style="font-size:13px;">→</span>
-        </button>
+        <div class="card-tags"><span class="tag">状态判断</span><span class="tag">信息查询</span><span class="tag">实操</span></div>
+        <button class="start-btn" id="startPractice3Btn"><span>开始练习</span><span style="font-size:13px;">→</span></button>
       </div>
     </div>
   </div>
@@ -1568,12 +524,12 @@ html,body{
   </div>
 </div>
 
-<!-- ==================== 设备识别弹窗（序章） ==================== -->
+<!-- 序章弹窗 -->
 <div class="device-quiz-modal" id="deviceQuizModal">
   <div class="device-quiz-container" id="deviceQuizContainer"></div>
 </div>
 
-<!-- ==================== 课题1 电源练习弹窗 ==================== -->
+<!-- ==================== 课题1 面板 ==================== -->
 <div class="practice-modal" id="practiceModal">
   <div class="practice-modal-inner">
     <div class="practice-modal-close" id="closePracticeModal">&times;</div>
@@ -1583,189 +539,154 @@ html,body{
         <button class="practice-btn" id="practiceBtn">练习</button>
         <button class="reset-btn" id="resetBtn">重置</button>
       </div>
-      <div class="header">
-        <div class="logo-area">
-          <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
-            <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
-          </svg>
-          <div class="logo-text">
-            <span class="chinese">青鸟消防</span>
-            <span class="english">JADE BIRD FIRE</span>
+      <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/><path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/></svg>
+        <div class="logo-text"><span class="chinese">青鸟消防</span><span class="english">JADE BIRD FIRE</span></div>
+      </div>
+      <div class="alarm-module">
+        <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
+        <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
+      </div>
+      <div class="indicator-grid">
+        <div class="indicator-column">
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
+          <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
+        </div>
+        <div class="indicator-column">
+          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
+          <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
+          <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">消音<span class="en">Silence</span></div></div>
+          <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
+          <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
+        </div>
+      </div>
+      <div class="screen-frame">
+        <div class="screen" id="mainScreen">
+          <div class="screen-header"><span>首警: 25/07/03 12:48 2-1</span><span>青鸟消防</span></div>
+          <div class="screen-content">
+            <div class="screen-left">
+              <div class="msg-item msg-highlight"><span class="msg-time">0002 25/07/03 12:48 2-12 手报</span><span class="msg-text">展板手报</span></div>
+              <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-1</span><span class="msg-text">展板烟感</span></div>
+              <div style="margin-top:5px;"></div>
+              <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span></div>
+              <div class="msg-item"><span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
+              <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-2 动作</span><span class="msg-text">展板温感</span></div>
+            </div>
+            <div class="screen-right">
+              <div>
+                <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
+                <div style="margin-bottom:5px;">25/07/03 12:48</div>
+                <div>声光故障: 000</div><div>声光屏蔽: 000</div>
+                <div>用户权限: 0</div><div>正常 运行</div>
+                <div>手动:允许</div><div>自动:禁止</div>
+              </div>
+              <div class="screen-right-bottom">2025-07-03<br>17:06:01</div>
+            </div>
+          </div>
+          <div class="screen-footer">
+            <div class="footer-grid"><span>回首页</span><span>查火警</span><span>查联动</span><span>手动控制</span><span>查故障</span><span></span></div>
+          </div>
+        </div>
+        <div class="screen fault-screen" id="faultScreen" style="display:none">
+          <div class="screen-header"><span>故障信息</span><span>合计: 0002</span></div>
+          <div class="screen-content">
+            <div class="screen-left" style="flex:2.5;position:relative;">
+              <div class="msg-item fault-item-clickable" id="faultItem1"><span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span></div>
+              <div class="msg-item indent"><span class="msg-text">展板层号灯</span></div>
+              <div class="msg-item fault-item-clickable" id="faultItem2"><span class="msg-time">0001 25/07/03 12:48 备电故障</span></div>
+              <div class="guide-hand" id="guideHand" style="display:none;"></div>
+            </div>
+            <div class="screen-right">
+              <div>
+                <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
+                <div style="margin-bottom:5px;">25/07/03 12:48</div>
+                <div>声光故障: 000</div><div>声光屏蔽: 000</div>
+                <div>用户权限: 0</div><div>正常 运行</div>
+                <div>手动:允许</div><div>自动:禁止</div>
+              </div>
+              <div class="screen-right-bottom">2025-07-03<br>17:06:54</div>
+            </div>
+          </div>
+          <div class="screen-footer">
+            <div class="footer-grid"><span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span></div>
           </div>
         </div>
       </div>
-      <div class="main-body">
-        <div class="left-panel">
-          <div class="alarm-module">
-            <div class="alarm-item"><div class="led-dot red"></div><div class="text">火警<span class="en">Alarm</span></div></div>
-            <div class="alarm-item"><div class="led-dot red"></div><div class="text">启动<span class="en">Active</span></div></div>
-          </div>
-          <div class="indicator-grid">
-            <div class="indicator-column">
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">监管报警<span class="en">Supervisory</span></div></div>
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">启动延时<span class="en">Active Delay</span></div></div>
-              <div class="indicator-row"><div class="led-dot green"></div><div class="text">主电运行<span class="en">Main Power</span></div></div>
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">备电运行<span class="en">Backup Power</span></div></div>
-              <div class="indicator-row"><div class="led-dot red"></div><div class="text">手报报警<span class="en">Manual Alarm</span></div></div>
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">系统故障<span class="en">System Fault</span></div></div>
-            </div>
-            <div class="indicator-column">
-              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">故障<span class="en">Fault</span></div></div>
-              <div class="indicator-row"><div class="led-dot red"></div><div class="text">反馈<span class="en">Feedback</span></div></div>
-              <div class="indicator-row"><div class="led-dot yellow"></div><div class="text">屏蔽<span class="en">Bypass</span></div></div>
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">消音<span class="en">Silence</span></div></div>
-              <div class="indicator-row"><div class="led-dot"></div><div class="text">自检<span class="en">Self-Test</span></div></div>
-              <div class="indicator-row"><div class="led-dot green blinking"></div><div class="text">运行<span class="en">Power On</span></div></div>
-            </div>
-          </div>
+      <div class="keyboard-area">
+        <div class="f-row">
+          <button class="btn-f" data-key="F1">F1</button>
+          <button class="btn-f" data-key="F2">F2</button>
+          <button class="btn-f" data-key="F3">F3</button>
+          <button class="btn-f" data-key="F4">F4</button>
+          <button class="btn-f" data-key="F5">F5</button>
+          <button class="btn-f" data-key="F6" id="f6Btn">F6</button>
         </div>
-        <div class="center-panel">
-          <div class="screen-frame">
-            <div class="screen" id="mainScreen">
-              <div class="screen-header"><span>首警: 25/07/03 12:48 2-1</span><span>青鸟消防</span></div>
-              <div class="screen-content">
-                <div class="screen-left">
-                  <div class="msg-item msg-highlight"><span class="msg-time">0002 25/07/03 12:48 2-12 手报</span><span class="msg-text">展板手报</span></div>
-                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-1</span><span class="msg-text">展板烟感</span></div>
-                  <div style="margin-top:5px;"></div>
-                  <div class="msg-item msg-highlight"><span class="msg-time">火警: 0002 故障: 0001 反馈: 0001</span></div>
-                  <div class="msg-item"><span class="msg-time">0002 25/07/03 12:48 2-11 手动启动</span><span class="msg-text">展板消火栓按钮</span></div>
-                  <div class="msg-item"><span class="msg-time">0001 25/07/03 12:48 2-2 动作</span><span class="msg-text">展板温感</span></div>
-                </div>
-                <div class="screen-right">
-                  <div>
-                    <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
-                    <div style="margin-bottom:5px;">25/07/03 12:48</div>
-                    <div>声光故障: 000</div>
-                    <div>声光屏蔽: 000</div>
-                    <div>用户权限: 0</div>
-                    <div>正常 运行</div>
-                    <div>手动:允许</div>
-                    <div>自动:禁止</div>
-                  </div>
-                  <div class="screen-right-bottom">2025-07-03<br>17:06:01</div>
-                </div>
-              </div>
-              <div class="screen-footer">
-                <span class="screen-btn-text">回首页</span>
-                <span class="screen-btn-text">查火警</span>
-                <span class="screen-btn-text">查联动</span>
-                <span class="screen-btn-text">手动控制</span>
-                <span class="screen-btn-text">查故障</span>
-              </div>
-            </div>
-            <div class="screen fault-screen" id="faultScreen">
-              <div class="screen-header"><span>故障信息</span><span>合计: 0002</span></div>
-              <div class="screen-content">
-                <div class="screen-left" style="flex:2.5;position:relative;">
-                  <div class="msg-item fault-item-clickable" id="faultItem1"><span class="msg-time">0002 25/07/03 12:48 2-30 输入输出模块故障</span></div>
-                  <div class="msg-item indent"><span class="msg-text">展板层号灯</span></div>
-                  <div class="msg-item fault-item-clickable" id="faultItem2"><span class="msg-time">0001 25/07/03 12:48 备电故障</span></div>
-                  <div class="guide-hand" id="guideHand" style="display:none;"></div>
-                </div>
-                <div class="screen-right">
-                  <div>
-                    <div style="font-weight:bold;margin-bottom:2px;">首警: 2-1</div>
-                    <div style="margin-bottom:5px;">25/07/03 12:48</div>
-                    <div>声光故障: 000</div>
-                    <div>声光屏蔽: 000</div>
-                    <div>用户权限: 0</div>
-                    <div>正常 运行</div>
-                    <div>手动:允许</div>
-                    <div>自动:禁止</div>
-                  </div>
-                  <div class="screen-right-bottom">2025-07-03<br>17:06:54</div>
-                </div>
-              </div>
-              <div class="screen-footer">
-                <span class="screen-btn-text">回首页</span>
-                <span class="screen-btn-text">上一条</span>
-                <span class="screen-btn-text">下一条</span>
-                <span class="screen-btn-text">上一页</span>
-                <span class="screen-btn-text">下一页</span>
-                <span class="screen-btn-text">退出</span>
-              </div>
-            </div>
-          </div>
-          <div class="keyboard-area">
-            <div class="f-row">
-              <button class="btn-f">F1</button>
-              <button class="btn-f">F2</button>
-              <button class="btn-f">F3</button>
-              <button class="btn-f">F4</button>
-              <button class="btn-f">F5</button>
-              <button class="btn-f" id="f6Btn">F6</button>
-            </div>
-            <div class="keyboard-row">
-              <button class="btn btn-num">1<span class="sub">..</span></button>
-              <button class="btn btn-num">2<span class="sub">abc</span></button>
-              <button class="btn btn-num">3<span class="sub">def</span></button>
-              <button class="btn btn-func">功能<br><span class="sub">Function</span></button>
-              <button class="btn btn-arrow">▲</button>
-              <button class="btn btn-white">取消<br><span class="sub">Cancel</span></button>
-              <button class="btn btn-large red-text">复位<br><span class="sub">Reset</span></button>
-            </div>
-            <div class="keyboard-row">
-              <button class="btn btn-num">4<span class="sub">ghi</span></button>
-              <button class="btn btn-num">5<span class="sub">jkl</span></button>
-              <button class="btn btn-num">6<span class="sub">mno</span></button>
-              <button class="btn btn-arrow">◀</button>
-              <button class="btn btn-func">确定<br><span class="sub">Enter</span></button>
-              <button class="btn btn-arrow">▶</button>
-              <button class="btn btn-large green-text">检查<br><span class="sub">Check</span></button>
-            </div>
-            <div class="keyboard-row">
-              <button class="btn btn-num">7<span class="sub">pqrs</span></button>
-              <button class="btn btn-num">8<span class="sub">tuv</span></button>
-              <button class="btn btn-num">9<span class="sub">wxyz</span></button>
-              <button class="btn btn-white">中/英<br><span class="sub">CN/EN</span></button>
-              <button class="btn btn-arrow">▼</button>
-              <button class="btn btn-white">自定义<br><span class="sub">Custom</span></button>
-              <button class="btn btn-large red-text">消音<br><span class="sub">Silence</span></button>
-            </div>
-            <div class="keyboard-row">
-              <button class="btn btn-num">*</button>
-              <button class="btn btn-num">0<span class="sub">_</span></button>
-              <button class="btn btn-num">#</button>
-              <button class="btn btn-white">声光启<br><span class="sub">Signal On</span></button>
-              <button class="btn btn-white">声光停<br><span class="sub">Signal Off</span></button>
-              <button class="btn btn-white">联动<br><span class="sub">Control</span></button>
-              <button class="btn btn-large red-text">启动<br><span class="sub">Start</span></button>
-            </div>
-          </div>
+        <div class="keyboard-row">
+          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
+          <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
+          <button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
+          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button>
+          <button class="btn btn-arrow" data-key="▲">▲</button>
+          <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
+          <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
         </div>
-        <div class="right-panel">
-          <div class="digital-display">170</div>
-          <div class="key-switch-area">
-            <div class="key-labels">
-              <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
-              <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
-            </div>
-            <div class="key-switch">
-              <div class="key-inserted"></div>
-              <div class="key-switch-inner"><div class="key-switch-slot" style="transform:rotate(-45deg);"></div></div>
-            </div>
-            <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
-          </div>
-          <div class="speaker">
-            <script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script>
-          </div>
+        <div class="keyboard-row">
+          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
+          <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
+          <button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
+          <button class="btn btn-arrow" data-key="◀">◀</button>
+          <button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button>
+          <button class="btn btn-arrow" data-key="▶">▶</button>
+          <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
+        </div>
+        <div class="keyboard-row">
+          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
+          <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
+          <button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
+          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button>
+          <button class="btn btn-arrow" data-key="▼">▼</button>
+          <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
+          <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
+        </div>
+        <div class="keyboard-row">
+          <button class="btn btn-num" data-key="*">*</button>
+          <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
+          <button class="btn btn-num" data-key="#">#</button>
+          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button>
+          <button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button>
+          <button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button>
+          <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
         </div>
       </div>
+      <div class="digital-display">170</div>
+      <div class="key-switch-area">
+        <div class="key-labels">
+          <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
+          <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
+        </div>
+        <div class="key-switch"><div class="key-inserted"></div><div class="key-switch-inner"><div class="key-switch-slot" style="transform:rotate(-45deg);"></div></div></div>
+        <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
+      </div>
+      <div class="speaker"><script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script></div>
       <div class="bottom-left-panel"><div class="knob"><div class="knob-led"></div></div></div>
       <div class="bottom-right-label">火灾报警控制器<br>(联动型)</div>
     </div>
     <div class="modal-overlay" id="practiceModalInner">
-      <div class="modal">
+      <div class="modal" id="draggableModal">
+        <div class="modal-drag-handle" id="modalDragHandle"><span class="drag-title">练习答题（按住拖动）</span></div>
         <button class="close-btn" id="closeModalBtn">&times;</button>
-        <div id="modalContent"></div>
+        <div class="modal-body" id="modalContent"></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ==================== 课题2 练习弹窗 ==================== -->
+<!-- ==================== 课题2 面板 ==================== -->
 <div class="practice-modal" id="practiceModal2">
   <div class="practice-modal-inner">
     <div class="practice-modal-close" id="closePracticeModal2">&times;</div>
@@ -1776,10 +697,7 @@ html,body{
         <button class="reset-btn" id="resetBtn2">重置</button>
       </div>
       <div class="logo-area">
-        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
-          <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
-        </svg>
+        <svg class="logo-svg" viewBox="0 0 100 100"><path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/><path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/></svg>
         <div class="logo-text"><span class="chinese">北大青鸟</span><span class="english">JADE BIRD FIRE</span></div>
       </div>
       <div class="alarm-module">
@@ -1822,76 +740,40 @@ html,body{
               <div class="screen-right-bottom">2021-11-30<br>15:55:55</div>
             </div>
           </div>
-          <div class="screen-footer" id="screenFooter">
-            <div class="footer-grid"><span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span></div>
-          </div>
+          <div class="screen-footer" id="screenFooter"><div class="footer-grid"><span>回首页</span><span>上一条</span><span>下一条</span><span>上一页</span><span>下一页</span><span>退出</span></div></div>
         </div>
       </div>
       <div class="digital-display">15.55</div>
       <div class="key-switch-area">
-        <div class="key-labels">
-          <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
-          <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
-        </div>
-        <div class="key-switch">
-          <div class="key-inserted"></div>
-          <div class="key-switch-inner"></div>
-        </div>
+        <div class="key-labels"><div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div><div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div></div>
+        <div class="key-switch"><div class="key-inserted"></div><div class="key-switch-inner"></div></div>
         <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
       </div>
       <div class="speaker"><script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script></div>
       <div class="keyboard-area">
         <div class="f-row">
-          <button class="btn-f" data-key="F1">F1</button>
-          <button class="btn-f" data-key="F2">F2</button>
-          <button class="btn-f" data-key="F3">F3</button>
-          <button class="btn-f" data-key="F4">F4</button>
-          <button class="btn-f" data-key="F5">F5</button>
-          <button class="btn-f" data-key="F6" id="f6Btn2">F6</button>
+          <button class="btn-f" data-key="F1">F1</button><button class="btn-f" data-key="F2">F2</button><button class="btn-f" data-key="F3">F3</button><button class="btn-f" data-key="F4">F4</button><button class="btn-f" data-key="F5">F5</button><button class="btn-f" data-key="F6" id="f6Btn2">F6</button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
-          <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
-          <button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
-          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button>
-          <button class="btn btn-arrow" data-key="▲">▲</button>
-          <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
-          <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
+          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button><button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button><button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
+          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button><button class="btn btn-arrow" data-key="▲">▲</button><button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button><button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
-          <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
-          <button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
-          <button class="btn btn-arrow" data-key="◀">◀</button>
-          <button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button>
-          <button class="btn btn-arrow" data-key="▶">▶</button>
-          <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
+          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button><button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button><button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
+          <button class="btn btn-arrow" data-key="◀">◀</button><button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button><button class="btn btn-arrow" data-key="▶">▶</button><button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
-          <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
-          <button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
-          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button>
-          <button class="btn btn-arrow" data-key="▼">▼</button>
-          <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
-          <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
+          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button><button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button><button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
+          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button><button class="btn btn-arrow" data-key="▼">▼</button><button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button><button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="*">*</button>
-          <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
-          <button class="btn btn-num" data-key="#">#</button>
-          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button>
-          <button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button>
-          <button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button>
-          <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
+          <button class="btn btn-num" data-key="*">*</button><button class="btn btn-num" data-key="0">0<span class="sub">_</span></button><button class="btn btn-num" data-key="#">#</button>
+          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button><button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button><button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button><button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
         </div>
       </div>
       <div class="bottom-left-panel">
         <div class="op-task-panel" id="opTaskPanel">
-          <div class="op-task-header">
-            <div class="op-task-title"><span>操作题</span><span class="step-badge" id="opStepBadge">第 1 轮</span></div>
-            <div class="op-task-timer" id="opTimer">03:00</div>
-          </div>
+          <div class="op-task-header"><div class="op-task-title"><span>操作题</span><span class="step-badge" id="opStepBadge">第 1 轮</span></div><div class="op-task-timer" id="opTimer">03:00</div></div>
           <div class="op-task-question" id="opQuestion">请操作：<span class="highlight">手动调成允许</span></div>
           <button class="op-task-submit" id="opSubmitBtn">提交操作结果</button>
         </div>
@@ -1909,7 +791,7 @@ html,body{
   </div>
 </div>
 
-<!-- ==================== 课题3 练习弹窗 ==================== -->
+<!-- ==================== 课题3 面板 ==================== -->
 <div class="practice-modal" id="practiceModal3">
   <div class="practice-modal-inner">
     <div class="practice-modal-close" id="closePracticeModal3">&times;</div>
@@ -1920,10 +802,7 @@ html,body{
         <button class="reset-btn" id="resetBtn3">重置</button>
       </div>
       <div class="logo-area">
-        <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/>
-          <path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/>
-        </svg>
+        <svg class="logo-svg" viewBox="0 0 100 100"><path d="M20,80 L40,40 L60,60 L80,20 L90,30 L60,80 L40,60 L30,80 Z" fill="#2b6ca3"/><path d="M10,60 L30,20 L50,40 L70,10 L80,20 L50,60 L30,40 L20,60 Z" fill="#2b6ca3" opacity="0.7"/></svg>
         <div class="logo-text"><span class="chinese">北大青鸟</span><span class="english">JADE BIRD FIRE</span></div>
       </div>
       <div class="alarm-module">
@@ -1969,76 +848,40 @@ html,body{
               <div class="screen-right-bottom">2021-11-30<br>15:53:07</div>
             </div>
           </div>
-          <div class="screen-footer" id="screenFooter3">
-            <div class="footer-grid"><span>跨机自动</span><span>回首页</span><span>查火警</span><span>查联动</span><span>手动控制</span><span>查故障</span></div>
-          </div>
+          <div class="screen-footer" id="screenFooter3"><div class="footer-grid"><span>跨机自动</span><span>回首页</span><span>查火警</span><span>查联动</span><span>手动控制</span><span>查故障</span></div></div>
         </div>
       </div>
       <div class="digital-display">15.55</div>
       <div class="key-switch-area">
-        <div class="key-labels">
-          <div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div>
-          <div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div>
-        </div>
-        <div class="key-switch">
-          <div class="key-inserted"></div>
-          <div class="key-switch-inner"></div>
-        </div>
+        <div class="key-labels"><div class="key-label-item"><span>禁止</span><span class="en">Forbidden</span></div><div class="key-label-item"><span>允许</span><span class="en">Allowed</span></div></div>
+        <div class="key-switch"><div class="key-inserted"></div><div class="key-switch-inner"></div></div>
         <div class="key-switch-text">自动方式<span class="en">Automatic</span></div>
       </div>
       <div class="speaker"><script>for(let i=0;i<36;i++){document.write('<div class="speaker-hole"></div>');}</script></div>
       <div class="keyboard-area">
         <div class="f-row">
-          <button class="btn-f" data-key="F1">F1</button>
-          <button class="btn-f" data-key="F2">F2</button>
-          <button class="btn-f" data-key="F3">F3</button>
-          <button class="btn-f" data-key="F4">F4</button>
-          <button class="btn-f" data-key="F5">F5</button>
-          <button class="btn-f" data-key="F6" id="f6Btn3">F6</button>
+          <button class="btn-f" data-key="F1">F1</button><button class="btn-f" data-key="F2">F2</button><button class="btn-f" data-key="F3">F3</button><button class="btn-f" data-key="F4">F4</button><button class="btn-f" data-key="F5">F5</button><button class="btn-f" data-key="F6" id="f6Btn3">F6</button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button>
-          <button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button>
-          <button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
-          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button>
-          <button class="btn btn-arrow" data-key="▲">▲</button>
-          <button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button>
-          <button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
+          <button class="btn btn-num" data-key="1">1<span class="sub">..</span></button><button class="btn btn-num" data-key="2">2<span class="sub">abc</span></button><button class="btn btn-num" data-key="3">3<span class="sub">def</span></button>
+          <button class="btn btn-func" data-key="功能">功能<br><span class="sub">Function</span></button><button class="btn btn-arrow" data-key="▲">▲</button><button class="btn btn-white" data-key="取消">取消<br><span class="sub">Cancel</span></button><button class="btn btn-large red-text" data-key="复位">复位<br><span class="sub">Reset</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button>
-          <button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button>
-          <button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
-          <button class="btn btn-arrow" data-key="◀">◀</button>
-          <button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button>
-          <button class="btn btn-arrow" data-key="▶">▶</button>
-          <button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
+          <button class="btn btn-num" data-key="4">4<span class="sub">ghi</span></button><button class="btn btn-num" data-key="5">5<span class="sub">jkl</span></button><button class="btn btn-num" data-key="6">6<span class="sub">mno</span></button>
+          <button class="btn btn-arrow" data-key="◀">◀</button><button class="btn btn-func" data-key="确定">确定<br><span class="sub">Enter</span></button><button class="btn btn-arrow" data-key="▶">▶</button><button class="btn btn-large green-text" data-key="检查">检查<br><span class="sub">Check</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button>
-          <button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button>
-          <button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
-          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button>
-          <button class="btn btn-arrow" data-key="▼">▼</button>
-          <button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button>
-          <button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
+          <button class="btn btn-num" data-key="7">7<span class="sub">pqrs</span></button><button class="btn btn-num" data-key="8">8<span class="sub">tuv</span></button><button class="btn btn-num" data-key="9">9<span class="sub">wxyz</span></button>
+          <button class="btn btn-white" data-key="中/英">中/英<br><span class="sub">CN/EN</span></button><button class="btn btn-arrow" data-key="▼">▼</button><button class="btn btn-white" data-key="自定义">自定义<br><span class="sub">Custom</span></button><button class="btn btn-large red-text" data-key="消音">消音<br><span class="sub">Silence</span></button>
         </div>
         <div class="keyboard-row">
-          <button class="btn btn-num" data-key="*">*</button>
-          <button class="btn btn-num" data-key="0">0<span class="sub">_</span></button>
-          <button class="btn btn-num" data-key="#">#</button>
-          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button>
-          <button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button>
-          <button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button>
-          <button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
+          <button class="btn btn-num" data-key="*">*</button><button class="btn btn-num" data-key="0">0<span class="sub">_</span></button><button class="btn btn-num" data-key="#">#</button>
+          <button class="btn btn-white" data-key="声光启">声光启<br><span class="sub">Signal On</span></button><button class="btn btn-white" data-key="声光停">声光停<br><span class="sub">Signal Off</span></button><button class="btn btn-white" data-key="联动">联动<br><span class="sub">Control</span></button><button class="btn btn-large red-text" data-key="启动">启动<br><span class="sub">Start</span></button>
         </div>
       </div>
       <div class="bottom-left-panel">
         <div class="op-task-panel" id="opTaskPanel3">
-          <div class="op-task-header">
-            <div class="op-task-title"><span>操作题</span><span class="step-badge" id="opStepBadge3">第 1 轮</span></div>
-            <div class="op-task-timer" id="opTimer3">03:00</div>
-          </div>
+          <div class="op-task-header"><div class="op-task-title"><span>操作题</span><span class="step-badge" id="opStepBadge3">第 1 轮</span></div><div class="op-task-timer" id="opTimer3">03:00</div></div>
           <div class="op-task-question" id="opQuestion3"></div>
           <button class="op-answer-btn" id="opAnswerBtn3">回答</button>
           <button class="op-task-submit" id="opSubmitBtn3">提交操作结果</button>
@@ -2060,7 +903,6 @@ html,body{
 </div><!-- #app-root -->
 
 <div class="float-tip" id="floatTip"></div>
-
 <script>
 /* ============================================================
  * 手机竖屏自动横屏
@@ -2119,7 +961,7 @@ html,body{
 })();
 
 /* ============================================================
- * 面板智能缩放
+ * 面板智能缩放（手机按宽度铺满）
  * ============================================================ */
 function applyGameScale() {
   const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
@@ -2128,19 +970,16 @@ function applyGameScale() {
     { el: document.querySelector('#practiceModal2 .panel2'), w: 1400, h: 780 },
     { el: document.querySelector('#practiceModal3 .panel3'), w: 1400, h: 780 }
   ];
-
   panels.forEach(function(p) {
     if (!p.el) return;
     const parent = p.el.closest('.practice-modal-inner');
     if (!parent) return;
-
     let winW = parent.clientWidth  || parent.getBoundingClientRect().width;
     let winH = parent.clientHeight || parent.getBoundingClientRect().height;
     if (winW < 100 || winH < 100) {
       winW = window.innerWidth;
       winH = window.innerHeight;
     }
-
     let scale;
     if (isTouch) {
       scale = winW / p.w;
@@ -2149,7 +988,6 @@ function applyGameScale() {
       const scaleY = winH / p.h;
       scale = Math.min(1, scaleX, scaleY);
     }
-
     p.el.style.transformOrigin = 'center center';
     p.el.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
     p.el.style.position = 'absolute';
@@ -2169,7 +1007,6 @@ window.addEventListener('orientationchange', function() {
 setTimeout(applyGameScale, 50);
 setTimeout(applyGameScale, 300);
 setTimeout(applyGameScale, 800);
-
 ['practiceModal','practiceModal2','practiceModal3'].forEach(function(id) {
   var el = document.getElementById(id);
   if (!el) return;
@@ -2280,7 +1117,7 @@ startDeviceQuizBtn.addEventListener('click', function(e) { e.stopPropagation(); 
 deviceQuizModal.addEventListener('click', function(e) { if (e.target === deviceQuizModal) closeDeviceQuiz(); });
 
 /* ============================================================
- * 按键音
+ * 按键音：移动端 0.4 / 1000Hz，电脑端 0.1 / 800Hz
  * ============================================================ */
 (function() {
   let audioCtx = null;
@@ -2307,8 +1144,45 @@ deviceQuizModal.addEventListener('click', function(e) { if (e.target === deviceQ
   });
 })();
 
+/* 拖动工具 */
+function makeDraggable(modalEl, handleEl, closeSelector) {
+  if (!modalEl || !handleEl) return;
+  let isDragging = false, startX = 0, startY = 0, startLeft = 0, startTop = 0;
+  function onStart(e) {
+    if (e.target.closest(closeSelector)) return;
+    e.preventDefault();
+    const rect = modalEl.getBoundingClientRect();
+    modalEl.style.position = 'fixed'; modalEl.style.left = rect.left + 'px'; modalEl.style.top = rect.top + 'px';
+    modalEl.style.margin = '0'; modalEl.style.transform = 'none';
+    isDragging = true;
+    startX = (e.touches ? e.touches[0].clientX : e.clientX);
+    startY = (e.touches ? e.touches[0].clientY : e.clientY);
+    startLeft = rect.left; startTop = rect.top;
+    document.body.style.cursor = 'grabbing';
+  }
+  function onMove(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    const cx = (e.touches ? e.touches[0].clientX : e.clientX);
+    const cy = (e.touches ? e.touches[0].clientY : e.clientY);
+    const dx = cx - startX, dy = cy - startY;
+    const rect = modalEl.getBoundingClientRect();
+    let nl = startLeft + dx, nt = startTop + dy;
+    const maxL = window.innerWidth - rect.width, maxT = window.innerHeight - rect.height;
+    nl = Math.max(0, Math.min(maxL, nl)); nt = Math.max(0, Math.min(maxT, nt));
+    modalEl.style.left = nl + 'px'; modalEl.style.top = nt + 'px';
+  }
+  function onEnd() { if (!isDragging) return; isDragging = false; document.body.style.cursor = ''; }
+  handleEl.addEventListener('mousedown', onStart);
+  document.addEventListener('mousemove', onMove);
+  document.addEventListener('mouseup', onEnd);
+  handleEl.addEventListener('touchstart', onStart, { passive: false });
+  document.addEventListener('touchmove', onMove, { passive: false });
+  document.addEventListener('touchend', onEnd);
+}
+
 /* ============================================================
- * 课题1（完全按原始文件逻辑）
+ * 课题1
  * ============================================================ */
 (function() {
   const practiceModal = document.getElementById('practiceModal');
@@ -2406,6 +1280,7 @@ deviceQuizModal.addEventListener('click', function(e) { if (e.target === deviceQ
   modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
   resetPractice();
   window.resetPractice = resetPractice;
+  makeDraggable(document.getElementById('draggableModal'), document.getElementById('modalDragHandle'), '.close-btn');
 })();
 
 /* ============================================================
@@ -2623,6 +1498,7 @@ function checkAnswer(userAnswer, q) {
   modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
   resetPractice();
   window.resetPractice2 = resetPractice;
+  makeDraggable(document.getElementById('draggableModal2'), document.getElementById('modalDragHandle2'), '.close-btn');
 })();
 
 /* ============================================================
@@ -3055,6 +1931,7 @@ function checkAnswer(userAnswer, q) {
   modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
   fullReset();
   window.resetPractice3 = fullReset;
+  makeDraggable(document.getElementById('draggableModal3'), document.getElementById('modalDragHandle3'), '.close-btn');
 })();
 
 /* 移动端点击穿透修复 */
