@@ -1628,7 +1628,9 @@ html.phone-rotated .practice-modal-close {
 })();
 
 /* ============================================================
- * ★ 面板智能缩放（撑满全屏版）
+ * ★ 面板智能缩放（手机铺满版）
+ * 手机：只按宽度铺满，高度允许超出，居中显示
+ * 电脑：按宽高取小值，最大 1 倍
  * ============================================================ */
 function applyGameScale() {
   const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
@@ -1643,23 +1645,23 @@ function applyGameScale() {
     const parent = p.el.closest('.practice-modal-inner');
     if (!parent) return;
 
-    let rect = parent.getBoundingClientRect();
-    let winW = rect.width;
-    let winH = rect.height;
-    // 父容器尺寸异常时用 window 兜底
+    let winW = parent.clientWidth  || parent.getBoundingClientRect().width;
+    let winH = parent.clientHeight || parent.getBoundingClientRect().height;
     if (winW < 100 || winH < 100) {
       winW = window.innerWidth;
       winH = window.innerHeight;
     }
 
-    const padding = 4;
-    const availableW = winW - padding * 2;
-    const availableH = winH - padding * 2;
-    const scaleX = availableW / p.w;
-    const scaleY = availableH / p.h;
-    let scale = Math.min(scaleX, scaleY);
-
-    if (!isTouch) scale = Math.min(1, scale);
+    let scale;
+    if (isTouch) {
+      // 手机：只按宽度铺满（更沉浸，不留黑边）
+      scale = winW / p.w;
+    } else {
+      // 电脑：按宽高取小值，最大 1 倍
+      const scaleX = winW / p.w;
+      const scaleY = winH / p.h;
+      scale = Math.min(1, scaleX, scaleY);
+    }
 
     p.el.style.transformOrigin = 'center center';
     p.el.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
