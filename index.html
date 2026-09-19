@@ -7,7 +7,7 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
 
-/* ========== 基础（电脑端保持原样） ========== */
+/* ========== 基础 ========== */
 html,body{
   width:100%;height:100%;overflow:hidden;background:#0e1a24;
   background-image:
@@ -16,6 +16,15 @@ html,body{
     linear-gradient(160deg,#101f2c,#162b3b 50%,#0e1a24);
   font-family:'Microsoft YaHei','PingFang SC','SimHei',system-ui,sans-serif;
   display:flex;justify-content:center;align-items:center;padding:12px;
+}
+
+/* ========== 手机自动横屏容器 ==========
+   把 body 里的所有内容包进 #app-root，
+   手机竖屏时用 JS 给 #app-root 加 rotate 类。 */
+#app-root{
+  width:100%;height:100%;
+  display:flex;justify-content:center;align-items:center;
+  transition:transform .3s ease;
 }
 
 /* ========== 主页 ========== */
@@ -1171,130 +1180,11 @@ html,body{
   .device-quiz-options.image-grid .device-quiz-option{max-height:110px}
   .device-quiz-options.text-grid .device-quiz-option .option-text{font-size:11px;padding:10px 6px}
 }
-
-/* ================================================================
-   ★★★★★ 手机自动横屏显示（竖着拿手机也看到横屏游戏） ★★★★★
-   只在手机/平板（触摸设备 + 窄屏）上生效，电脑端完全不受影响。
-   原理：把整个页面旋转 90 度，宽高互换。
-   ================================================================ */
-@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
-  html, body {
-    width: 100vh !important;
-    height: 100vw !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-  }
-  body {
-    transform: rotate(90deg) !important;
-    transform-origin: left top !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vh !important;
-    height: 100vw !important;
-    display: block !important;
-  }
-  /* 主页旋转后铺满 */
-  .home-wrapper {
-    max-width: 100% !important;
-    width: 100vh !important;
-    height: 100vw !important;
-    max-height: 100vw !important;
-    border-radius: 0 !important;
-    padding: 8px 14px !important;
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  .app-header { margin-bottom: 6px !important; padding-bottom: 6px !important; }
-  .brand-icon { width: 30px !important; height: 30px !important; border-radius: 8px !important; }
-  .brand-icon svg { width: 16px !important; height: 16px !important; }
-  .brand-text h1 { font-size: 13px !important; }
-  .brand-text .sub { font-size: 8px !important; margin-top: 1px !important; }
-  .stat-item { padding: 3px 8px !important; min-width: 48px !important; border-radius: 8px !important; }
-  .stat-value { font-size: 13px !important; }
-  .stat-label { font-size: 7px !important; }
-  .section-title { margin-bottom: 4px !important; }
-  .section-title h2 { font-size: 11px !important; }
-  .section-title .badge { font-size: 8px !important; padding: 2px 6px !important; }
-  .cards-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 6px !important;
-    flex: 1 !important;
-    min-height: 0 !important;
-    align-content: start !important;
-    overflow-y: auto !important;
-  }
-  .topic-card {
-    padding: 6px 8px 4px !important;
-    border-radius: 10px !important;
-    min-height: 0 !important;
-  }
-  .card-header { margin-bottom: 4px !important; }
-  .card-icon { width: 22px !important; height: 22px !important; font-size: 11px !important; border-radius: 6px !important; }
-  .card-badge { font-size: 7px !important; padding: 2px 5px !important; }
-  .card-title { font-size: 10px !important; margin-bottom: 2px !important; line-height: 1.25 !important; }
-  .card-desc { font-size: 8px !important; margin-bottom: 4px !important; line-height: 1.3 !important; }
-  .card-meta { flex-direction: row !important; align-items: center !important; padding-top: 4px !important; gap: 3px !important; }
-  .card-tags { gap: 2px !important; }
-  .tag { font-size: 6px !important; padding: 1px 4px !important; }
-  .start-btn { padding: 3px 8px !important; font-size: 9px !important; white-space: nowrap !important; }
-  .footer-note { font-size: 7px !important; margin-top: 3px !important; padding-top: 3px !important; flex-direction: row !important; gap: 3px !important; }
-  .footer-note .version { font-size: 7px !important; padding: 2px 6px !important; }
-
-  /* 练习弹窗旋转后全屏 */
-  .practice-modal {
-    width: 100vh !important;
-    height: 100vw !important;
-  }
-  .practice-modal-inner {
-    width: 100vh !important;
-    height: 100vw !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-  }
-  .practice-modal-close {
-    top: 6px !important; right: 10px !important;
-    width: 32px !important; height: 32px !important; font-size: 20px !important;
-  }
-  .practice-modal-inner .panel {
-    transform: scale(0.38) !important;
-  }
-  .panel2 {
-    transform: scale(0.38) !important;
-  }
-
-  /* 设备识别弹窗旋转后适配 */
-  .device-quiz-modal {
-    width: 100vh !important;
-    height: 100vw !important;
-    padding: 6px !important;
-  }
-  .device-quiz-container {
-    max-width: 100% !important;
-    max-height: 100vw !important;
-    border-radius: 12px !important;
-    padding: 8px 12px !important;
-  }
-  .device-quiz-header h2 { font-size: 12px !important; }
-  .device-quiz-question { font-size: 11px !important; padding: 6px 8px !important; margin-bottom: 6px !important; }
-  .device-quiz-options { gap: 6px !important; }
-  .device-quiz-options.image-grid .device-quiz-option { max-height: 90px !important; }
-  .device-quiz-image-box img { height: 80px !important; }
-  .device-quiz-options.text-grid .device-quiz-option .option-text { font-size: 11px !important; padding: 8px 6px !important; }
-  .device-quiz-feedback { font-size: 11px !important; padding: 5px !important; margin-top: 5px !important; }
-  .device-quiz-next-btn { padding: 7px !important; font-size: 11px !important; margin-top: 5px !important; }
-  .device-quiz-score { font-size: 9px !important; margin-top: 3px !important; }
-  .device-quiz-close { top: 6px !important; right: 8px !important; width: 26px !important; height: 26px !important; font-size: 16px !important; }
-}
 </style>
 </head>
 <body>
+
+<div id="app-root">
 
 <!-- ==================== 主页 ==================== -->
 <div class="home-wrapper">
@@ -1745,7 +1635,75 @@ html,body{
   </div>
 </div>
 
+</div><!-- #app-root -->
+
 <script>
+/* ============================================================
+ * ★★★★★ 手机自动横屏（旋转页面） ★★★★★
+ * 只在触摸设备 + 竖屏时生效，电脑端完全不受影响。
+ * 原理：把 #app-root 旋转 90 度，并修正坐标偏移。
+ * ============================================================ */
+(function() {
+  var appRoot = document.getElementById('app-root');
+
+  function applyAutoLandscape() {
+    // 判断是否触摸设备
+    var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    // 判断是否竖屏
+    var isPortrait = window.innerHeight > window.innerWidth;
+    // 判断屏幕宽度，排除电脑（电脑一般 > 1024 且无触摸）
+    var isMobile = isTouch && Math.min(window.innerWidth, window.innerHeight) < 900;
+
+    if (isMobile && isPortrait) {
+      // 手机竖屏：旋转整个页面 90 度
+      var vw = window.innerWidth;
+      var vh = window.innerHeight;
+
+      // 旋转后宽高互换
+      appRoot.style.position = 'fixed';
+      appRoot.style.top = '0';
+      appRoot.style.left = '0';
+      appRoot.style.width = vh + 'px';
+      appRoot.style.height = vw + 'px';
+      appRoot.style.transformOrigin = '0 0';
+      // 旋转 90 度，并且向下平移 vw，让内容正好填满屏幕
+      appRoot.style.transform = 'translateX(' + vw + 'px) rotate(90deg)';
+      // 关键：修正 body 尺寸
+      document.documentElement.style.width = vh + 'px';
+      document.documentElement.style.height = vw + 'px';
+      document.body.style.width = vh + 'px';
+      document.body.style.height = vw + 'px';
+      document.body.style.overflow = 'hidden';
+    } else {
+      // 横屏 / 电脑：恢复原样
+      appRoot.style.position = '';
+      appRoot.style.top = '';
+      appRoot.style.left = '';
+      appRoot.style.width = '';
+      appRoot.style.height = '';
+      appRoot.style.transformOrigin = '';
+      appRoot.style.transform = '';
+      document.documentElement.style.width = '';
+      document.documentElement.style.height = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.body.style.overflow = '';
+    }
+  }
+
+  // 首次加载
+  setTimeout(applyAutoLandscape, 100);
+  setTimeout(applyAutoLandscape, 500);
+
+  // 监听窗口变化（旋转 / 调整大小）
+  window.addEventListener('resize', function() {
+    setTimeout(applyAutoLandscape, 100);
+  });
+  window.addEventListener('orientationchange', function() {
+    setTimeout(applyAutoLandscape, 200);
+  });
+})();
+
 /* ============================================================
  * 序章题库
  * ============================================================ */
@@ -2209,7 +2167,7 @@ function checkAnswer(userAnswer, q) {
 })();
 
 /* ================================================================
- * ★★★★★ 横屏游戏模式：智能缩放 ★★★★★
+ * 横屏游戏模式：智能缩放
  * ================================================================ */
 function applyGameScale() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
@@ -2218,7 +2176,6 @@ function applyGameScale() {
   const winW = window.innerWidth;
   const winH = window.innerHeight;
 
-  // 课题1面板 1300x720
   const panel1 = document.querySelector('#practiceModal .practice-modal-inner .panel');
   if (panel1) {
     const scaleX = winW / 1300;
@@ -2227,7 +2184,6 @@ function applyGameScale() {
     panel1.style.transform = `scale(${scale})`;
   }
 
-  // 课题2面板 1400x780
   const panel2 = document.querySelector('#practiceModal2 .panel2');
   if (panel2) {
     const scaleX = winW / 1400;
@@ -2237,7 +2193,6 @@ function applyGameScale() {
   }
 }
 
-// 监听屏幕旋转
 window.addEventListener('resize', function() {
   setTimeout(applyGameScale, 100);
   setTimeout(applyGameScale, 300);
