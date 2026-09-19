@@ -847,17 +847,22 @@ html,body{
 }
 
 /* ================================================================
-   ★ 手机竖屏自动横屏（#app-root.rotated）
+   ★ 手机竖屏自动横屏：主页铺满
    ================================================================ */
-#app-root.rotated {
+html.phone-rotated,
+html.phone-rotated body {
+  overflow: hidden !important;
+  background: #0e1a24;
+}
+html.phone-rotated #app-root.rotated {
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   display: block !important;
-  overflow: hidden;
+  overflow: hidden !important;
   background: #0e1a24;
 }
-#app-root.rotated .home-wrapper {
+html.phone-rotated #app-root.rotated .home-wrapper {
   width: 100% !important;
   height: 100% !important;
   max-width: none !important;
@@ -866,82 +871,64 @@ html,body{
   padding: 10px 16px !important;
   display: flex !important;
   flex-direction: column !important;
+  position: relative !important;
 }
-#app-root.rotated .app-header {
+html.phone-rotated #app-root.rotated .app-header {
   margin-bottom: 8px !important;
   padding-bottom: 8px !important;
 }
-#app-root.rotated .brand-icon { width: 34px !important; height: 34px !important; }
-#app-root.rotated .brand-icon svg { width: 20px !important; height: 20px !important; }
-#app-root.rotated .brand-text h1 { font-size: 15px !important; }
-#app-root.rotated .brand-text .sub { font-size: 9px !important; }
-#app-root.rotated .stat-item { padding: 3px 10px !important; min-width: 52px !important; }
-#app-root.rotated .stat-value { font-size: 15px !important; }
-#app-root.rotated .section-title { margin-bottom: 6px !important; }
-#app-root.rotated .section-title h2 { font-size: 13px !important; }
-#app-root.rotated .cards-grid {
+html.phone-rotated #app-root.rotated .brand-icon { width: 32px !important; height: 32px !important; }
+html.phone-rotated #app-root.rotated .brand-icon svg { width: 18px !important; height: 18px !important; }
+html.phone-rotated #app-root.rotated .brand-text h1 { font-size: 14px !important; }
+html.phone-rotated #app-root.rotated .brand-text .sub { font-size: 9px !important; }
+html.phone-rotated #app-root.rotated .stat-item { padding: 3px 10px !important; min-width: 50px !important; }
+html.phone-rotated #app-root.rotated .stat-value { font-size: 14px !important; }
+html.phone-rotated #app-root.rotated .section-title { margin-bottom: 6px !important; }
+html.phone-rotated #app-root.rotated .section-title h2 { font-size: 12px !important; }
+html.phone-rotated #app-root.rotated .cards-grid {
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 8px !important;
   flex: 1 !important;
   min-height: 0 !important;
+  align-content: stretch !important;
 }
-#app-root.rotated .topic-card { padding: 8px 10px 6px !important; }
-#app-root.rotated .card-icon { width: 26px !important; height: 26px !important; font-size: 13px !important; }
-#app-root.rotated .card-badge { font-size: 8px !important; padding: 2px 6px !important; }
-#app-root.rotated .card-title { font-size: 10px !important; }
-#app-root.rotated .card-desc { font-size: 8.5px !important; line-height: 1.35 !important; margin-bottom: 6px !important; }
-#app-root.rotated .card-meta { padding-top: 6px !important; }
-#app-root.rotated .tag { font-size: 7px !important; padding: 1px 5px !important; }
-#app-root.rotated .start-btn { padding: 4px 10px !important; font-size: 9px !important; }
-#app-root.rotated .footer-note { font-size: 9px !important; margin-top: 4px !important; padding-top: 6px !important; }
+html.phone-rotated #app-root.rotated .topic-card { padding: 8px 10px 6px !important; }
+html.phone-rotated #app-root.rotated .card-icon { width: 26px !important; height: 26px !important; font-size: 13px !important; }
+html.phone-rotated #app-root.rotated .card-badge { font-size: 8px !important; padding: 2px 6px !important; }
+html.phone-rotated #app-root.rotated .card-title { font-size: 10px !important; }
+html.phone-rotated #app-root.rotated .card-desc { font-size: 8.5px !important; line-height: 1.35 !important; margin-bottom: 6px !important; }
+html.phone-rotated #app-root.rotated .card-meta { padding-top: 6px !important; }
+html.phone-rotated #app-root.rotated .tag { font-size: 7px !important; padding: 1px 5px !important; }
+html.phone-rotated #app-root.rotated .start-btn { padding: 4px 10px !important; font-size: 9px !important; }
+html.phone-rotated #app-root.rotated .footer-note { font-size: 9px !important; margin-top: 4px !important; padding-top: 6px !important; }
 
-/* ================================================================
-   ★ 移动端进入课题后的全屏适配
-   ================================================================ */
+/* 手机旋转模式下练习弹窗 */
+html.phone-rotated .practice-modal-inner {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+html.phone-rotated .practice-modal-close {
+  position: fixed !important;
+  top: 10px !important;
+  right: 12px !important;
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 22px !important;
+  z-index: 100000 !important;
+}
+
+/* 移动端课题面板：撑满屏幕 */
 @media (hover: none) and (pointer: coarse) {
-  .practice-modal {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-  }
-  .practice-modal-inner {
-    width: 100% !important;
-    height: 100% !important;
-    overflow: hidden !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    position: relative !important;
-  }
   .practice-modal-inner .panel,
   .practice-modal-inner .panel2,
   .practice-modal-inner .panel3 {
-    transform-origin: center center !important;
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
     margin: 0 !important;
-  }
-  .practice-modal-close {
-    position: fixed !important;
-    top: 10px !important;
-    right: 12px !important;
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 22px !important;
-    z-index: 100000 !important;
-  }
-  .modal-overlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 11000 !important;
-    padding: 10px !important;
+    transform-origin: center center !important;
   }
   .modal-overlay .modal {
     width: 96% !important;
@@ -1582,16 +1569,20 @@ html,body{
 
 <script>
 /* ============================================================
- * ★ 手机竖屏自动横屏
+ * ★ 手机竖屏自动横屏（修复版）
  * ============================================================ */
 (function() {
   var appRoot = document.getElementById('app-root');
+
   function applyAutoLandscape() {
     var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     var isPortrait = window.innerHeight > window.innerWidth;
     var minSide = Math.min(window.innerWidth, window.innerHeight);
     var isMobile = isTouch && minSide < 900;
+
     if (isMobile && isPortrait) {
+      document.documentElement.classList.add('phone-rotated');
+      appRoot.classList.add('rotated');
       var vw = window.innerWidth;
       var vh = window.innerHeight;
       appRoot.style.position = 'fixed';
@@ -1601,8 +1592,6 @@ html,body{
       appRoot.style.height = vw + 'px';
       appRoot.style.transformOrigin = '0 0';
       appRoot.style.transform = 'translateX(' + vw + 'px) rotate(90deg)';
-      appRoot.style.background = '#0e1a24';
-      appRoot.classList.add('rotated');
       document.documentElement.style.width = vh + 'px';
       document.documentElement.style.height = vw + 'px';
       document.body.style.width = vh + 'px';
@@ -1610,6 +1599,8 @@ html,body{
       document.body.style.overflow = 'hidden';
       document.body.style.padding = '0';
     } else {
+      document.documentElement.classList.remove('phone-rotated');
+      appRoot.classList.remove('rotated');
       appRoot.style.position = '';
       appRoot.style.top = '';
       appRoot.style.left = '';
@@ -1617,8 +1608,6 @@ html,body{
       appRoot.style.height = '';
       appRoot.style.transformOrigin = '';
       appRoot.style.transform = '';
-      appRoot.style.background = '';
-      appRoot.classList.remove('rotated');
       document.documentElement.style.width = '';
       document.documentElement.style.height = '';
       document.body.style.width = '';
@@ -1626,6 +1615,10 @@ html,body{
       document.body.style.overflow = '';
       document.body.style.padding = '';
     }
+    // 旋转后立即重新计算面板缩放
+    setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 50);
+    setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 200);
+    setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 500);
   }
   setTimeout(applyAutoLandscape, 50);
   setTimeout(applyAutoLandscape, 200);
@@ -1638,23 +1631,36 @@ html,body{
  * ★ 面板智能缩放（撑满全屏版）
  * ============================================================ */
 function applyGameScale() {
-  const winW = window.innerWidth;
-  const winH = window.innerHeight;
   const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
   const panels = [
     { el: document.querySelector('#practiceModal .panel'),  w: 1300, h: 720 },
     { el: document.querySelector('#practiceModal2 .panel2'), w: 1400, h: 780 },
     { el: document.querySelector('#practiceModal3 .panel3'), w: 1400, h: 780 }
   ];
+
   panels.forEach(function(p) {
     if (!p.el) return;
+    const parent = p.el.closest('.practice-modal-inner');
+    if (!parent) return;
+
+    let rect = parent.getBoundingClientRect();
+    let winW = rect.width;
+    let winH = rect.height;
+    // 父容器尺寸异常时用 window 兜底
+    if (winW < 100 || winH < 100) {
+      winW = window.innerWidth;
+      winH = window.innerHeight;
+    }
+
     const padding = 4;
     const availableW = winW - padding * 2;
     const availableH = winH - padding * 2;
     const scaleX = availableW / p.w;
     const scaleY = availableH / p.h;
     let scale = Math.min(scaleX, scaleY);
+
     if (!isTouch) scale = Math.min(1, scale);
+
     p.el.style.transformOrigin = 'center center';
     p.el.style.transform = 'translate(-50%, -50%) scale(' + scale + ')';
     p.el.style.position = 'absolute';
