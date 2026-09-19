@@ -313,20 +313,20 @@ html,body{
   background:#e67e22;padding:7px 16px;border:none;
   border-radius:4px;cursor:pointer;
   box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #b85e10;
+  transition:all .15s;border:1px solid #b85e10;
 }
 .practice-btn:hover{background:#d35400}
-.practice-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
+.practice-btn:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 3px 6px rgba(0,0,0,.4)}
 .reset-btn{
   font-size:14px;font-weight:bold;color:#fff;
   background:#c0392b;padding:7px 16px;border:none;
   border-radius:4px;cursor:pointer;
   box-shadow:0 2px 6px rgba(0,0,0,.3);
-  transition:background .2s;border:1px solid #a93226;
+  transition:all .15s;border:1px solid #a93226;
   display:none;
 }
 .reset-btn:hover{background:#a93226}
-.reset-btn:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
+.reset-btn:active{transform:translateY(2px) scale(.97);box-shadow:inset 0 3px 6px rgba(0,0,0,.4)}
 
 .logo-area{
   position:absolute;top:70px;left:45px;
@@ -421,7 +421,7 @@ html,body{
   display:flex;flex:1;padding:12px 14px;gap:12px;overflow:hidden;
 }
 .screen-left{
-  flex:2.5;display:flex;flex-direction:column;gap:8px;
+  flex:2.5;display:flex;flex-direction:column;gap:8px;position:relative;
 }
 .screen-right{
   flex:1;border-left:1px solid #2e7ba6;padding-left:14px;
@@ -573,50 +573,85 @@ html,body{
   background:#3a7ca5;color:#fff;width:72px;height:40px;
   border-radius:5px;font-size:17px;font-weight:bold;border:none;
   cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
+  box-shadow:0 3px 0 #244e6a,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
   display:flex;justify-content:center;align-items:center;
+  transition:transform .06s,box-shadow .06s;
+  position:relative;
+  top:0;
 }
 .btn-f:active{
-  transform:translateY(1px);
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.5);
+  transform:translateY(3px);
+  box-shadow:0 0 0 #244e6a,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
 }
 .keyboard-row{
   display:flex;gap:10px;align-items:center;justify-content:center;
 }
 .btn{
   border-radius:5px;border:none;font-weight:bold;cursor:pointer;
-  box-shadow:0 2px 4px rgba(0,0,0,.4),inset 0 1px 2px rgba(255,255,255,.5);
   display:flex;justify-content:center;align-items:center;
-  transition:all .1s;position:relative;line-height:1.1;
+  transition:transform .06s,box-shadow .06s;
+  position:relative;line-height:1.1;
   padding:0 3px;flex-shrink:0;
-}
-.btn:active{
-  box-shadow:inset 0 2px 4px rgba(0,0,0,.5);transform:translateY(1px);
+  top:0;
 }
 .btn-num{
   background:#5b8db8;color:#fff;font-size:18px;
   width:72px;height:48px;flex-direction:column;
+  box-shadow:0 3px 0 #375b7e,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-num:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #375b7e,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
 }
 .btn-num .sub{font-size:11px;margin-top:-1px;font-weight:normal}
 .btn-func{
   background:#ff7e00;color:#fff;font-size:15px;
   width:72px;height:48px;flex-direction:column;
+  box-shadow:0 3px 0 #a04e00,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-func:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #a04e00,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
 }
 .btn-func .sub{font-size:11px;margin-top:1px;font-weight:normal}
 .btn-white{
   background:#e0e4e6;color:#333;font-size:14px;
   width:72px;height:48px;flex-direction:column;
+  box-shadow:0 3px 0 #a0a4a6,0 4px 6px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.6);
+}
+.btn-white:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #a0a4a6,0 1px 2px rgba(0,0,0,.3),inset 0 2px 4px rgba(0,0,0,.2);
 }
 .btn-white .sub{font-size:11px;color:#666;margin-top:1px;font-weight:normal}
 .btn-large{width:72px;height:48px;font-size:15px;flex-direction:column}
-.btn-large.red-text{background:#d32f2f;color:#fff}
-.btn-large.green-text{background:#388e3c;color:#fff}
+.btn-large.red-text{
+  background:#d32f2f;color:#fff;
+  box-shadow:0 3px 0 #8a1e1e,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-large.red-text:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #8a1e1e,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
+}
+.btn-large.green-text{
+  background:#388e3c;color:#fff;
+  box-shadow:0 3px 0 #1e5a20,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-large.green-text:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #1e5a20,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
+}
 .btn-large .sub{
   font-size:11px;color:rgba(255,255,255,.8);
   margin-top:1px;font-weight:normal;
 }
 .btn-arrow{
   width:72px;height:48px;background:#ff7e00;color:#fff;font-size:22px;
+  box-shadow:0 3px 0 #a04e00,0 4px 6px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.btn-arrow:active{
+  transform:translateY(3px);
+  box-shadow:0 0 0 #a04e00,0 1px 2px rgba(0,0,0,.4),inset 0 2px 4px rgba(0,0,0,.4);
 }
 
 .op-task-panel{
@@ -669,9 +704,10 @@ html,body{
   background:#2b6ca3;color:#fff;
   border:none;border-radius:6px;
   font-size:13px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
+  cursor:pointer;transition:all .15s;
 }
 .op-task-submit:hover{background:#1d4f7a}
+.op-task-submit:active{transform:translateY(2px) scale(.99);box-shadow:inset 0 2px 6px rgba(0,0,0,.4)}
 .op-task-submit:disabled{background:#8a9296;cursor:not-allowed}
 .op-answer-btn{
   margin-top:6px;flex-shrink:0;
@@ -679,17 +715,42 @@ html,body{
   background:#e67e22;color:#fff;
   border:none;border-radius:6px;
   font-size:13px;font-weight:bold;
-  cursor:pointer;transition:background .2s;
+  cursor:pointer;transition:all .15s;
   display:none;
 }
 .op-answer-btn:hover{background:#d35400}
+.op-answer-btn:active{transform:translateY(2px) scale(.99);box-shadow:inset 0 2px 6px rgba(0,0,0,.4)}
+
+/* ========== 引导手指 ========== */
+.practice-modal-inner .panel .guide-hand{
+  position:absolute;
+  bottom:60px;
+  left:50%;
+  transform:translateX(-50%);
+  width:56px;height:56px;
+  background:rgba(255,165,0,.9);
+  border-radius:50%;
+  display:flex;justify-content:center;align-items:center;
+  color:#fff;font-size:30px;
+  box-shadow:0 4px 20px rgba(255,165,0,.8);
+  pointer-events:none;
+  animation:slideUp 1.2s ease-in-out infinite alternate;
+  z-index:99999;
+}
+.practice-modal-inner .panel .guide-hand::after{content:'👆';font-size:32px}
+@keyframes slideUp{
+  0%{transform:translate(-50%,0);opacity:1}
+  100%{transform:translate(-50%,-30px);opacity:.8}
+}
 
 /* ========== 练习弹窗内部 ========== */
 .modal-overlay{
   position:fixed;top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,.55);
+  background:rgba(0,0,0,.35);
   display:none;justify-content:center;align-items:center;
-  z-index:11000;padding:20px;backdrop-filter:blur(6px);
+  z-index:11000;padding:20px;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
 }
 .modal-overlay.active{display:flex}
 .modal{
@@ -756,12 +817,16 @@ html,body{
   display:block;width:100%;padding:14px;margin-top:18px;
   background:linear-gradient(135deg,#3d8fd9,#266bb0);color:#fff;border:none;
   border-radius:10px;font-size:16px;font-weight:bold;
-  cursor:pointer;transition:all .2s;
+  cursor:pointer;transition:all .15s;
   box-shadow:0 4px 12px rgba(38,107,176,.3);
 }
 .modal .next-btn:hover{
   background:linear-gradient(135deg,#4b9cf0,#2f7bc0);
   transform:translateY(-1px);box-shadow:0 6px 16px rgba(38,107,176,.4);
+}
+.modal .next-btn:active{
+  transform:translateY(2px) scale(.99);
+  box-shadow:inset 0 3px 8px rgba(0,0,0,.3);
 }
 .modal .answer-input{
   width:100%;padding:16px 18px;
@@ -785,7 +850,7 @@ html,body{
   width:100%;padding:14px 20px;margin-top:16px;
   background:linear-gradient(135deg,#3d8fd9,#266bb0);color:#fff;border:none;
   border-radius:12px;font-size:16px;font-weight:bold;
-  cursor:pointer;transition:all .2s ease;
+  cursor:pointer;transition:all .15s ease;
   box-shadow:0 4px 14px rgba(38,107,176,.35);
   letter-spacing:.5px;
 }
@@ -793,23 +858,34 @@ html,body{
   background:linear-gradient(135deg,#4b9cf0,#2f7bc0);
   transform:translateY(-1px);box-shadow:0 6px 20px rgba(38,107,176,.45);
 }
+.modal .submit-btn:active{
+  transform:translateY(2px) scale(.99);
+  box-shadow:inset 0 3px 8px rgba(0,0,0,.3);
+}
 .modal .option-btn{
   display:block;width:100%;padding:14px 20px;
   margin-bottom:10px;background:linear-gradient(180deg,#fafbfd,#f0f4f8);
   border:2px solid #d0d7de;border-radius:10px;
   font-size:16px;font-weight:bold;color:#333;
-  cursor:pointer;text-align:left;transition:all .2s;
+  cursor:pointer;text-align:left;transition:all .15s;
 }
 .modal .option-btn:hover{background:#e1e9f0;border-color:#3d8fd9;transform:translateY(-1px)}
-.modal .option-btn:active{transform:scale(.99)}
+.modal .option-btn:active{
+  transform:translateY(2px) scale(.99);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.15);
+}
 .modal .choice-btn{
   display:block;width:100%;padding:14px;margin-top:10px;
   background:linear-gradient(180deg,#fafbfd,#f0f4f8);color:#333;
   border:2px solid #d0d7de;border-radius:10px;
   font-size:16px;font-weight:bold;
-  cursor:pointer;transition:all .2s;text-align:left;
+  cursor:pointer;transition:all .15s;text-align:left;
 }
 .modal .choice-btn:hover{background:#e1e9f0;border-color:#3d8fd9;transform:translateY(-1px)}
+.modal .choice-btn:active{
+  transform:translateY(2px) scale(.99);
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.15);
+}
 .modal .choice-btn.selected{background:#3d8fd9;color:#fff;border-color:#266bb0}
 
 .float-tip{
@@ -847,7 +923,7 @@ html,body{
 }
 
 /* ================================================================
-   ★ 手机竖屏自动横屏：主页铺满
+   ★ 手机竖屏自动横屏
    ================================================================ */
 html.phone-rotated,
 html.phone-rotated body {
@@ -902,7 +978,6 @@ html.phone-rotated #app-root.rotated .tag { font-size: 7px !important; padding: 
 html.phone-rotated #app-root.rotated .start-btn { padding: 4px 10px !important; font-size: 9px !important; }
 html.phone-rotated #app-root.rotated .footer-note { font-size: 9px !important; margin-top: 4px !important; padding-top: 6px !important; }
 
-/* 手机旋转模式下练习弹窗 */
 html.phone-rotated .practice-modal-inner {
   width: 100% !important;
   height: 100% !important;
@@ -919,7 +994,6 @@ html.phone-rotated .practice-modal-close {
   z-index: 100000 !important;
 }
 
-/* 移动端课题面板：撑满屏幕 */
 @media (hover: none) and (pointer: coarse) {
   .practice-modal-inner .panel,
   .practice-modal-inner .panel2,
@@ -930,45 +1004,22 @@ html.phone-rotated .practice-modal-close {
     margin: 0 !important;
     transform-origin: center center !important;
   }
+  .modal-overlay { padding: 12px !important; }
   .modal-overlay .modal {
-    width: 96% !important;
-    max-width: 96% !important;
-    max-height: 92% !important;
+    width: 90% !important;
+    max-width: 480px !important;
+    max-height: 82% !important;
     border-radius: 14px !important;
   }
-  .modal-overlay .modal-body {
-    padding: 18px 20px 20px !important;
-  }
-  .modal-overlay .modal h2 {
-    font-size: 18px !important;
-    margin-bottom: 12px !important;
-    padding-bottom: 8px !important;
-  }
-  .modal-overlay .modal p {
-    font-size: 14px !important;
-    margin-bottom: 12px !important;
-  }
-  .modal-overlay .modal .answer-input {
-    padding: 12px 14px !important;
-    font-size: 14px !important;
-    min-height: 70px !important;
-  }
+  .modal-overlay .modal-body { padding: 18px 20px 20px !important; }
+  .modal-overlay .modal h2 { font-size: 18px !important; margin-bottom: 12px !important; padding-bottom: 8px !important; }
+  .modal-overlay .modal p { font-size: 14px !important; margin-bottom: 12px !important; }
+  .modal-overlay .modal .answer-input { padding: 12px 14px !important; font-size: 14px !important; min-height: 70px !important; }
   .modal-overlay .modal .submit-btn,
-  .modal-overlay .modal .next-btn {
-    padding: 11px !important;
-    font-size: 14px !important;
-    margin-top: 12px !important;
-  }
+  .modal-overlay .modal .next-btn { padding: 11px !important; font-size: 14px !important; margin-top: 12px !important; }
   .modal-overlay .modal .option-btn,
-  .modal-overlay .modal .choice-btn {
-    padding: 11px 14px !important;
-    font-size: 14px !important;
-    margin-bottom: 8px !important;
-  }
-  .float-tip {
-    font-size: 15px !important;
-    padding: 12px 20px !important;
-  }
+  .modal-overlay .modal .choice-btn { padding: 11px 14px !important; font-size: 14px !important; margin-bottom: 8px !important; }
+  .float-tip { font-size: 15px !important; padding: 12px 20px !important; }
 }
 </style>
 </head>
@@ -1096,7 +1147,7 @@ html.phone-rotated .practice-modal-close {
 
   <div class="footer-note">
     <span>© 2026 中级消控模拟练习 · 仅用于教学模拟</span>
-    <span class="version">v3.5.0</span>
+    <span class="version">v3.8.0</span>
   </div>
 </div>
 
@@ -1569,17 +1620,15 @@ html.phone-rotated .practice-modal-close {
 
 <script>
 /* ============================================================
- * ★ 手机竖屏自动横屏（修复版）
+ * ★ 手机竖屏自动横屏
  * ============================================================ */
 (function() {
   var appRoot = document.getElementById('app-root');
-
   function applyAutoLandscape() {
     var isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     var isPortrait = window.innerHeight > window.innerWidth;
     var minSide = Math.min(window.innerWidth, window.innerHeight);
     var isMobile = isTouch && minSide < 900;
-
     if (isMobile && isPortrait) {
       document.documentElement.classList.add('phone-rotated');
       appRoot.classList.add('rotated');
@@ -1615,7 +1664,6 @@ html.phone-rotated .practice-modal-close {
       document.body.style.overflow = '';
       document.body.style.padding = '';
     }
-    // 旋转后立即重新计算面板缩放
     setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 50);
     setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 200);
     setTimeout(function(){ if (typeof applyGameScale === 'function') applyGameScale(); }, 500);
@@ -1628,9 +1676,7 @@ html.phone-rotated .practice-modal-close {
 })();
 
 /* ============================================================
- * ★ 面板智能缩放（手机铺满版）
- * 手机：只按宽度铺满，高度允许超出，居中显示
- * 电脑：按宽高取小值，最大 1 倍
+ * ★ 面板智能缩放（手机按宽度铺满）
  * ============================================================ */
 function applyGameScale() {
   const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
@@ -1654,10 +1700,8 @@ function applyGameScale() {
 
     let scale;
     if (isTouch) {
-      // 手机：只按宽度铺满（更沉浸，不留黑边）
       scale = winW / p.w;
     } else {
-      // 电脑：按宽高取小值，最大 1 倍
       const scaleX = winW / p.w;
       const scaleY = winH / p.h;
       scale = Math.min(1, scaleX, scaleY);
@@ -1792,18 +1836,27 @@ function renderDeviceResult() {
 startDeviceQuizBtn.addEventListener('click', function(e) { e.stopPropagation(); startDeviceQuiz(); });
 deviceQuizModal.addEventListener('click', function(e) { if (e.target === deviceQuizModal) closeDeviceQuiz(); });
 
-/* 音频 */
+/* ============================================================
+ * 按键音：移动端 0.4 / 1000Hz，电脑端 0.1 / 800Hz
+ * ============================================================ */
 (function() {
   let audioCtx = null;
-  function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); if (audioCtx.state === 'suspended') audioCtx.resume(); }
+  function initAudio() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  const VOLUME = isTouchDevice ? 0.4 : 0.1;
+  const FREQ = isTouchDevice ? 1000 : 800;
   function playBeep() {
     initAudio(); if (!audioCtx) return;
     const osc = audioCtx.createOscillator(); const gainNode = audioCtx.createGain();
-    osc.type = 'square'; osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(FREQ, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(VOLUME, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
     osc.connect(gainNode); gainNode.connect(audioCtx.destination);
-    osc.start(); osc.stop(audioCtx.currentTime + 0.06);
+    osc.start(); osc.stop(audioCtx.currentTime + 0.08);
   }
   document.querySelectorAll('.keyboard-area button').forEach(btn => {
     btn.addEventListener('click', function(e) { playBeep(); e.preventDefault(); });
@@ -2321,6 +2374,22 @@ function checkAnswer(userAnswer, q) {
     if (currentQuestionIndex >= questionQueue.length) { startSecondRound(); return; }
     const q = questionQueue[currentQuestionIndex];
     currentPhase = 'q1_led'; linkageWaitingKey = false; linkageKeyPressed = null;
+
+    /* ★ 联动信息：只给一个选项"在操作界面操作" */
+    if (q.key === 'linkage') {
+      showModal(`
+        <h2>第 ${currentQuestionIndex + 1} / ${questionQueue.length} 题</h2>
+        <p>问题：<span class="highlight-orange">${q.question}</span></p>
+        <p style="font-size:14px;color:#666;">请选择：</p>
+        <button class="choice-btn" id="linkageEnterBtn" style="width:100%;">在操作界面操作</button>
+      `);
+      document.getElementById('linkageEnterBtn').onclick = () => {
+        hideModal();
+        startLinkageOperation(q);
+      };
+      return;
+    }
+
     showModal(`
       <h2>第 ${currentQuestionIndex + 1} / ${questionQueue.length} 题</h2>
       <p>问题：<span class="highlight-orange">${q.question}</span></p>
@@ -2338,6 +2407,25 @@ function checkAnswer(userAnswer, q) {
       btn.onclick = () => { currentPhase = 'q1_choice'; showChoiceModal(q, btn.dataset.led); };
     });
   }
+
+  /* ★ 联动信息实操：不提示按什么键 */
+  function startLinkageOperation(q) {
+    currentPhase = 'q2';
+    opTaskPanel.classList.add('active');
+    defaultKnob.style.display = 'none';
+    opSubmitBtn.disabled = false;
+    opAnswerBtn.style.display = 'none';
+    fireF3Pressed = false;
+    linkageWaitingKey = true;
+    linkageKeyPressed = null;
+
+    opStepBadge.textContent = '查联动';
+    opQuestion.innerHTML = '实操：<span class="highlight">查联动信息</span>';
+    currentOp = { type: 'linkage', stage: 'waitKey', sourceQuestion: q };
+    startTimer(180, () => failExam('操作超时，考试0分，考试结束'));
+    hideModal();
+  }
+
   function showChoiceModal(q, led) {
     const ledName = { alarm: '火警', fault: '故障', bypass: '屏蔽', supervisory: '监管', selftest: '自检', manual: '手报报警' }[led] || led;
     let isOn = false;
@@ -2382,14 +2470,6 @@ function checkAnswer(userAnswer, q) {
       currentOp = { type: 'supervisory', stage: 'idle', sourceQuestion: q };
       startTimer(180, () => failExam('操作超时，考试0分，考试结束'));
       hideModal();
-    } else if (opType === 'linkage') {
-      opStepBadge.textContent = '查联动';
-      opQuestion.innerHTML = '实操：<span class="highlight">请查询联动信息，并提交操作结果</span>';
-      currentOp = { type: 'linkage', stage: 'waitKey', sourceQuestion: q };
-      startTimer(180, () => failExam('操作超时，考试0分，考试结束'));
-      hideModal();
-      showModal(`<h2>操作提示</h2><p>请点击屏幕任意空白处，进入操作界面。</p><button class="next-btn" id="goOperateBtn">我知道了</button>`);
-      document.getElementById('goOperateBtn').onclick = () => { hideModal(); linkageWaitingKey = true; };
     }
   }
   function startSecondRound() {
@@ -2447,13 +2527,6 @@ function checkAnswer(userAnswer, q) {
           currentQuestionIndex++; stopTimer(); opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex'; hideModal(); nextQuestion();
         } else { hideModal(); failExam('回答错误，考试0分，考试结束'); }
       };
-    } else if (currentOp.type === 'linkage') {
-      if (!linkageWaitingKey) { showFloatTip('请先点击屏幕任意空白处进行操作', 2000); return; }
-      if (linkageKeyPressed === 'F4') {
-        currentQuestionIndex++; stopTimer(); opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex';
-        hideModal(); linkageWaitingKey = false; linkageKeyPressed = null; nextQuestion();
-      } else if (linkageKeyPressed !== null) failExam('操作错误，考试0分，考试结束');
-      else showFloatTip('请先进行操作', 2000);
     } else if (currentOp.type === 'historyFire') {
       if (currentScreen !== 'historyFire') { failExam('操作错误，考试0分，考试结束'); return; }
       showModal(`<h2>请输入历史火警信息</h2><textarea class="answer-input" id="historyFireInput" placeholder="请输入..."></textarea><button class="submit-btn" id="historyFireConfirmBtn">确定</button>`);
@@ -2489,22 +2562,41 @@ function checkAnswer(userAnswer, q) {
   });
   function handleKeyPress(key) {
     if (linkageWaitingKey && currentOp && currentOp.type === 'linkage' && currentOp.stage === 'waitKey') {
-      linkageKeyPressed = key; linkageWaitingKey = false;
-      showModal(`<h2>操作完成</h2><p>您按下了：<span class="highlight-orange">${key}</span></p><p>是否确认提交操作结果？</p><button class="next-btn" id="confirmLinkageBtn">确认提交</button><button class="next-btn" id="cancelLinkageBtn" style="background:#8a9296;margin-top:8px;">取消</button>`);
-      document.getElementById('confirmLinkageBtn').onclick = () => {
-        hideModal();
-        if (key === 'F4') {
-          currentQuestionIndex++; stopTimer(); opTaskPanel.classList.remove('active'); defaultKnob.style.display = 'flex';
-          linkageWaitingKey = false; linkageKeyPressed = null; nextQuestion();
-        } else failExam('操作错误，考试0分，考试结束');
-      };
-      document.getElementById('cancelLinkageBtn').onclick = () => {
-        hideModal(); linkageWaitingKey = true; linkageKeyPressed = null;
-        showModal(`<h2>操作提示</h2><p>请点击屏幕任意空白处，进入操作界面。</p><button class="next-btn" id="goOperateBtn2">我知道了</button>`);
-        document.getElementById('goOperateBtn2').onclick = () => { hideModal(); linkageWaitingKey = true; };
-      };
+      linkageKeyPressed = key;
+      linkageWaitingKey = false;
+      if (key === 'F4') {
+        showFloatTip('✅ 已成功查询联动信息', 1500);
+        setTimeout(() => {
+          showModal(`
+            <h2>请输入联动信息</h2>
+            <textarea class="answer-input" id="linkageAnswerInput" placeholder="请输入当前页面的联动信息..."></textarea>
+            <button class="submit-btn" id="linkageConfirmBtn">确定</button>
+          `);
+          document.getElementById('linkageConfirmBtn').onclick = () => {
+            const val = document.getElementById('linkageAnswerInput').value;
+            const ok = /(1|一)\s*条/.test(val) && val.includes('联动');
+            if (ok) {
+              hideModal();
+              currentQuestionIndex++;
+              stopTimer();
+              opTaskPanel.classList.remove('active');
+              defaultKnob.style.display = 'flex';
+              linkageKeyPressed = null;
+              currentPhase = 'idle';
+              showFloatTip('✅ 回答正确', 1200);
+              setTimeout(() => nextQuestion(), 800);
+            } else {
+              hideModal();
+              failExam('回答错误，考试0分，考试结束');
+            }
+          };
+        }, 800);
+      } else {
+        failExam('操作错误，考试0分，考试结束');
+      }
       return;
     }
+
     if (key === 'F3') {
       if (currentOp && currentOp.type === 'fire' && currentOp.stage === 'needF3') {
         fireF3Pressed = true; renderDefaultScreen();
@@ -2541,22 +2633,35 @@ function checkAnswer(userAnswer, q) {
     else {
       if (currentPhase === 'q1_led' && currentQuestionIndex < questionQueue.length) {
         const q = questionQueue[currentQuestionIndex];
-        showModal(`
-          <h2>第 ${currentQuestionIndex + 1} / ${questionQueue.length} 题</h2>
-          <p>问题：<span class="highlight-orange">${q.question}</span></p>
-          <p style="font-size:14px;color:#666;">请点击左侧面板上对应的指示灯或名称：</p>
-          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
-            <button class="choice-btn" data-led="alarm" style="flex:1;min-width:120px;">火警灯</button>
-            <button class="choice-btn" data-led="fault" style="flex:1;min-width:120px;">故障灯</button>
-            <button class="choice-btn" data-led="bypass" style="flex:1;min-width:120px;">屏蔽灯</button>
-            <button class="choice-btn" data-led="supervisory" style="flex:1;min-width:120px;">监管灯</button>
-            <button class="choice-btn" data-led="selftest" style="flex:1;min-width:120px;">自检灯</button>
-            <button class="choice-btn" data-led="manual" style="flex:1;min-width:120px;">手报报警灯</button>
-          </div>
-        `);
-        modalContent.querySelectorAll('[data-led]').forEach(btn => {
-          btn.onclick = () => { currentPhase = 'q1_choice'; showChoiceModal(q, btn.dataset.led); };
-        });
+        if (q.key === 'linkage') {
+          showModal(`
+            <h2>第 ${currentQuestionIndex + 1} / ${questionQueue.length} 题</h2>
+            <p>问题：<span class="highlight-orange">${q.question}</span></p>
+            <p style="font-size:14px;color:#666;">请选择：</p>
+            <button class="choice-btn" id="linkageEnterBtn" style="width:100%;">在操作界面操作</button>
+          `);
+          document.getElementById('linkageEnterBtn').onclick = () => {
+            hideModal();
+            startLinkageOperation(q);
+          };
+        } else {
+          showModal(`
+            <h2>第 ${currentQuestionIndex + 1} / ${questionQueue.length} 题</h2>
+            <p>问题：<span class="highlight-orange">${q.question}</span></p>
+            <p style="font-size:14px;color:#666;">请点击左侧面板上对应的指示灯或名称：</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+              <button class="choice-btn" data-led="alarm" style="flex:1;min-width:120px;">火警灯</button>
+              <button class="choice-btn" data-led="fault" style="flex:1;min-width:120px;">故障灯</button>
+              <button class="choice-btn" data-led="bypass" style="flex:1;min-width:120px;">屏蔽灯</button>
+              <button class="choice-btn" data-led="supervisory" style="flex:1;min-width:120px;">监管灯</button>
+              <button class="choice-btn" data-led="selftest" style="flex:1;min-width:120px;">自检灯</button>
+              <button class="choice-btn" data-led="manual" style="flex:1;min-width:120px;">手报报警灯</button>
+            </div>
+          `);
+          modalContent.querySelectorAll('[data-led]').forEach(btn => {
+            btn.onclick = () => { currentPhase = 'q1_choice'; showChoiceModal(q, btn.dataset.led); };
+          });
+        }
       } else if (currentPhase === 'q2') { opTaskPanel.classList.add('active'); defaultKnob.style.display = 'none'; }
       else if (currentPhase === 'round2') { opTaskPanel.classList.add('active'); defaultKnob.style.display = 'none'; }
       else initPractice();
